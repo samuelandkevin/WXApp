@@ -1,0 +1,148 @@
+<view class='.bgf5'>
+<!--section 1  -->
+<swiper class="activity" indicator-dots="{{indicatorDots}}"
+            autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-active-color='white' indicator-color='gray'>
+      <block wx:for="{{imgUrls}}">
+        <swiper-item>
+          <image src="{{item}}" class="slide-image" width="355" height="155"/>
+        </swiper-item>
+      </block>
+ </swiper>
+<!--section 2  -->
+<view class="panel">
+  <view class="linkbtns">
+    <a href="javascript:;" data-url="/v2/books" data-type="0" data-fun="onCallBook">
+        <view class="iconpic">
+          <image src="../../images/index/v3-7-h-g-01.png" />
+        </view>
+        <p>工作指引</p>
+    </a>
+    <a href="javascript:;" data-url="web/case" data-type="0" data-fun="onCallCase">
+        <view class="iconpic">
+          <image src="../../images/index/v3-7-h-g-02.png" />
+        </view>
+        <p>案例</p>
+    </a>
+    <a href="javascript:;" data-url="/v2/train/online" data-type="0" data-fun="onCallTrain">
+        <view class="iconpic">
+          <image src="../../images/index/v3-7-h-g-03.png" />
+        </view>
+        <p>培训</p>
+    </a>
+    <a href="javascript:;" data-url="/onlineConsultation" data-type="0" data-fun="onlineConsultation">
+        <view class="iconpic">
+          <image src="../../images/index/v3-7-h-g-04.png" />
+        </view>
+        <p>在线咨询</p>
+    </a>
+  </view>
+</view>
+
+<!--section 3  -->
+ <view class="v3-7-h-otherbtn">
+    <view class="ui_flex">
+        <a href="javascript:;" class="ui_flex-hd" data-url="/v2/evaluation" data-type="0" data-fun="onCallEvaluation" >
+            <view class="ui_flex">
+                <view class="iconpic">
+                  <image src="../../images/index/v3-7-h-l-01.png" />
+                </view>
+                <view class="ui_flex-hd">
+                  <view class="h2">执业测评</view>
+                  <view class="p">提升专业水平</view>
+                </view>
+            </view>
+        </a>
+        <a href="javascript:;" class="ui_flex-hd" data-url="法规库" dat-type="0" data-fun="onCallLawLib" >
+            <view class="ui_flex">
+                <view class="iconpic">
+                  <image src="../../images/index/v3-7-h-l-02.png" />
+                </view>
+                <view class="ui_flex-hd">
+                  <view class="h2">法规库</view>
+                  <view class="p">中央地方条文</view>
+                </view>
+            </view>
+        </a>
+    </view>
+    <view class="ui_flex">
+        <a href="javascript:;" class="ui_flex-hd" data-url="/sd/ygz?type=analysis" data-type="1" data-fun="onCallNews" >
+            <view class="ui_flex">
+                <view class="iconpic">
+                  <image src="../../images/index/v3-7-h-l-03.png" />
+                </view>
+                <view class="ui_flex-hd">
+                  <view class="h2">热点资讯</view>
+                  <view class="p">掌握时下热点</view>
+                </view>
+            </view>
+        </a>
+        <a href="javascript:;" class="ui_flex-hd" data-url="/v2/rule" data-type="0" data-fun="onCallRules" >
+            <view class="ui_flex">
+                <view class="iconpic">
+                  <image src="../../images/index/v3-7-h-l-04.png" />
+                </view>
+                <view class="ui_flex-hd">
+                  <view class="h2">办事指引</view>
+                  <view class="p">依照规程办税</view>
+                </view>
+            </view>
+        </a>
+    </view>
+</view>
+<!--section 4  -->
+<view class="tuijian_item">
+  <view class="type_title">
+    <span>最新案例</span>
+    <a href="javascript:;">更多<i class="iconfont"></i></a>
+  </view>
+  <view id="last_case">
+  <block wx:for="{{latestCases}}">
+    <a href="javascript:;" class="tuijian_list" data-id="173158">
+      <view class="ui_flex">
+        <view class="ui_flex-hd">
+          <view class="title">{{item.title}}</view>
+          <view class="info">{{item.summary}}</view>
+          <view class="ui_flex v3-7-info">
+            <view class="ui_flex-hd">
+              <view class="tags">
+                <span>土地增值税</span>
+              </view>
+            </view>
+            <view class="time">{{item.createTime}}</view>
+          </view>
+        </view>
+      </view>
+    </a>
+  </block>
+  </view>
+</view>
+<view class="tuijian_item">
+  <view class="type_title">
+    <span>热门案例</span>
+    <a href="javascript:;">更多<i class="iconfont"></i></a>
+  </view>
+  <view id="hot_case">
+    <block wx:for="{{hotCases}}">
+    <a href="javascript:;" class="tuijian_list" data-id="1394">
+      <view class="ui_flex">
+        <view class="ui_flex-hd">
+          <view class="title">"{{item.title}}"</view>
+          <view class="info">"{{item.summary}}"</view>
+          <view class="ui_flex v3-7-info">
+            <view class="ui_flex-hd">
+              <view class="tags">
+                <span>营改增</span>
+                <span>生活服务业</span>
+              </view>
+            </view>
+            <view class="time">"{{item.createTime}}"</view>
+          </view>
+        </view>
+      </view>
+    </a>
+    </block>
+  </view>
+</view>
+</view>      
+ 
+
