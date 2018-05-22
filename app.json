@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/msg/msg",
     "pages/connection/connection",
-    "pages/me/me"
+    "pages/me/me",
+    "pages/case/caseDetail"
   ],
   "window": {
     "backgroundTextStyle": "light",

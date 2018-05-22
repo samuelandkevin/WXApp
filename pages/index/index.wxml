@@ -97,7 +97,7 @@
   </view>
   <view id="last_case">
   <block wx:for="{{latestCases}}">
-    <a href="javascript:;" class="tuijian_list" data-id="173158">
+    <a href="javascript:;" class="tuijian_list" data-id="{{item.id}}" bindtap="onCase">
       <view class="ui_flex">
         <view class="ui_flex-hd">
           <view class="title">{{item.title}}</view>
@@ -105,7 +105,8 @@
           <view class="ui_flex v3-7-info">
             <view class="ui_flex-hd">
               <view class="tags">
-                <span>土地增值税</span>
+                <span wx:if="{{item.taxType != undeifned || item.taxType != null}}">{{item.taxType}}</span>
+                <span wx:if="{{item.taxSubType != undeifned || item.taxSubType != null}}">{{item.taxSubType}}</span>
               </view>
             </view>
             <view class="time">{{item.createTime}}</view>
@@ -123,7 +124,7 @@
   </view>
   <view id="hot_case">
     <block wx:for="{{hotCases}}">
-    <a href="javascript:;" class="tuijian_list" data-id="1394">
+    <a href="javascript:;" class="tuijian_list" data-id="{{item.id}}" bindtap="onCase">
       <view class="ui_flex">
         <view class="ui_flex-hd">
           <view class="title">"{{item.title}}"</view>
@@ -131,11 +132,11 @@
           <view class="ui_flex v3-7-info">
             <view class="ui_flex-hd">
               <view class="tags">
-                <span>营改增</span>
-                <span>生活服务业</span>
+                <span wx:if="{{item.taxType != undeifned || item.taxType != null}}">{{item.taxType}}</span>
+                <span wx:if="{{item.taxSubType != undeifned || item.taxSubType != null}}">{{item.taxSubType}}</span>
               </view>
             </view>
-            <view class="time">"{{item.createTime}}"</view>
+            <view class="time">{{item.createTime}}</view>
           </view>
         </view>
       </view>

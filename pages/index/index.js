@@ -1,5 +1,6 @@
 
 var netUtil  = require("../../utils/netUtil.js");
+var dataUtil = require("../../data/dataUtil.js");
 var callback = netUtil.callback;
 var that;
 Page({
@@ -38,7 +39,7 @@ Page({
         if (ret.data != null && ret.data.code == 999){
           var list  = ret.data.data;
           if(list != null || list != undefined){
-            console.log(list);
+            list = that._handleCaseList(list);
             that.setData({
               latestCases: list
             })
@@ -51,7 +52,7 @@ Page({
         if (ret.data != null && ret.data.code == 999) {
           var list = ret.data.data;
           if (list != null || list != undefined) {
-            console.log(list);
+            list = that._handleCaseList(list);
             that.setData({
               hotCases: list
             })
@@ -103,6 +104,17 @@ Page({
     })
   },
 
+  //处理案例列表数据
+  _handleCaseList:function(list){
+    for (var i = 0; i < list.length; i++) {
+      var aData = list[i];
+      aData.taxType = dataUtil.getTax(aData.taxType);
+      aData.taxSubType = dataUtil.getTax(aData.taxSubType);
+      aData.createTime = dataUtil.dateFormat(aData.createTime, "yyyy-MM-dd");
+    }
+    return list;
+  },
+
   /**
    * 生命周期函数--监听页面显示
    */
@@ -143,5 +155,14 @@ Page({
    */
   onShareAppMessage: function () {
     
-  }
+  },
+
+  //点击案例
+  onCase: function (event) {
+    var caseId = event.currentTarget.dataset['id'];
+    wx.navigateTo({
+      url: '../../pages/case/caseDetail',
+    })
+    
+  },
 })
