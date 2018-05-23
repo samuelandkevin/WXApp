@@ -1,0 +1,75 @@
+.mui-table-view-cell {
+    position: relative;
+    overflow: hidden;
+    padding: 11px 15px;
+    -webkit-touch-callout: none;
+}
+.mui-table-view .mui-media-object.mui-pull-left {
+    margin-right: 10px;
+}
+.mui-table-view .mui-media-object {
+    line-height: 42px;
+    max-width: 42px;
+    height: 42px;
+}
+.mui-pull-left {
+    float: left;
+}
+image {
+    border: 0;
+}
+.mui-table-view {
+    position: relative;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    list-style: none;
+    background-color: #fff;
+}
+.mui-table-view-chevron .mui-table-view-cell {
+    padding-right: 15px;
+}
+.mui-table-view:before {
+    position: absolute;
+    right: 0;
+    left: 0;
+    height: 1px;
+    content: '';
+    -webkit-transform: scaleY(.5);
+    transform: scaleY(.5);
+    background-color: #c8c7cc;
+    top: -1px;
+}
+#mylisttext {
+    font-size: 15px;
+    color: #333;
+}
+.mui-table-view-cell p {
+    margin-bottom: 0.25rem;
+}
+p {
+    display: block;
+    -webkit-margin-before: 0.25em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+.mui-table-view-cell:after {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 15px;
+    height: 1px;
+    content: '';
+    -webkit-transform: scaleY(.5);
+    transform: scaleY(.5);
+    background-color: #c8c7cc;
+}
+.mui-table-view .mui-media, .mui-table-view .mui-media-body {
+    overflow: hidden;
+}
+.mui-ellipsis {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

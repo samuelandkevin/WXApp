@@ -1,0 +1,50 @@
+<import src="../../utils/wxParse/wxParse.wxml" />
+
+<view class="mui-content">
+    <view class="v38casebox">
+        <view class="caseshowbox">
+            <view class="toppanel">
+                <view class="title">{{caseInfo.title}}</view>
+                <view class="type">
+                	<span wx:if="{{!is_shuidao}}" class="time">{{caseInfo.taxTypeName}}</span>
+                	<span wx:if="{{!is_shuidao}}" class="time">{{caseInfo.typeName}}</span>
+     	           	<span class="time">{{is_shuidao? '发布日期: ':''}}</span>
+                  <span class="time {{is_shuidao?'':'time1'}}">{{caseInfo.createTime}}</span>
+     	        </view>
+            </view>
+            <view class="bdpanel">
+            		 <view class="{{isBuy?'':'bgmask'}}" > 
+                		<p><span style="color: #4290d7">导读：</span>{{caseInfo.summary}}</p>
+                		
+                    <template is="wxParse" data="{{wxParseData:content.nodes}}"/>
+                 </view> 
+            </view>
+        </view>
+    </view>
+    <view id="btn"></view>
+</view>
+
+<view class="btn-buy-fixed" data-id="{{caseInfo.id}}"  id="gotoApp"  wx:if="{{!is_shuidao && !isBuy}}">付费￥{{caseInfo.price}}看全文</view>
+<view class="btn-buy-fixed" data-id="{{caseInfo.id}}"  id="gotoApp" wx:if="{{is_shuidao && !isBuy}}">付费购买全文</view>
+
+<view class="ebookbuy-dialog" id="bug_dialog" style="display: none;" wx:if="{{is_shuidao}}">
+    <view class="ui_mask"></view>
+    <view class="ui_dialog">
+        <view class="ui_dialog_hd">购买全文<i class="iconfont close">&#xe63d;</i></view>
+        <view class="ui_dialog_bd">
+            <view class="num">
+                <p style="font-size: 0.55rem; line-height: 1; text-indent: 0;">您需要支付</p>
+                <view>|￥{{caseInfo.price}}|</view>
+            </view>
+            <view class="item">
+                <view class="ui_flex list">
+                    <view class="ui_flex-hd">微信支付</view>
+                    <view class="icon"><i class="iconfont">&#xe613;</i></view>
+                </view>
+            </view>
+        </view>
+        <view class="ui_dialog_ft">
+            <a href="javascript:;" id="btn_buy">确定支付</a>
+        </view>
+    </view>
+</view>

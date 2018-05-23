@@ -4,7 +4,9 @@
     "pages/msg/msg",
     "pages/connection/connection",
     "pages/me/me",
-    "pages/case/caseDetail"
+    "pages/case/caseDetail",
+    "pages/infor/infor",
+    "pages/case/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

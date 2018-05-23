@@ -1,8 +1,8 @@
-<view class='.bgf5'>
+<scroll-view scroll-y="true" class='.bgf5'>
 <!--section 1  -->
 <swiper class="activity" indicator-dots="{{indicatorDots}}"
             autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-active-color='white' indicator-color='gray'>
-      <block wx:for="{{imgUrls}}">
+      <block wx:for="{{imgUrls}}" wx:key="*this">
         <swiper-item>
           <image src="{{item}}" class="slide-image" width="355" height="155"/>
         </swiper-item>
@@ -17,7 +17,7 @@
         </view>
         <p>工作指引</p>
     </a>
-    <a href="javascript:;" data-url="web/case" data-type="0" data-fun="onCallCase">
+    <a href="javascript:;" data-url="web/case" data-type="0" data-fun="onCallCase" bindtap="onCaseIndex">
         <view class="iconpic">
           <image src="../../images/index/v3-7-h-g-02.png" />
         </view>
@@ -65,7 +65,7 @@
         </a>
     </view>
     <view class="ui_flex">
-        <a href="javascript:;" class="ui_flex-hd" data-url="/sd/ygz?type=analysis" data-type="1" data-fun="onCallNews" >
+        <a href="javascript:;" class="ui_flex-hd" data-url="/sd/ygz?type=analysis" data-type="1" data-fun="onCallNews" bindtap="onCallNews">
             <view class="ui_flex">
                 <view class="iconpic">
                   <image src="../../images/index/v3-7-h-l-03.png" />
@@ -96,7 +96,7 @@
     <a href="javascript:;">更多<i class="iconfont"></i></a>
   </view>
   <view id="last_case">
-  <block wx:for="{{latestCases}}">
+  <block wx:for="{{latestCases}}" wx:key="item.id">
     <a href="javascript:;" class="tuijian_list" data-id="{{item.id}}" bindtap="onCase">
       <view class="ui_flex">
         <view class="ui_flex-hd">
@@ -123,7 +123,7 @@
     <a href="javascript:;">更多<i class="iconfont"></i></a>
   </view>
   <view id="hot_case">
-    <block wx:for="{{hotCases}}">
+    <block wx:for="{{hotCases}}" wx:key="item.id">
     <a href="javascript:;" class="tuijian_list" data-id="{{item.id}}" bindtap="onCase">
       <view class="ui_flex">
         <view class="ui_flex-hd">
@@ -144,6 +144,6 @@
     </block>
   </view>
 </view>
-</view>      
+</scroll-view>      
  
 

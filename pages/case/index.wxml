@@ -1,0 +1,26 @@
+ <a href="javascript:;" class="tuijian_list"  data-id="{{item.id}}" wx:for="{{list}}">
+        <view class="ui_flex">
+            <view class="ui_flex-hd">
+                <view class="title">{{item.title}}</view>
+                <view class="info">导读：{{item.summary}}</view>
+                <view class="ui_flex v3-7-info">
+                    <view class="ui_flex-hd">
+                        <view class="tags">
+                        <block wx:if="{{item.taxType && item.taxSubType }}">
+                          <span>{{item.taxType}}</span>
+                          <span>{{item.taxSubType}}</span>
+                        </block>
+                        <block wx:elif="{{item.taxType}}">
+                          <span>{{item.taxType}}</span>
+                        </block>
+                        </view>
+                    </view>
+                    <view class="time">{{item.createTime}}</view>
+                </view>
+            </view>
+        </view>
+</a>
+
+
+
+

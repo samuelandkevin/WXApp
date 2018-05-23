@@ -33,7 +33,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    var that = this;
+    that = this;
     this._getLatestCases({
       success: function (ret){
         if (ret.data != null && ret.data.code == 999){
@@ -63,8 +63,7 @@ Page({
     
   },
 
-  
-
+  /**网络请求 */
   //获取最新案例
   _getLatestCases: function (callback) {
 
@@ -157,12 +156,24 @@ Page({
     
   },
 
-  //点击案例
+  //点击某一条案例
   onCase: function (event) {
     var caseId = event.currentTarget.dataset['id'];
     wx.navigateTo({
-      url: '../../pages/case/caseDetail',
+      url: '../../pages/case/caseDetail?caseId=' + caseId,
     })
     
   },
+  //点击资讯
+  onCallNews:function(event){
+    wx.navigateTo({
+      url: '../../pages/infor/infor',
+    })
+  },
+  //点击案例首页
+  onCaseIndex:function(event){
+    wx.navigateTo({
+      url: '../../pages/case/index',
+    })
+  }
 })
