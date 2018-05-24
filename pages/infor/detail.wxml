@@ -1,0 +1,17 @@
+<import src="../../utils/wxParse/wxParse.wxml" />
+<view class="mui-content">
+    <view class="v38casebox">
+        <view class="caseshowbox">
+            <view class="toppanel">
+                <view class="title">{{detail.title}}</view>
+                <view class="type">
+                    <span class="time">{{detail.createdDate}}</span>
+                    <span class="time">{{detail.articleUser}}</span>
+                </view>
+            </view>
+            <view class="bdpanel">
+            <template is="wxParse" data="{{wxParseData:content.nodes}}"/>
+            </view>
+      </view>
+  </view>
+</view>

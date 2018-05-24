@@ -175,5 +175,11 @@ Page({
     wx.navigateTo({
       url: '../../pages/case/index',
     })
+  },
+  //点击法规库
+  onLawLib:function(){
+    wx.navigateTo({
+      url: '../../pages/law/index',
+    })
   }
 })

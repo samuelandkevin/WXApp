@@ -1,4 +1,8 @@
- <a href="javascript:;" class="tuijian_list"  data-id="{{item.id}}" wx:for="{{list}}">
+ <loading hidden="{{loadFinish}}" bindchange="loadingChange" />
+ <scroll-view scroll-y="true" style="height:100%" bindscrolltolower="loadMore" bindscrolltoupper="loadNew" class="v38casebox">
+
+ <view class="tuijian_item" id="case_list" style="margin-top:0">
+ <a href="javascript:;" class="tuijian_list"  data-id="{{item.id}}" wx:for="{{list}}" wx:key="{{item.id}}" bindtap="onDetail">
         <view class="ui_flex">
             <view class="ui_flex-hd">
                 <view class="title">{{item.title}}</view>
@@ -20,7 +24,8 @@
             </view>
         </view>
 </a>
-
+</view>
+</scroll-view>
 
 
 

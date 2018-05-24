@@ -1,0 +1,21 @@
+
+<scroll-view scroll-y="true" style="height:100%" class="mui-scroll">
+	<!--数据列表-->
+	<view class="mui-table-view mui-table-view-chevron" id="list" >
+<view class="mui-table-view-cell" data-id="{{item.id}}" wx:for="{{list}}" wx:key="item.id">
+			<a>
+				<p class="ask_title">
+					{{item.articleTitle}}
+				</p>
+				<view class="ask_info">
+					<p>
+						{{item.articleWenhao}}
+					</p>
+					<span class="ask_time">
+						{{item.updateTime}}
+					</span>
+				</view>
+			</a>
+</view>
+</view>
+</scroll-view>

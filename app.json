@@ -6,6 +6,8 @@
     "pages/me/me",
     "pages/case/caseDetail",
     "pages/infor/infor",
+    "pages/infor/detail",
+    "pages/law/index",
     "pages/case/index"
   ],
   "window": {

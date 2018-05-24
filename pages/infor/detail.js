@@ -1,58 +1,48 @@
-var netUtil = require("../../utils/netUtil.js");
+var netUtil  = require("../../utils/netUtil.js");
 var dataUtil = require("../../data/dataUtil.js");
 var WxParse = require('../../utils/wxParse/wxParse.js');
 var callback = netUtil.callback;
 var that;
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    isBuy:false,
-    is_iOS:true,
-    is_iOSUnderReview:false,
-    is_mobile:false,
-    is_shuidao:false,
-    caseInfo:{},
-    caseInfo1:[]//可能感兴趣的案例列表
+    detail:{}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    that = this;
-    var caseId = options.caseId;
-    console.log("caseId = " + caseId);
-    this._getCaseDetail(caseId, {
-      success: function (ret) {
-        if (ret.data != null && ret.data.code == 999) {
-          var data = ret.data.data;
-          data.caseInfo.createTime = dataUtil.dateFormat(data.caseInfo.createTime, "yyyy-MM-dd");
-          console.log(data);
-          var content = data.caseInfo.content;
-          WxParse.wxParse('content', 'html', content, that, 5);
-          that.setData({
-            isBuy: data.isBuy,
-            is_iOS: data.is_iOS,
-            is_iOSUnderReview: data.is_iOSUnderReview,
-            is_mobile: data.is_mobile,
-            is_shuidao: true,
-            caseInfo: data.caseInfo,
-            caseInfo1: data.caseInfo1
-          })
-        }
-      }
-    }
-    );
+      that = this;
+      var id = options.inforId;
+      console.log(id);
+      this._getInforDetail(id,{
+          success:function(ret){
+            if (ret.data != null && ret.data.code == 999) {
+              var detail = ret.data.data.detail;
+              detail.createdDate = dataUtil.dateFormat(detail.createdDate, "yyyy-MM-dd");
+              var content = detail.content;
+              WxParse.wxParse('content', 'html', content, that, 5);
+              that.setData({
+                detail:detail
+              })
+            }
+          },
+          complete:function(ret){
+
+          }
+      });
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function (options) {
-      
+  onReady: function () {
+    
   },
 
   /**
@@ -97,12 +87,10 @@ Page({
     
   },
 
-
   /**网络请求 */
-  //获取案例详情
-  _getCaseDetail: function (caseId,callback) {
+  _getInforDetail:function(id,callback){
     var params = new Object();
-    var url = "/taxtao/api/case/" + caseId + "?accessToken=";
+    var url = "/taxtao/api/infor/detail/" + id;
     netUtil.GET({
       url: url,
       params: params,
@@ -113,8 +101,9 @@ Page({
         callback.fail();
       },
       complete: function () {
+        callback.complete();
       },
     })
-  },
+  }
 
 })
