@@ -1,8 +1,8 @@
 
 <scroll-view scroll-y="true" style="height:100%" class="mui-scroll">
 	<!--数据列表-->
-	<view class="mui-table-view mui-table-view-chevron" id="list" >
-<view class="mui-table-view-cell" data-id="{{item.id}}" wx:for="{{list}}" wx:key="item.id">
+	<ul class="mui-table-view mui-table-view-chevron" id="list" >
+<li class="mui-table-view-cell" data-id="{{item.id}}" wx:for="{{list}}" wx:key="item.id">
 			<a>
 				<p class="ask_title">
 					{{item.articleTitle}}
@@ -16,6 +16,6 @@
 					</span>
 				</view>
 			</a>
-</view>
-</view>
+</li>
+</ul>
 </scroll-view>

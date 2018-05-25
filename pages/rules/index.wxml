@@ -1,0 +1,25 @@
+<view class="mui-content">
+	<view class="sd_search" style="background: #f4f4f4;">
+		<view class="so_form">
+			<input type="search" disabled="disabled" placeholder="搜办事指引"/>
+		</view>
+	</view>
+	<view class="gcitem">
+		<view class="toptitle">
+			最新修订信息
+		</view>
+		<a href="javascript:;" class="list" data-id="{{item.id}}" data-title="{{item.name}}" wx:for="{{list}}" wx:key="{{item.id}}">
+			<view class="title">
+				{{item.name}}
+			</view>
+			<view class="ui_flex">
+				<view class="ui_flex-hd">
+					{{item.type_pname}} - {{item.type_name}}
+				</view>
+				<view class="time">
+					{{item.update_time}}
+				</view>
+			</view>
+		</a>
+	</view>
+</view>

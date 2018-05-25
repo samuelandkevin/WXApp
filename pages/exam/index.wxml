@@ -1,0 +1,122 @@
+<view class="mui-content">
+    <view class="evaluationbox">
+        <view class="panel_list">
+            <view class="type_title">税务管理</view>
+            <view class="ev_type_item">
+                <view class="ev_type_list">
+                    <a href="javascript:;" data-id="2" data-title="税务总监">
+                        <image src="https://csapp.gtax.cn/taxtao/static//images/ev_icon_01.png" />
+                        <p class="name"><span>税务总监</span></p>
+                    </a>
+                </view>
+                <view class="ev_type_list">
+                    <a href="javascript:;" data-id="3" data-title="税务经理">
+                        <image src="https://csapp.gtax.cn/taxtao/static//images/ev_icon_02.png" />
+                        <p class="name"><span>税务经理</span></p>
+                    </a>
+                </view>
+                <view class="ev_type_list">
+                    <a href="javascript:;" data-id="4" data-title="税务主管">
+                        <image src="https://csapp.gtax.cn/taxtao/static//images/ev_icon_03.png" />
+                        <p class="name"><span>税务主管</span></p>
+                    </a>
+                </view>
+                <view class="ev_type_list">
+                    <a href="javascript:;" data-id="5" data-title="税务专员">
+                        <image src="https://csapp.gtax.cn/taxtao/static//images/ev_icon_04.png" />
+                        <p class="name"><span>税务专员</span></p>
+                    </a>
+                </view>
+            </view>
+        </view>
+        <view class="panel_list">
+            <view class="type_title">成本核算</view>
+            <view class="ev_type_item">
+                <view class="ev_type_list">
+                    <a href="javascript:;" data-id="7" data-title="成本总监">
+                        <image src="https://csapp.gtax.cn/taxtao/static//images/ev_icon_05.png" />
+                        <p class="name"><span>成本总监</span></p>
+                    </a>
+                </view>
+                <view class="ev_type_list">
+                    <a href="javascript:;" data-id="8" data-title="成本经理">
+                        <image src="https://csapp.gtax.cn/taxtao/static//images/ev_icon_06.png" />
+                        <p class="name"><span>成本经理</span></p>
+                    </a>
+                </view>
+                <view class="ev_type_list">
+                    <a href="javascript:;" data-id="9" data-title="成本主管">
+                        <image src="https://csapp.gtax.cn/taxtao/static//images/ev_icon_07.png" />
+                        <p class="name"><span>成本主管</span></p>
+                    </a>
+                </view>
+                <view class="ev_type_list">
+                    <a href="javascript:;" data-id="10" data-title="成本专员">
+                        <image src="https://csapp.gtax.cn/taxtao/static//images/ev_icon_08.png" />
+                        <p class="name"><span>成本专员</span></p>
+                    </a>
+                </view>
+            </view>
+        </view>
+        <view class="panel_list">
+            <view class="type_title">风险控制</view>
+            <view class="ev_type_item">
+                <view class="ev_type_list">
+                    <a href="javascript:;" data-id="17" data-title="风控总监">
+                        <image src="https://csapp.gtax.cn/taxtao/static//images/ev_icon_13.png" />
+                        <p class="name"><span>风控总监</span></p>
+                    </a>
+                </view>
+                <view class="ev_type_list">
+                    <a href="javascript:;" data-id="18" data-title="风控经理">
+                        <image src="https://csapp.gtax.cn/taxtao/static//images/ev_icon_14.png" />
+                        <p class="name"><span>风控经理</span></p>
+                    </a>
+                </view>
+                <view class="ev_type_list">
+                    <a href="javascript:;" data-id="19" data-title="风控主管">
+                        <image src="https://csapp.gtax.cn/taxtao/static//images/ev_icon_15.png" />
+                        <p class="name"><span>风控主管</span></p>
+                    </a>
+                </view>
+                <view class="ev_type_list">
+                    <a href="javascript:;" data-id="20" data-title="风控专员">
+                        <image src="https://csapp.gtax.cn/taxtao/static//images/ev_icon_16.png" />
+                        <p class="name"><span>风控专员</span></p>
+                    </a>
+                </view>
+            </view>
+        </view>
+        <view class="panel_list">
+            <view class="type_title">资金预算</view>
+            <view class="ev_type_item">
+                <view class="ev_type_list">
+                    <a href="javascript:;" data-id="12" data-title="资金预算总监">
+                        <image src="https://csapp.gtax.cn/taxtao/static//images/ev_icon_09.png" />
+                        <p class="name"><span>资金预算总监</span></p>
+                    </a>
+                </view>
+                <view class="ev_type_list">
+                    <a href="javascript:;" data-id="13" data-title="资金预算经理">
+                        <image src="https://csapp.gtax.cn/taxtao/static//images/ev_icon_10.png" />
+                        <p class="name"><span>资金预算经理</span></p>
+                    </a>
+                </view>
+                <view class="ev_type_list">
+                    <a href="javascript:;" data-id="14" data-title="资金预算主管">
+                        <image src="https://csapp.gtax.cn/taxtao/static//images/ev_icon_11.png" />
+                        <p class="name"><span>资金预算主管</span></p>
+                    </a>
+                </view>
+                <view class="ev_type_list">
+                    <a href="javascript:;" data-id="15" data-title="资金预算专员">
+                        <image src="https://csapp.gtax.cn/taxtao/static//images/ev_icon_12.png" />
+                        <p class="name"><span>资金预算专员</span></p>
+                    </a>
+                </view>
+            </view>
+        </view>
+    </view>
+    <!--无数据 -->
+    
+</view>

@@ -1,0 +1,75 @@
+.mui-content {
+    background: #f5f5f5;
+}
+.gzzybox {
+    padding-bottom: 0.28rem;
+    box-sizing: border-box;
+    outline: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+.gzzybox .panel {
+    background: #fff;
+    margin-top: 0.56rem;
+    margin-left: 0.56rem;
+    margin-right: 0.56rem;
+    padding: 0.56rem;
+    padding-bottom: 0rem;
+}
+.gzzybox .panel .h2 {
+    font-size: 0.7rem;
+    color: #333333;
+    padding: 0;
+    margin: 0;
+    line-height: 1.8rem;
+}
+.h2 {
+    display: block;
+    -webkit-margin-before: 0.83em;
+    -webkit-margin-after: 0.83em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    font-weight: bold;
+}
+.gzzybox .panel p.info {
+    font-size: 0.56rem;
+    color: #999999;
+    line-height: 1;
+    margin-top: 0.52rem;
+}
+.gzzybox .panel ul {
+    padding: 0.2rem 0;
+    font-size: 0.6rem;
+    color: #428fd7;
+    margin: 0;
+}
+.gzzybox .panel ul li {
+    line-height: 1.2rem;
+    list-style-type: disc;
+    margin-left: 0.8rem;
+    margin-top: 0.2rem;
+}
+ul {
+    list-style-type: none;
+}
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+.gzzybox .panel a.more {
+    display: block;
+    margin-top: 0.56rem;
+    height: 2rem;
+    line-height: 2rem;
+    color: #333333;
+    font-size: 0.6rem;
+    text-align: center;
+    position: relative;
+}
+.gzzybox .panel a.more:before {
+    position: absolute;
+    content: '';
+    height: 1px;
+    left: 0;
+    right: 0;
+    background: #f5f5f5;
+}

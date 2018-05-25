@@ -1,22 +1,10 @@
-.mui-bar-nav~.mui-content {
-    padding-top: 44px;
-}
-.mui-scroll-wrapper {
-    position: absolute;
-    z-index: 2;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    overflow: hidden;
-    width: 100%;
-}
 .mui-scroll {
     position: absolute;
     z-index: 1;
     width: 100%;
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
-    line-height: 1.6;
+        line-height: 1.6;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .mui-table-view {
@@ -44,7 +32,10 @@
     position: relative;
     overflow: hidden;
     padding: 11px 15px;
-    -webkit-touch-callout: none;
+}
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
 }
 .mui-table-view-chevron .mui-table-view-cell>a:not(.mui-btn) {
     margin-right: -15px;
@@ -55,9 +46,13 @@
     overflow: hidden;
     margin: -11px -15px;
     padding: inherit;
-    white-space: nowrap;
     text-overflow: ellipsis;
     color: inherit;
+}
+.mui-table-view-cell a {
+    -webkit-box-flex: 1;
+    flex: 1;
+    white-space: inherit !important;
 }
 .mui-table-view-cell p {
     margin-bottom: 0;
@@ -79,12 +74,7 @@
 }
 .ask_info p {
     -webkit-box-flex: 1;
-    -webkit-flex: 1;
-    -ms-flex: 1;
     flex: 1;
-}
-.mui-table-view-cell p {
-    margin-bottom: 0;
 }
 .mui-table-view-cell:after {
     position: absolute;
@@ -93,12 +83,6 @@
     left: 15px;
     height: 1px;
     content: '';
-    -webkit-transform: scaleY(.5);
     transform: scaleY(.5);
     background-color: #c8c7cc;
 }
-#list{
-    display: block;
-  
-}
-

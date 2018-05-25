@@ -181,5 +181,29 @@ Page({
     wx.navigateTo({
       url: '../../pages/law/index',
     })
-  }
+  },
+  //点击工作指引
+  onBook:function(){
+    wx.navigateTo({
+      url: '../../pages/book/index',
+    })
+  },
+  //点击培训
+  onTrain:function(){
+    wx.navigateTo({
+      url: '../../pages/train/video',
+    })
+  },
+  //点击办事指引
+  onRules:function(){
+    wx.navigateTo({
+      url: '../../pages/rules/index',
+    })
+  },
+  //点击执业测评
+  onEvaluation:function(){
+    wx.navigateTo({
+      url: '../../pages/exam/index',
+    })
+  },
 })

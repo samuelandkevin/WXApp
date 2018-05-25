@@ -1,0 +1,44 @@
+<scroll-view scroll-y="true" style="height:100%" class="mui-content">
+    <view class="trainingbox">
+        <view class="hg_panel">
+            <a href="javascript:;" class="traininglist" data-id="5" data-title="2017年全国税务稽查工作重点及2016年度企业所得税汇算清缴难点（总7节）">
+                <view class="list_title"><i class="iconfont"></i>2017年全国税务稽查工作重点及2016年度企业所得税汇算清缴难点（总7节）</view>
+                <view class="list_pic"><image src="https://csapp.gtax.cn/taxtao/static/images/train05.jpg"/></view>
+                <view class="list_infor">税务稽查的重大改革——双随机、法律编纂、联合检查2017稽便函29号2017年税务稽查重点工作安排...</view>
+                <view class="list_other"><i>详情</i><span>4月25日 张辉</span></view>
+            </a>
+        </view>
+        <view class="hg_panel">
+            <a href="javascript:;" class="traininglist" data-id="1" data-title="聚焦营改增后的房地产企业企业所得税清缴（总6节）">
+                <view class="list_title"><i class="iconfont"></i>聚焦营改增后的房地产企业企业所得税清缴（总6节）</view>
+                <view class="list_pic"><image src="https://csapp.gtax.cn/taxtao/static/images/traininglist_banner.jpg"/></view>
+                <view class="list_infor">2016财税45号关于公益股权捐赠企业所得税政策问题的通知货物捐赠：增值税暂行条例实施细则...</view>
+                <view class="list_other"><i>详情</i><span>12月16日 张辉</span></view>
+            </a>
+        </view>
+        <view class="hg_panel">
+            <a href="javascript:;" class="traininglist" data-id="2" data-title="企业集团税务管理与“营改增”应对策略及辅导（总4节）">
+                <view class="list_title"><i class="iconfont"></i>企业集团税务管理与“营改增”应对策略及辅导（总4节）</view>
+                <view class="list_pic"><image src="https://csapp.gtax.cn/taxtao/static/images/train02.jpg"/></view>
+                <view class="list_infor">税务征管部门如何利用增值税的原理，利用销项税额与进项税额构成一个完整...</view>
+                <view class="list_other"><i>详情</i><span>4月29日 源恒</span></view>
+            </a>
+        </view>
+        <view class="hg_panel">
+            <a href="javascript:;" class="traininglist" data-id="3" data-title="房地产集团营业税成本控制、争议处理大全（总7节）">
+                <view class="list_title"><i class="iconfont"></i>房地产集团营业税成本控制、争议处理大全（总7节）</view>
+                <view class="list_pic"><image src="https://csapp.gtax.cn/taxtao/static/images/train03.jpg"/></view>
+                <view class="list_infor">房地产企业集团的收入会计核算分布在“营业收入”“营业外收入”“投资收益”...</view>
+                <view class="list_other"><i>详情</i><span>5月18日 吴克红</span></view>
+            </a>
+        </view>
+        <view class="hg_panel">
+            <a href="javascript:;" class="traininglist" data-id="4" data-title="房地产集团企业所得税管理大全（总17节）">
+                <view class="list_title"><i class="iconfont"></i>房地产集团企业所得税管理大全（总17节）</view>
+                <view class="list_pic"><image src="https://csapp.gtax.cn/taxtao/static/images/train04.jpg"/></view>
+                <view class="list_infor">房地产企业所得税如何避免被国税局管辖，有何益处？很多在港上市的著名...</view>
+                <view class="list_other"><i>详情</i><span>6月8日 吴克红</span></view>
+            </a>
+        </view>
+    </view>
+</scroll-view>

@@ -8,7 +8,12 @@
     "pages/infor/infor",
     "pages/infor/detail",
     "pages/law/index",
-    "pages/case/index"
+    "pages/case/index",
+    "pages/book/index",
+    "pages/train/index",
+    "pages/train/video",
+    "pages/rules/index",
+    "pages/exam/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

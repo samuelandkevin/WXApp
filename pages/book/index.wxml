@@ -1,0 +1,117 @@
+<view class="mui-content">
+	<view class="gzzybox">
+		<view class="panel">
+			<view class="h2">
+				《房地产税务总监工作手册》
+			</view>
+			<p class="info">
+				包括以下内容：
+			</p>
+			<ul>
+				<li>
+					房地产企业税务体系管理
+				</li>
+				<li>
+					房地产企业所得税类管理
+				</li>
+			</ul>
+			<a class="more" data-id="bc557e756d3e41c986898ddad0798d3d" data-title="《房地产税务总监工作手册》">
+				点击查看
+			</a>
+		</view>
+		<view class="panel">
+			<view class="h2">
+				《税务总监工作手册》
+			</view>
+			<p class="info">
+				包括以下内容：
+			</p>
+			<ul>
+				<li>
+					税务体系管理及房地产税务基础
+				</li>
+				<li>
+					房地产涉及各税种、基金及费用管理
+				</li>
+				<li>
+					房地产附属产业税务管理（商业城与苗圃业务）
+				</li>
+				<li>
+					房地产税务指引及税务风险管理
+				</li>
+				<li>
+					发票管理
+				</li>
+			</ul>
+			<a class="more" data-id="1" data-title="《税务总监工作手册》">
+				点击查看
+			</a>
+		</view>
+		<view class="panel">
+			<view class="h2">
+				《税务总监云系统》
+			</view>
+			<p class="info">
+				包括以下内容：
+			</p>
+			<ul>
+				<li>
+					税务筹划
+				</li>
+				<li>
+					涉税风险预防管理
+				</li>
+			</ul>
+			<a class="more" data-id="11" data-title="《税务总监云系统》">
+				点击查看
+			</a>
+		</view>
+		<view class="panel">
+			<view class="h2">
+				《核算部工作指引》
+			</view>
+			<p class="info">
+				包括以下内容：
+			</p>
+			<ul>
+				<li>
+					会计核算要求及主要会计政策
+				</li>
+				<li>
+					主要会计科目使用说明及详细核算
+				</li>
+				<li>
+					财务报表编制及特殊业务事项会计处理
+				</li>
+				<li>
+					期末事项及配套制度和规定
+				</li>
+			</ul>
+			<a class="more" data-id="13" data-title="《核算部工作指引》">
+				点击查看
+			</a>
+		</view>
+		<view class="panel">
+			<view class="h2">
+				《税务总监云工作手册》
+			</view>
+			<p class="info">
+				包括以下内容：
+			</p>
+			<ul>
+				<li>
+					零售企业税收成本控制与税收筹划
+				</li>
+				<li>
+					零售企业税收工作手册
+				</li>
+				<li>
+					零售企业税务指引
+				</li>
+			</ul>
+			<a class="more" data-id="5" data-title="《税务总监云工作手册》">
+				点击查看
+			</a>
+		</view>
+	</view>
+</view>

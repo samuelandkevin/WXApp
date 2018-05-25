@@ -11,7 +11,7 @@
 <!--section 2  -->
 <view class="panel">
   <view class="linkbtns">
-    <a href="javascript:;" data-url="/v2/books" data-type="0" data-fun="onCallBook">
+    <a href="javascript:;" data-url="/v2/books" data-type="0" data-fun="onCallBook" bindtap="onBook">
         <view class="iconpic">
           <image src="../../images/index/v3-7-h-g-01.png" />
         </view>
@@ -23,7 +23,7 @@
         </view>
         <p>案例</p>
     </a>
-    <a href="javascript:;" data-url="/v2/train/online" data-type="0" data-fun="onCallTrain">
+    <a href="javascript:;" data-url="/v2/train/online" data-type="0" data-fun="onCallTrain" bindtap="onTrain">
         <view class="iconpic">
           <image src="../../images/index/v3-7-h-g-03.png" />
         </view>
@@ -41,7 +41,7 @@
 <!--section 3  -->
  <view class="v3-7-h-otherbtn">
     <view class="ui_flex">
-        <a href="javascript:;" class="ui_flex-hd" data-url="/v2/evaluation" data-type="0" data-fun="onCallEvaluation" >
+        <a href="javascript:;" class="ui_flex-hd" data-url="/v2/evaluation" data-type="0" data-fun="onCallEvaluation" bindtap="onEvaluation">
             <view class="ui_flex">
                 <view class="iconpic">
                   <image src="../../images/index/v3-7-h-l-01.png" />
@@ -76,7 +76,7 @@
                 </view>
             </view>
         </a>
-        <a href="javascript:;" class="ui_flex-hd" data-url="/v2/rule" data-type="0" data-fun="onCallRules" >
+        <a href="javascript:;" class="ui_flex-hd" data-url="/v2/rule" data-type="0" data-fun="onCallRules" bindtap="onRules">
             <view class="ui_flex">
                 <view class="iconpic">
                   <image src="../../images/index/v3-7-h-l-04.png" />

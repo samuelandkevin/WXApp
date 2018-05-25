@@ -1,0 +1,7 @@
+.mui-content {
+    background-color: #efeff4;
+}
+.sd_search {
+    padding: 10px 15px;
+    background: #cccccc;
+}
