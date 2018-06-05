@@ -13,7 +13,8 @@
     "pages/train/index",
     "pages/train/video",
     "pages/rules/index",
-    "pages/exam/index"
+    "pages/exam/index",
+    "pages/login/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,0 +1,4 @@
+.page-section{
+  margin-bottom: 20rpx;
+}
+button {margin: 10px;text-align: center;height:2rem}
