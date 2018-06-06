@@ -1,13 +1,19 @@
+var that;
+var app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
-    
+    userCard: null
   },
   onUserAvatar: function () {
+    // if (app.data.userInfo == null){
+    //   wx.navigateTo({
+    //     url: '../../pages/login/index',
+    //   })
+    // }
     wx.navigateTo({
       url: '../../pages/login/index',
     })
@@ -31,7 +37,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+    this.setData({
+      userCard: app.data.userInfo.userCard
+    });
   },
 
   /**

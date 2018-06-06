@@ -4,10 +4,16 @@
     <view class="mui-table-view mui-table-view-chevron" bindtap='onUserAvatar'>
         <view class="mui-table-view-cell mui-media">
             <view class="header"  >
-                <image class="headerImg" src="../../images/me/defaultAvatar.png" mode="aspectFit"/>
+                <image class="headerImg" src="{{userCard.profileImageUrl ? userCard.profileImageUrl : '../../images/me/defaultAvatar.png'}}" mode="aspectFit"/>
                 <view id="mylisttext" class="mui-media-body mui-ellipsis">{{item.title}}
-                    <p>未登录</p>
-                    <p>请输入账号密码登录</p>
+                    <block wx:if="{{userCard}}">
+                      <p>{{userCard.name}}</p>
+                      <p>{{userCard.company}} | {{userCard.job}}</p>
+                    </block>
+                    <block wx:else>
+                      <p>未登录</p>
+                      <p>请输入账号密码登录</p>
+                    </block>
                 </view>
             </view>
         </view>

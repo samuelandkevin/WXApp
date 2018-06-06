@@ -9,7 +9,9 @@ var requestHandler = {
   fail: function () {
     // fail
   },
-  complete: function () {},
+  complete: function () {
+    //complete
+  },
 }
 
 var callback = {
@@ -26,37 +28,40 @@ var callback = {
 
 //GET请求
 function GET(requestHandler) {
-  request('GET', requestHandler)
+  var header = {}
+  request('GET', header, requestHandler)
 }
 //POST请求
 function POST(requestHandler) {
-  request('POST', requestHandler)
+  var header = { 
+    "content-type": "application/x-www-form-urlencoded"
+  };
+  request('POST', header, requestHandler)
 }
 
-function request(method, requestHandler) {
-  //注意：可以对params加密等处理
-  var params = requestHandler.params;
+function request(method,header,requestHandler) {
+  var params  = requestHandler.params;
   var urlTail = requestHandler.url;
   wx.request({
     url: baseUrl + urlTail,
     data: params,
     method: method, // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-    // header: {}, // 设置请求的 header
+    header: header, 
     success: function (res) {
-      //注意：可以对参数解密等处理
       requestHandler.success(res);
     },
     fail: function () {
       requestHandler.fail();
     },
     complete: function () {
-      // complete
       requestHandler.complete();
     }
   })
+
 }
 
 module.exports = {
+  baseUrl: baseUrl,
   GET: GET,
   POST: POST,
   callback: callback, //回调

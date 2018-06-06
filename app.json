@@ -2,7 +2,7 @@
   "pages": [
     "pages/index/index",
     "pages/msg/msg",
-    "pages/connection/connection",
+    "pages/connection/index",
     "pages/me/me",
     "pages/case/caseDetail",
     "pages/infor/infor",
@@ -42,7 +42,7 @@
         "selectedIconPath": "images/tabbar/messageSel.png"
       },
       {
-        "pagePath": "pages/connection/connection",
+        "pagePath": "pages/connection/index",
         "text": "通讯录",
         "iconPath": "images/tabbar/contact.png",
         "selectedIconPath": "images/tabbar/contactSel.png"

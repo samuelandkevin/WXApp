@@ -1,10 +1,31 @@
+var that;
 App({
-
+  data: {
+    userInfo: {
+      accessToken: null,
+      account: null, //登录账户信息
+      userCard: null,//用户名片
+    }, //税道用户信息
+    isLogin: false, //是否登录
+    wxUserInfo: null,//微信用户信息
+    isDebug: true,  //调试
+  },
   /**
    * 当小程序初始化完成时，会触发 onLaunch（全局只触发一次）
    */
   onLaunch: function () {
-    
+    that = this;
+    wx.getStorage({
+      key: 'userInfo',
+      success: function (ret) {
+        console.log("缓存的用户信息：" + ret.data);
+        if (ret.data != null ){
+          getApp().data.userInfo.accessToken = ret.data.accessToken,
+            getApp().data.userInfo.account = ret.data.account,
+            getApp().data.userInfo.userCard = ret.data.userCard
+        }
+      },
+    })
   },
 
   /**
@@ -28,38 +49,8 @@ App({
     
   },
 
-  getUserInfo: function (cb) {
-    var that = this;
-    if (this.globalData.userInfo) {
-      typeof cb == "function" && cb(this.globalData.userInfo)
-    } else {
-      //调用登录接口
-      wx.login({
-        success: function () {
-          wx.getUserInfo({
-            success: function (res) {
-              console.log(res);
-              that.globalData.userInfo = res.userInfo
-              typeof cb == "function" && cb(that.globalData.userInfo)
-            }
-          })
-        }
-      })
-    }
-  },
-  globalData: {
-    userInfo: null,
-    uid: 248,
-    session_id: '',
-    isLogin: false,
-
-
-    //一些配置
-    isDebug: true,
-    apiHeadUrl: "",//todo 增加切换服务器的功能
-    qiNiuHeadUrl: "",
-    socketHeadUrl: "",
-    defaultPageSize: 20
-  },
 
 })
+
+
+
