@@ -92,9 +92,9 @@ function init(array, that, callback) {
     if(typeof temData == 'undefined'){
         temData = {};
     }
-    that.wxSortPickerViewUpper = wxSortPickerViewUpper;
-    that.wxSortPickerViewLower = wxSortPickerViewLower;
-    that.wxSortPickerViewScroll = wxSortPickerViewScroll;
+    that.wxSortPickerViewUpper     = wxSortPickerViewUpper;
+    that.wxSortPickerViewLower     = wxSortPickerViewLower;
+    that.wxSortPickerViewScroll    = wxSortPickerViewScroll;
     that.wxSortPickerViewTemTagTap = wxSortPickerViewTemTagTap;
     setViewWH(that);
 
@@ -102,48 +102,67 @@ function init(array, that, callback) {
 }
 
 function buildTextData(that,arr){
-    var textData = [{ tag: "A", textArray: [] }, 
-               { tag: "B", textArray: [] }, 
-               { tag: "C", textArray: [] }, 
-               { tag: "D", textArray: [] }, 
-               { tag: "E", textArray: [] }, 
-               { tag: "F", textArray: [] }, 
-               { tag: "G", textArray: [] }, 
-               { tag: "H", textArray: [] }, 
-               { tag: "I", textArray: [] }, 
-               { tag: "J", textArray: [] }, 
-               { tag: "K", textArray: [] }, 
-               { tag: "L", textArray: [] }, 
-               { tag: "M", textArray: [] },
-               { tag: "N", textArray: [] }, 
-               { tag: "O", textArray: [] }, 
-               { tag: "P", textArray: [] }, 
-               { tag: "Q", textArray: [] }, 
-               { tag: "R", textArray: [] }, 
-               { tag: "S", textArray: [] }, 
-               { tag: "T", textArray: [] }, 
-               { tag: "U", textArray: [] }, 
-               { tag: "V", textArray: [] }, 
-               { tag: "W", textArray: [] }, 
-               { tag: "X", textArray: [] }, 
-               { tag: "Y", textArray: [] }, 
-               { tag: "Z", textArray: [] }, 
-               { tag: "#", textArray: [] }];
-    
+  var textData = [
+    { tag: "A",  list: [] } ,
+    { tag: "B",  list: [] },
+    { tag: "C",  list: [] },
+    { tag: "D",  list: [] },
+    { tag: "E",  list: [] },
+    { tag: "F",  list: [] },
+    { tag: "G",  list: [] },
+    { tag: "H",  list: [] },
+    { tag: "I",  list: [] },
+    { tag: "J",  list: [] },
+    { tag: "K",  list: [] },
+    { tag: "L",  list: [] },
+    { tag: "M",  list: [] },
+    { tag: "N",  list: [] },
+    { tag: "O",  list: [] },
+    { tag: "P",  list: [] },
+    { tag: "Q",  list: [] },
+    { tag: "R",  list: [] },
+    { tag: "S",  list: [] },
+    { tag: "T",  list: [] },
+    { tag: "U",  list: [] },
+    { tag: "V",  list: [] },
+    { tag: "W",  list: [] },
+    { tag: "X",  list: [] },
+    { tag: "Y",  list: [] },
+    { tag: "Z",  list: [] },
+    { tag: "#",  list: [] }
+  ];
+
     var temABC = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '#'];
-      
+
+    var indexList = [];//索引列表
+    var nameList = [];  
     for (var i = 0; i < arr.length; i++ ){
         var text = arr[i];
-        var firstChar = text.substr(0, 1);
-        var reg = query(firstChar)[0];
+        var firstChar = text.substr(0, 1).toUpperCase();
+        var reg   = query(firstChar)[0];//获取大写的首字母
         var temIndex = temABC.indexOf(reg);
-        textData[temIndex].textArray.push(text);
+        //加入索引
+        if(indexList.indexOf(reg) == -1 ){
+          indexList.push(reg);
+        }
+        textData[temIndex].list.push(text);
     }
+
+    var listData = [];
+    for (var i = 0; i < textData.length; i++){
+      var model = textData[i];
+      if (model.list.length != 0){
+        listData.push(model);
+      }
+    }
+    console.log(listData);
     var temData = that.data.wxSortPickerData;
     if(typeof temData == 'undefined'){
             temData = {};
     }
-    temData.textData = textData;
+    
+    temData.textData = listData;
+    temData.indexList = indexList;
     that.setData({
         wxSortPickerData: temData
     })
@@ -165,9 +184,9 @@ function setViewWH(that) {
     wx.getSystemInfo({
         success: function (res) {
             // console.dir(res);
-            var windowWidth = res.windowWidth;
+            var windowWidth  = res.windowWidth;
             var windowHeight = res.windowHeight;
-            var temData = that.data.wxSortPickerData;
+            var temData      = that.data.wxSortPickerData;
             if(typeof temData == 'undefined'){
                 temData = {};
             }
