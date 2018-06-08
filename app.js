@@ -18,7 +18,8 @@ App({
     wx.getStorage({
       key: 'userInfo',
       success: function (ret) {
-        console.log("缓存的用户信息：" + ret.data);
+        console.log("缓存的用户信息：");
+        console.log(ret.data);
         if (ret.data != null ){
           getApp().data.userInfo.accessToken = ret.data.accessToken,
             getApp().data.userInfo.account = ret.data.account,

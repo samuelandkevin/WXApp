@@ -70,7 +70,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    fris:[]
   },
 
   //网络请求
@@ -91,12 +91,11 @@ Page({
         if (ret.data != null && ret.data.code == 999) {
           var data = ret.data.data;
           var fris = data.friends;
-          console.log(fris);
-          var arr = [];
-          for(var index in fris){
-            arr.push(fris[index].name);
-          }
-          wxSortPickerView.init(arr, that);
+          // console.log(fris);
+          wxSortPickerView.init(fris, that);
+          that.setData({
+              fris:fris
+          });
         }
       },
       fail:function(){
@@ -108,7 +107,21 @@ Page({
     })
   },
 
+
   wxSortPickerViewItemTap: function (e) {
-    console.log(e.target.dataset.text);
+    //名片详情页面
+    var userId = e.target.dataset.id;
+    var list = this.data.fris;
+    var userInfo = {};
+    for( var i  in list){
+      if (list[i].id == userId){
+        userInfo= list[i];
+        break;
+      }
+    }
+
+    wx.navigateTo({
+      url: '../../pages/connection/cardDetail?userId=' + userInfo.id,
+    })
   }
 })

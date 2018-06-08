@@ -1,0 +1,127 @@
+<view id="wrapper" class="wrapper">
+	<view class="container">
+		<view class="tabbar">
+			<view class="weui_tab">
+				<view class="weui_tab_bd">
+				    <view class="weui_panel weui_panel_access">
+				        <view class="weui_panel_bd">
+				            <view class="weui_media_box weui_media_appmsg">
+				                <view class="app_pic">
+				                    <image src="{{userInfo.profileImageUrl}}" alt="" />
+				                </view>
+				                <view class="weui_media_bd">
+				                    <view class="weui_media_title h4">{{userInfo.name}}</view>
+				                    <p class="app_dk_jb"><span>{{userInfo.company}}</span> | <span>{{userInfo.job}}</span></p>
+				                </view>
+				            </view>
+				        </view>
+				    </view>
+				    
+				    <!-- 
+				    <view class="weui_cells">
+				        <view class="weui_cell">
+				            <view class="weui_cell_hd"><label class="weui_label">税道账号</label></view>
+				            <view class="weui_cell_bd weui_cell_primary">
+								<p class="info" th:text="${account.taxtaoNum}">未设置</p>
+				            </view>
+				        </view>
+				        <view class="weui_cell">
+				            <view class="weui_cell_hd"><label class="weui_label">手机号码</label></view>
+				            <view class="weui_cell_bd weui_cell_primary">
+								<p class="info" th:text="${account.mobile}">13111111111</p>
+				            </view>
+				        </view>
+				    </view>
+				     -->
+				    
+				    <!--个人简介-->
+				    <view class="weui_cells">
+				        <view class="weui_cell">
+				            <view class="weui_cell_hd"><label class="weui_label">个人简介</label></view>
+				            <view class="weui_cell_bd weui_cell_primary">
+								<p class="info">{{userInfo.description}}</p>
+				            </view>
+				        </view>
+				    </view>
+				    
+				    <!--个人简介-->
+				    <view class="weui_cells" style="display:none;">
+				        <view class="weui_cell">
+				            <view class="weui_cell_hd"><label class="weui_label">动态</label></view>
+				            <view class="weui_cell_bd weui_cell_primary">
+								<p class="info">一共发布 1 条动态</p>
+				            </view>
+				        </view>
+				    </view>
+				    
+				    <!--标签-->
+				    <view class="weui_cells">
+				        <view class="weui_cell">
+				            <view class="weui_cell_hd"><label class="weui_label">标签</label></view>
+				            <view class="weui_cell_bd weui_cell_primary">
+
+								<span class="weui_btn weui_btn_mini weui_btn_plain_primary" wx:for="{{userInfo.workMark}}" wx:key="">{{item}}</span>
+				            </view>
+				        </view>
+				    </view>
+				    
+				    <!--职业经历-->
+			        <view class="weui_cells">
+				        <view class="weui_cell">
+				            <view class="weui_cell_bd weui_cell_primary">
+				                <p>职业经历</p>
+				            </view>
+				        </view>
+				    </view>
+			        <view class="weui_panel weui_panel_access app_panel">
+				        <view class="weui_panel_bd">
+				            <view class="weui_media_box">
+				            	<view class="vux-timeline">
+									<ul>
+
+										<li class="timeline-item" wx:for="{{userInfo.professional}}" wx:key="">
+											<view class="timeline-item-head"></view>
+											<view class="timeline-item-tail"></view>
+											<view class="timeline-item-content">
+												<view class="h4">{{item.company}}  {{item.job}}</view>
+												<p>{{item.startDate}} -- {{item.endDate}}</p>
+											</view>
+										</li>
+									</ul>
+								</view>
+				            </view>
+				        </view>
+				    </view>
+				    
+				    <!--教育经历-->
+			        <view class="weui_cells">
+				        <view class="weui_cell">
+				            <view class="weui_cell_bd weui_cell_primary">
+				                <p>教育经历</p>
+				            </view>
+				        </view>
+				    </view>
+			        <view class="weui_panel weui_panel_access app_panel">
+				        <view class="weui_panel_bd">
+				            <view class="weui_media_box">
+				               	 <view class="vux-timeline">
+									<ul>
+										<li class="timeline-item" wx:for="{{userInfo.education}}" wx:key="">
+											<view class="timeline-item-head"></view>
+											<view class="timeline-item-tail"></view>
+											<view class="timeline-item-content">
+												<view class="h4">{{item.university}}  {{item.major}}</view>
+												<p>{{item.startDate}} -- {{item.endDate}}</p>
+											</view>
+										</li>
+									</ul>
+								</view>
+				            </view>
+				        </view>
+				    </view>
+				</view>
+				
+			</view>
+		</view>
+	</view>
+</view>

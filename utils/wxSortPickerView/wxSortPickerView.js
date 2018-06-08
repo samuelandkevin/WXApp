@@ -98,11 +98,11 @@ function init(array, that, callback) {
     that.wxSortPickerViewTemTagTap = wxSortPickerViewTemTagTap;
     setViewWH(that);
 
-    buildTextData(that,array);
+    buildListData(that,array);
 }
 
-function buildTextData(that,arr){
-  var textData = [
+function buildListData(that,arr){
+  var list = [
     { tag: "A",  list: [] } ,
     { tag: "B",  list: [] },
     { tag: "C",  list: [] },
@@ -135,45 +135,48 @@ function buildTextData(that,arr){
     var temABC = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '#'];
 
     var indexList = [];//索引列表
-    var nameList = [];  
+    var nameList  = [];  
     for (var i = 0; i < arr.length; i++ ){
-        var text = arr[i];
-        var firstChar = text.substr(0, 1).toUpperCase();
-        var reg   = query(firstChar)[0];//获取大写的首字母
+        var model = arr[i];
+        //获取姓名
+        var name  = model.name;
+        var firstChar = name.substr(0, 1).toUpperCase();
+        //获取大写的首字母
+        var reg   = query(firstChar)[0];
         var temIndex = temABC.indexOf(reg);
         //加入索引
         if(indexList.indexOf(reg) == -1 ){
           indexList.push(reg);
         }
-        textData[temIndex].list.push(text);
+        list[temIndex].list.push(model);
     }
 
-    var listData = [];
-    for (var i = 0; i < textData.length; i++){
-      var model = textData[i];
+    var temList = [];//存放用户信息的数组
+    //去除空元素
+    for (var i = 0; i < list.length; i++){
+      var model = list[i];
       if (model.list.length != 0){
-        listData.push(model);
+          temList.push(model);
       }
     }
-    console.log(listData);
     var temData = that.data.wxSortPickerData;
     if(typeof temData == 'undefined'){
             temData = {};
     }
-    
-    temData.textData = listData;
     temData.indexList = indexList;
+    temData.list      = temList;
+   
     that.setData({
         wxSortPickerData: temData
     })
 }
 
 function wxSortPickerViewUpper(e) {
-    console.dir(e);
+    // console.dir(e);
 }
 
 function wxSortPickerViewLower(e) {
-    console.dir(e);
+    // console.dir(e);
 }
 
 function wxSortPickerViewScroll(e) {
@@ -200,12 +203,14 @@ function setViewWH(that) {
     })
 }
 
+//scorll-into-view
 function wxSortPickerViewTemTagTap(e) {
     var that = this;
     var temData = that.data.wxSortPickerData;
     temData.wxSortPickerViewtoView = e.target.dataset.tag;
+    console.log(e.target.dataset.tag);
     that.setData({
-        wxSortPickerData: temData
+        wxSortPickerData: temData,
     })
 
 }

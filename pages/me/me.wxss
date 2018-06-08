@@ -1,3 +1,9 @@
+.mui-content{
+      background-color: #efeff4;
+}
+section{
+  display: block;
+}
 .margin-t-15 {
     margin-top: 0.75rem !important;
 }
