@@ -15,7 +15,8 @@ Page({
     is_mobile:false,
     is_shuidao:false,
     caseInfo:{},
-    caseInfo1:[]//可能感兴趣的案例列表
+    caseInfo1:[],//可能感兴趣的案例列表
+    loading:true
   },
 
   /**
@@ -43,6 +44,14 @@ Page({
             caseInfo1: data.caseInfo1
           })
         }
+      },
+      fail:function(){
+
+      },
+      complete:function(){
+        that.setData({
+          loading:false
+        });
       }
     }
     );
@@ -113,6 +122,7 @@ Page({
         callback.fail();
       },
       complete: function () {
+        callback.complete();
       },
     })
   },

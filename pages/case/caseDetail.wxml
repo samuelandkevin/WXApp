@@ -24,8 +24,8 @@
     <view id="btn"></view>
 </view>
 
-<view class="btn-buy-fixed" data-id="{{caseInfo.id}}"  id="gotoApp"  wx:if="{{!is_shuidao && !isBuy}}">付费￥{{caseInfo.price}}看全文</view>
-<view class="btn-buy-fixed" data-id="{{caseInfo.id}}"  id="gotoApp" wx:if="{{is_shuidao && !isBuy}}">付费购买全文</view>
+<view class="btn-buy-fixed" data-id="{{caseInfo.id}}"  id="gotoApp"  wx:if="{{!loading && !is_shuidao && !isBuy}}">付费￥{{caseInfo.price}}看全文</view>
+<view class="btn-buy-fixed" data-id="{{caseInfo.id}}"  id="gotoApp" wx:if="{{!loading && is_shuidao && !isBuy}}">付费购买全文</view>
 
 <view class="ebookbuy-dialog" id="bug_dialog" style="display: none;" wx:if="{{is_shuidao}}">
     <view class="ui_mask"></view>
