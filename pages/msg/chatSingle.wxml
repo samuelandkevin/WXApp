@@ -1,0 +1,547 @@
+<!-- <view class="layim-chat">
+	<view class="layim-chat-main">
+		<ul id="msg_list">
+			<li class="layim-chat-system">
+				<span>
+					06-01 星期五 14:34
+				</span>
+			</li>
+			<li class="layim-chat-li" id="msgItem2b62b4c2-e0cc-4654-821d-9821079a02a9"
+			data-id="2b62b4c2-e0cc-4654-821d-9821079a02a9" data-msgtype="0" data-content="333
+			" data-userid="4681f6c5-139d-4583-8dd7-cb87f43d890a">
+				<view class="layim-chat-user">
+					<image src="http://csapp.gtax.cn/images/2017/06/23/7cc9f7a75f804eb0aa7c69f704800649png!m90x90.png" />
+					<cite>
+						黄永亮
+					</cite>
+				</view>
+				<view class="layim-chat-text">
+					<view class="status-embody-normal" data-id="2b62b4c2-e0cc-4654-821d-9821079a02a9">
+					</view>
+					333
+					<br>
+				</view>
+			</li>
+			<li class="layim-chat-li" id="msgItem67d2de62-41a2-4853-bcec-670fede43897"
+			data-id="67d2de62-41a2-4853-bcec-670fede43897" data-msgtype="0" data-content="444"
+			data-userid="4681f6c5-139d-4583-8dd7-cb87f43d890a">
+				<view class="layim-chat-user">
+					<image src="http://csapp.gtax.cn/images/2017/06/23/7cc9f7a75f804eb0aa7c69f704800649png!m90x90.png" />
+					<cite>
+						黄永亮
+					</cite>
+				</view>
+				<view class="layim-chat-text">
+					<view class="status-embody-normal" data-id="67d2de62-41a2-4853-bcec-670fede43897">
+					</view>
+					444
+				</view>
+			</li>
+			<li class="layim-chat-system">
+				<span>
+					06-01 星期五 14:38
+				</span>
+			</li>
+			<li class="layim-chat-li" id="msgItemc2d2d649-1e13-4e5f-b607-f1312119021a"
+			data-id="c2d2d649-1e13-4e5f-b607-f1312119021a" data-msgtype="0" data-content="2323"
+			data-userid="4681f6c5-139d-4583-8dd7-cb87f43d890a">
+				<view class="layim-chat-user">
+					<image src="http://csapp.gtax.cn/images/2017/06/23/7cc9f7a75f804eb0aa7c69f704800649png!m90x90.png">
+					<cite>
+						黄永亮
+					</cite>
+				</view>
+				<view class="layim-chat-text">
+					<view class="status-embody-normal" data-id="c2d2d649-1e13-4e5f-b607-f1312119021a">
+					</view>
+					2323
+				</view>
+			</li>
+			<li class="layim-chat-system">
+				<span>
+					06-01 星期五 14:43
+				</span>
+			</li>
+			<li class="layim-chat-li" id="msgItem3fba6874-cd7b-488c-8673-4cc8a7cd1db4"
+			data-id="3fba6874-cd7b-488c-8673-4cc8a7cd1db4" data-msgtype="0" data-content="999"
+			data-userid="4681f6c5-139d-4583-8dd7-cb87f43d890a">
+				<view class="layim-chat-user">
+					<image src="http://csapp.gtax.cn/images/2017/06/23/7cc9f7a75f804eb0aa7c69f704800649png!m90x90.png">
+					<cite>
+						黄永亮
+					</cite>
+				</view>
+				<view class="layim-chat-text">
+					<view class="status-embody-normal" data-id="3fba6874-cd7b-488c-8673-4cc8a7cd1db4">
+					</view>
+					999
+				</view>
+			</li>
+			<li class="layim-chat-li" id="msgItem5334d1c5-3a1f-4634-bfd6-7180d0f33a18"
+			data-id="5334d1c5-3a1f-4634-bfd6-7180d0f33a18" data-msgtype="0" data-content="999"
+			data-userid="4681f6c5-139d-4583-8dd7-cb87f43d890a">
+				<view class="layim-chat-user">
+					<image src="http://csapp.gtax.cn/images/2017/06/23/7cc9f7a75f804eb0aa7c69f704800649png!m90x90.png">
+					<cite>
+						黄永亮
+					</cite>
+				</view>
+				<view class="layim-chat-text">
+					<view class="status-embody-normal" data-id="5334d1c5-3a1f-4634-bfd6-7180d0f33a18">
+					</view>
+					999
+				</view>
+			</li>
+			<li class="layim-chat-li" id="msgItem691c94dd-8394-490e-b67d-87dcd2c15276"
+			data-id="691c94dd-8394-490e-b67d-87dcd2c15276" data-msgtype="0" data-content="888"
+			data-userid="4681f6c5-139d-4583-8dd7-cb87f43d890a">
+				<view class="layim-chat-user">
+					<image src="http://csapp.gtax.cn/images/2017/06/23/7cc9f7a75f804eb0aa7c69f704800649png!m90x90.png">
+					<cite>
+						黄永亮
+					</cite>
+				</view>
+				<view class="layim-chat-text">
+					<view class="status-embody-normal" data-id="691c94dd-8394-490e-b67d-87dcd2c15276">
+					</view>
+					888
+				</view>
+			</li>
+			<li class="layim-chat-li" id="msgItema4d106ce-e236-4065-a6f5-4cadf3eb9ca8"
+			data-id="a4d106ce-e236-4065-a6f5-4cadf3eb9ca8" data-msgtype="0" data-content="666"
+			data-userid="4681f6c5-139d-4583-8dd7-cb87f43d890a">
+				<view class="layim-chat-user">
+					<image src="http://csapp.gtax.cn/images/2017/06/23/7cc9f7a75f804eb0aa7c69f704800649png!m90x90.png">
+					<cite>
+						黄永亮
+					</cite>
+				</view>
+				<view class="layim-chat-text">
+					<view class="status-embody-normal" data-id="a4d106ce-e236-4065-a6f5-4cadf3eb9ca8">
+					</view>
+					666
+				</view>
+			</li>
+			<li class="layim-chat-li" id="msgItem80fa6cfc-8747-42d7-8dc8-ecd03231990a"
+			data-id="80fa6cfc-8747-42d7-8dc8-ecd03231990a" data-msgtype="0" data-content="777"
+			data-userid="4681f6c5-139d-4583-8dd7-cb87f43d890a">
+				<view class="layim-chat-user">
+					<image src="http://csapp.gtax.cn/images/2017/06/23/7cc9f7a75f804eb0aa7c69f704800649png!m90x90.png">
+					<cite>
+						黄永亮
+					</cite>
+				</view>
+				<view class="layim-chat-text">
+					<view class="status-embody-normal" data-id="80fa6cfc-8747-42d7-8dc8-ecd03231990a">
+					</view>
+					777
+				</view>
+			</li>
+			<li class="layim-chat-system">
+				<span>
+					06-01 星期五 14:49
+				</span>
+			</li>
+			<li class="layim-chat-li" id="msgItem598f84c2-ddd9-411a-b6af-c564a092d3b4"
+			data-id="598f84c2-ddd9-411a-b6af-c564a092d3b4" data-msgtype="0" data-content="123123"
+			data-userid="4681f6c5-139d-4583-8dd7-cb87f43d890a">
+				<view class="layim-chat-user">
+					<image src="http://csapp.gtax.cn/images/2017/06/23/7cc9f7a75f804eb0aa7c69f704800649png!m90x90.png">
+					<cite>
+						黄永亮
+					</cite>
+				</view>
+				<view class="layim-chat-text">
+					<view class="status-embody-normal" data-id="598f84c2-ddd9-411a-b6af-c564a092d3b4">
+					</view>
+					123123
+				</view>
+			</li>
+			<li class="layim-chat-li" id="msgItemd285c6bc-55c9-470f-bb73-a35de400e2ff"
+			data-id="d285c6bc-55c9-470f-bb73-a35de400e2ff" data-msgtype="0" data-content="123"
+			data-userid="4681f6c5-139d-4583-8dd7-cb87f43d890a">
+				<view class="layim-chat-user">
+					<image src="http://csapp.gtax.cn/images/2017/06/23/7cc9f7a75f804eb0aa7c69f704800649png!m90x90.png">
+					<cite>
+						黄永亮
+					</cite>
+				</view>
+				<view class="layim-chat-text">
+					<view class="status-embody-normal" data-id="d285c6bc-55c9-470f-bb73-a35de400e2ff">
+					</view>
+					123
+				</view>
+			</li>
+			<li class="layim-chat-li" id="msgItemc424bac4-4b12-45b1-a1a0-ab06c1f3d41d"
+			data-id="c424bac4-4b12-45b1-a1a0-ab06c1f3d41d" data-msgtype="0" data-content="3213213"
+			data-userid="4681f6c5-139d-4583-8dd7-cb87f43d890a">
+				<view class="layim-chat-user">
+					<image src="http://csapp.gtax.cn/images/2017/06/23/7cc9f7a75f804eb0aa7c69f704800649png!m90x90.png">
+					<cite>
+						黄永亮
+					</cite>
+				</view>
+				<view class="layim-chat-text">
+					<view class="status-embody-normal" data-id="c424bac4-4b12-45b1-a1a0-ab06c1f3d41d">
+					</view>
+					3213213
+				</view>
+			</li>
+			<li class="layim-chat-li" id="msgItem02a2d55e-0c1a-44fa-98ec-25b55a9cd772"
+			data-id="02a2d55e-0c1a-44fa-98ec-25b55a9cd772" data-msgtype="0" data-content="12"
+			data-userid="4681f6c5-139d-4583-8dd7-cb87f43d890a">
+				<view class="layim-chat-user">
+					<image src="http://csapp.gtax.cn/images/2017/06/23/7cc9f7a75f804eb0aa7c69f704800649png!m90x90.png">
+					<cite>
+						黄永亮
+					</cite>
+				</view>
+				<view class="layim-chat-text">
+					<view class="status-embody-normal" data-id="02a2d55e-0c1a-44fa-98ec-25b55a9cd772">
+					</view>
+					12
+				</view>
+			</li>
+			<li class="layim-chat-li" id="msgItemadf4b67f-5c05-4405-a606-22c5a44c97f0"
+			data-id="adf4b67f-5c05-4405-a606-22c5a44c97f0" data-msgtype="0" data-content="213123"
+			data-userid="4681f6c5-139d-4583-8dd7-cb87f43d890a">
+				<view class="layim-chat-user">
+					<image src="http://csapp.gtax.cn/images/2017/06/23/7cc9f7a75f804eb0aa7c69f704800649png!m90x90.png">
+					<cite>
+						黄永亮
+					</cite>
+				</view>
+				<view class="layim-chat-text">
+					<view class="status-embody-normal" data-id="adf4b67f-5c05-4405-a606-22c5a44c97f0">
+					</view>
+					213123
+				</view>
+			</li>
+			<li class="layim-chat-system">
+				<span>
+					06-01 星期五 14:54
+				</span>
+			</li>
+			<li class="layim-chat-li" id="msgIteme3e2b750-84f7-4882-a999-5d983ada2d9e"
+			data-id="e3e2b750-84f7-4882-a999-5d983ada2d9e" data-msgtype="0" data-content="121"
+			data-userid="4681f6c5-139d-4583-8dd7-cb87f43d890a">
+				<view class="layim-chat-user">
+					<image src="http://csapp.gtax.cn/images/2017/06/23/7cc9f7a75f804eb0aa7c69f704800649png!m90x90.png">
+					<cite>
+						黄永亮
+					</cite>
+				</view>
+				<view class="layim-chat-text">
+					<view class="status-embody-normal" data-id="e3e2b750-84f7-4882-a999-5d983ada2d9e">
+					</view>
+					121
+				</view>
+			</li>
+			<li class="layim-chat-li" id="msgItem1226c131-2281-4a02-bc6e-d056c7cc8a06"
+			data-id="1226c131-2281-4a02-bc6e-d056c7cc8a06" data-msgtype="0" data-content="23213"
+			data-userid="4681f6c5-139d-4583-8dd7-cb87f43d890a">
+				<view class="layim-chat-user">
+					<image src="http://csapp.gtax.cn/images/2017/06/23/7cc9f7a75f804eb0aa7c69f704800649png!m90x90.png">
+					<cite>
+						黄永亮
+					</cite>
+				</view>
+				<view class="layim-chat-text">
+					<view class="status-embody-normal" data-id="1226c131-2281-4a02-bc6e-d056c7cc8a06">
+					</view>
+					23213
+				</view>
+			</li>
+			<li class="layim-chat-system">
+				<span>
+					06-01 星期五 14:57
+				</span>
+			</li>
+			<li class="layim-chat-li" id="msgItemc53aa856-1b12-4b19-9d72-e81694d38616"
+			data-id="c53aa856-1b12-4b19-9d72-e81694d38616" data-msgtype="0" data-content="3333"
+			data-userid="4681f6c5-139d-4583-8dd7-cb87f43d890a">
+				<view class="layim-chat-user">
+					<image src="http://csapp.gtax.cn/images/2017/06/23/7cc9f7a75f804eb0aa7c69f704800649png!m90x90.png">
+					<cite>
+						黄永亮
+					</cite>
+				</view>
+				<view class="layim-chat-text">
+					<view class="status-embody-normal" data-id="c53aa856-1b12-4b19-9d72-e81694d38616">
+					</view>
+					3333
+				</view>
+			</li>
+			<li class="layim-chat-system">
+				<span>
+					06-01 星期五 15:31
+				</span>
+			</li>
+			<li class="layim-chat-li" id="msgItem2161de3d-cba9-41a3-9dee-25043434740c"
+			data-id="2161de3d-cba9-41a3-9dee-25043434740c" data-msgtype="0" data-content="·1232"
+			data-userid="4681f6c5-139d-4583-8dd7-cb87f43d890a">
+				<view class="layim-chat-user">
+					<image src="http://csapp.gtax.cn/images/2017/06/23/7cc9f7a75f804eb0aa7c69f704800649png!m90x90.png">
+					<cite>
+						黄永亮
+					</cite>
+				</view>
+				<view class="layim-chat-text">
+					<view class="status-embody-normal" data-id="2161de3d-cba9-41a3-9dee-25043434740c">
+					</view>
+					·1232
+				</view>
+			</li>
+			<li class="layim-chat-system">
+				<span>
+					06-01 星期五 15:37
+				</span>
+			</li>
+			<li class="layim-chat-li" id="msgItem8fdcb8de-3e5c-4ac2-a8e7-4bd8f3299a7d"
+			data-id="8fdcb8de-3e5c-4ac2-a8e7-4bd8f3299a7d" data-msgtype="0" data-content="123"
+			data-userid="4681f6c5-139d-4583-8dd7-cb87f43d890a">
+				<view class="layim-chat-user">
+					<image src="http://csapp.gtax.cn/images/2017/06/23/7cc9f7a75f804eb0aa7c69f704800649png!m90x90.png">
+					<cite>
+						黄永亮
+					</cite>
+				</view>
+				<view class="layim-chat-text">
+					<view class="status-embody-normal" data-id="8fdcb8de-3e5c-4ac2-a8e7-4bd8f3299a7d">
+					</view>
+					123
+				</view>
+			</li>
+			<li class="layim-chat-system">
+				<span>
+					06-01 星期五 15:58
+				</span>
+			</li>
+			<li class="layim-chat-li" id="msgItem8572b24a-ac0e-4bb5-95d0-3da07f85504f"
+			data-id="8572b24a-ac0e-4bb5-95d0-3da07f85504f" data-msgtype="0" data-content="123"
+			data-userid="4681f6c5-139d-4583-8dd7-cb87f43d890a">
+				<view class="layim-chat-user">
+					<image src="http://csapp.gtax.cn/images/2017/06/23/7cc9f7a75f804eb0aa7c69f704800649png!m90x90.png">
+					<cite>
+						黄永亮
+					</cite>
+				</view>
+				<view class="layim-chat-text">
+					<view class="status-embody-normal" data-id="8572b24a-ac0e-4bb5-95d0-3da07f85504f">
+					</view>
+					123
+				</view>
+			</li>
+			<li class="layim-chat-system">
+				<span>
+					06-01 星期五 17:07
+				</span>
+			</li>
+			<li class="layim-chat-li" id="msgItemd33f31fb-8372-4ef9-8ed1-91eb09adf040"
+			data-id="d33f31fb-8372-4ef9-8ed1-91eb09adf040" data-msgtype="0" data-content="123123"
+			data-userid="4681f6c5-139d-4583-8dd7-cb87f43d890a">
+				<view class="layim-chat-user">
+					<image src="http://csapp.gtax.cn/images/2017/06/23/7cc9f7a75f804eb0aa7c69f704800649png!m90x90.png">
+					<cite>
+						黄永亮
+					</cite>
+				</view>
+				<view class="layim-chat-text">
+					<view class="status-embody-normal" data-id="d33f31fb-8372-4ef9-8ed1-91eb09adf040">
+					</view>
+					123123
+				</view>
+			</li>
+			<li class="layim-chat-system">
+				<span>
+					06-08 星期五 11:17
+				</span>
+			</li>
+			<li class="layim-chat-li" id="msgItemf119ce4f-67b9-4766-8f47-bf0ed2a6895a"
+			data-id="f119ce4f-67b9-4766-8f47-bf0ed2a6895a" data-msgtype="0" data-content="ss"
+			data-userid="4681f6c5-139d-4583-8dd7-cb87f43d890a">
+				<view class="layim-chat-user">
+					<image src="http://csapp.gtax.cn/images/2017/06/23/7cc9f7a75f804eb0aa7c69f704800649png!m90x90.png">
+					<cite>
+						黄永亮
+					</cite>
+				</view>
+				<view class="layim-chat-text">
+					<view class="status-embody-normal" data-id="f119ce4f-67b9-4766-8f47-bf0ed2a6895a">
+					</view>
+					ss
+				</view>
+			</li>
+			<li class="layim-chat-system">
+				<span>
+					06-08 星期五 11:20
+				</span>
+			</li>
+			<li class="layim-chat-li" id="msgItemfd3ba31f-9fc9-46bd-8964-968f1a087787"
+			data-id="fd3ba31f-9fc9-46bd-8964-968f1a087787" data-msgtype="0" data-content="7777"
+			data-userid="4681f6c5-139d-4583-8dd7-cb87f43d890a">
+				<view class="layim-chat-user">
+					<image src="http://csapp.gtax.cn/images/2017/06/23/7cc9f7a75f804eb0aa7c69f704800649png!m90x90.png">
+					<cite>
+						黄永亮
+					</cite>
+				</view>
+				<view class="layim-chat-text">
+					<view class="status-embody-normal" data-id="fd3ba31f-9fc9-46bd-8964-968f1a087787">
+					</view>
+					7777
+				</view>
+			</li>
+			<li class="layim-chat-system">
+				<span>
+					06-08 星期五 11:22
+				</span>
+			</li>
+			<li class="layim-chat-li" id="msgItem8854cea8-4484-4611-a48a-3d32cd7ce981"
+			data-id="8854cea8-4484-4611-a48a-3d32cd7ce981" data-msgtype="0" data-content="123213"
+			data-userid="4681f6c5-139d-4583-8dd7-cb87f43d890a">
+				<view class="layim-chat-user">
+					<image src="http://csapp.gtax.cn/images/2017/06/23/7cc9f7a75f804eb0aa7c69f704800649png!m90x90.png">
+					<cite>
+						黄永亮
+					</cite>
+				</view>
+				<view class="layim-chat-text">
+					<view class="status-embody-normal" data-id="8854cea8-4484-4611-a48a-3d32cd7ce981">
+					</view>
+					123213
+				</view>
+			</li>
+			<li class="layim-chat-system">
+				<span>
+					06-08 星期五 13:43
+				</span>
+			</li>
+			<li class="layim-chat-li" id="msgItem86990e4f-a7f8-40fc-8697-87f346519ac1"
+			data-id="86990e4f-a7f8-40fc-8697-87f346519ac1" data-msgtype="0" data-content="777"
+			data-userid="4681f6c5-139d-4583-8dd7-cb87f43d890a">
+				<view class="layim-chat-user">
+					<image src="http://csapp.gtax.cn/images/2017/06/23/7cc9f7a75f804eb0aa7c69f704800649png!m90x90.png">
+					<cite>
+						黄永亮
+					</cite>
+				</view>
+				<view class="layim-chat-text">
+					<view class="status-embody-normal" data-id="86990e4f-a7f8-40fc-8697-87f346519ac1">
+					</view>
+					777
+				</view>
+			</li>
+			<li class="layim-chat-li" id="msgItemb73316fa-3f1b-4c1a-83df-9278a55b84fb"
+			data-id="b73316fa-3f1b-4c1a-83df-9278a55b84fb" data-msgtype="0" data-content="3333"
+			data-userid="4681f6c5-139d-4583-8dd7-cb87f43d890a">
+				<view class="layim-chat-user">
+					<image src="http://csapp.gtax.cn/images/2017/06/23/7cc9f7a75f804eb0aa7c69f704800649png!m90x90.png">
+					<cite>
+						黄永亮
+					</cite>
+				</view>
+				<view class="layim-chat-text">
+					<view class="status-embody-normal" data-id="b73316fa-3f1b-4c1a-83df-9278a55b84fb">
+					</view>
+					3333
+				</view>
+			</li>
+			<li class="layim-chat-system">
+				<span>
+					06-08 星期五 13:46
+				</span>
+			</li>
+			<li class="layim-chat-li" id="msgItem70a4e9c0-25f1-422f-be61-fc439a5c5ff3"
+			data-id="70a4e9c0-25f1-422f-be61-fc439a5c5ff3" data-msgtype="0" data-content="3323232"
+			data-userid="4681f6c5-139d-4583-8dd7-cb87f43d890a">
+				<view class="layim-chat-user">
+					<image src="http://csapp.gtax.cn/images/2017/06/23/7cc9f7a75f804eb0aa7c69f704800649png!m90x90.png">
+					<cite>
+						黄永亮
+					</cite>
+				</view>
+				<view class="layim-chat-text">
+					<view class="status-embody-normal" data-id="70a4e9c0-25f1-422f-be61-fc439a5c5ff3">
+					</view>
+					3323232
+				</view>
+			</li>
+			<li class="layim-chat-li" id="msgItemcfb08585-b033-4994-9a68-0a79837be4f8"
+			data-id="cfb08585-b033-4994-9a68-0a79837be4f8" data-msgtype="0" data-content="Werewr"
+			data-userid="4681f6c5-139d-4583-8dd7-cb87f43d890a">
+				<view class="layim-chat-user">
+					<image src="http://csapp.gtax.cn/images/2017/06/23/7cc9f7a75f804eb0aa7c69f704800649png!m90x90.png">
+					<cite>
+						黄永亮
+					</cite>
+				</view>
+				<view class="layim-chat-text">
+					<view class="status-embody-normal" data-id="cfb08585-b033-4994-9a68-0a79837be4f8">
+					</view>
+					Werewr
+				</view>
+			</li>
+			<li class="layim-chat-system">
+				<span>
+					06-08 星期五 13:48
+				</span>
+			</li>
+			<li class="layim-chat-li" id="msgItem984b98fa-f76f-4340-b354-7280257df421"
+			data-id="984b98fa-f76f-4340-b354-7280257df421" data-msgtype="0" data-content="Qwewqeqe333333"
+			data-userid="4681f6c5-139d-4583-8dd7-cb87f43d890a">
+				<view class="layim-chat-user">
+					<image src="http://csapp.gtax.cn/images/2017/06/23/7cc9f7a75f804eb0aa7c69f704800649png!m90x90.png">
+					<cite>
+						黄永亮
+					</cite>
+				</view>
+				<view class="layim-chat-text">
+					<view class="status-embody-normal" data-id="984b98fa-f76f-4340-b354-7280257df421">
+					</view>
+					Qwewqeqe333333
+				</view>
+			</li>
+			<li class="layim-chat-system">
+				<span>
+					06-08 星期五 13:50
+				</span>
+			</li>
+			<li class="layim-chat-li" id="msgItemcc1efa98-ea25-46f3-a18a-4955d9528282"
+			data-id="cc1efa98-ea25-46f3-a18a-4955d9528282" data-msgtype="0" data-content="312313"
+			data-userid="4681f6c5-139d-4583-8dd7-cb87f43d890a">
+				<view class="layim-chat-user">
+					<image src="http://csapp.gtax.cn/images/2017/06/23/7cc9f7a75f804eb0aa7c69f704800649png!m90x90.png">
+					<cite>
+						黄永亮
+					</cite>
+				</view>
+				<view class="layim-chat-text">
+					<view class="status-embody-normal" data-id="cc1efa98-ea25-46f3-a18a-4955d9528282">
+					</view>
+					312313
+				</view>
+			</li>
+			<li class="layim-chat-system">
+				<span>
+					06-08 星期五 13:52
+				</span>
+			</li>
+			<li class="layim-chat-li" id="msgItemf0e0450c-6ccf-4ed1-a403-330bf69231b5"
+			data-id="f0e0450c-6ccf-4ed1-a403-330bf69231b5" data-msgtype="0" data-content="Wwwww"
+			data-userid="4681f6c5-139d-4583-8dd7-cb87f43d890a">
+				<view class="layim-chat-user">
+					<image src="http://csapp.gtax.cn/images/2017/06/23/7cc9f7a75f804eb0aa7c69f704800649png!m90x90.png">
+					<cite>
+						黄永亮
+					</cite>
+				</view>
+				<view class="layim-chat-text">
+					<view class="status-embody-normal" data-id="f0e0450c-6ccf-4ed1-a403-330bf69231b5">
+					</view>
+					Wwwww
+				</view>
+			</li>
+		</ul>
+	</view>
+</view> -->

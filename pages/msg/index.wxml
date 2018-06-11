@@ -1,0 +1,64 @@
+<view class="mui-content margin-b-15">
+	<ul class="list media-list" id="chat_histoty_list">
+		<li class="list-item list-item-middle" data-user-id="{{item.userId}}"
+		data-sessionuid="{{item.sessionUserId}}" data-isgroupchat="{{item.isGroupChat}}"  data-isgroupchat="{{item.isGroupChat}}" wx:for="{{list}}" wx:key="" bindtap="onChat">
+			  <view class="media-list-item-inner">
+			  	<view class="list-item-media wechat-avatar" data-session-user-id="{{item.sessionUserId}}"
+				data-isgroupchat="{{item.isGroupChat}}"> 
+          <!--群聊头像  -->
+            <block wx:if="{{item.isGroupChat}}"> 
+                <view class="row-padded">   
+               <block wx:if="{{item.sessionUserHead.length < 9}}">
+                  <block wx:for="{{item.sessionUserHead}}" wx:for-item="head" wx:key="">
+                   <view class="col-xs-6">
+                     <image src="{{head == '' ? 'http://csapp.gtax.cn/taxtao/static/webim/images/default_avatar@2x.png' : head}}"/> 
+                  </view> 
+                  </block> 
+               </block>
+              <block wx:else>
+                   <block wx:for="{{item.sessionUserHead}}" wx:for-item="head" wx:key="">
+                    <view class="col-xs-4">
+                     <image src="{{head == '' ? 'http://csapp.gtax.cn/taxtao/static/webim/images/default_avatar@2x.png' : head}}"/> 
+                  </view>   
+                  </block>  
+              </block>
+            </view>  
+           </block>   
+          <!--私聊头像 --> 
+           <block wx:else> 
+              <image src="{{item.sessionUserHead == '' ? 'http://csapp.gtax.cn/taxtao/static/webim/images/default_avatar@2x.png' : item.sessionUserHead}}"/>  
+           </block> 
+
+					<view class="badge" wx:if="{{item.isRead > 0}}">
+						 {{item.isRead}}
+					</view>
+				</view>
+				<view class="list-item-inner" data-session-user-id="{{item.sessionUserId}}"
+				data-isgroupchat="{{item.isGroupChat}}">
+					<view class="list-item-text">
+             <block wx:if="{{item.isGroupChat == 1}}">
+              <view class="list-item-title" id="'chat_title_'+{{item.sessionUserId}}"
+						data-count="{{item.memberCount}}" data-title="{{item.groupName}}">
+            {{item.sessionUserName}}
+						  </view>
+            </block>
+            <block wx:else>
+              <view class="list-item-title" id="'chat_title_'+{{item.sessionUserId}}"
+						data-title="{{item.sessionUserName}}">
+            {{item.sessionUserName}}
+						  </view>
+            </block> 
+						<view class="list-item-right">
+							{{item.createTime}}
+						</view>
+					</view>
+					<view class="list-item-text">
+						<p class="ellipsis-1 font-size-12">
+							{{item.lastContent}}
+						</p>
+					</view>
+				</view>
+			</view> 
+		</li>
+	</ul>
+</view>

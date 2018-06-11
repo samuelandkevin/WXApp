@@ -10,9 +10,8 @@ Page({
    */
   data: {
     imgUrls: [
-      '../../images/banner/banner1.png',
-      '../../images/banner/banner2.png',
-      '../../images/banner/banner3.png'
+      netUtil.baseUrl+'/taxtao/v2/image?id=6ec19e4f331b4d299f7fd8a92b3868f2',
+      netUtil.baseUrl+'/taxtao/v2/image?id=4a03e0b2c2234f369431e67921382e32'
     ],
     indicatorDots: true,
     autoplay: true,
@@ -20,6 +19,7 @@ Page({
     duration: 1000,
     latestCases: [],
     hotCases: [],
+    baseUrl: netUtil.baseUrl
   },
 
   /**

@@ -462,6 +462,7 @@ function cutStr(str, len) {
 module.exports = {
   getTax:getTax,
   dateFormat: dateFormat,
-  get_unix_time: get_unix_time
+  get_unix_time: get_unix_time,
+  friendly_time: friendly_time
 }
 

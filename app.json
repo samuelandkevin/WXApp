@@ -1,7 +1,7 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/msg/msg",
+    "pages/msg/index",
     "pages/connection/index",
     "pages/me/me",
     "pages/case/caseDetail",
@@ -15,7 +15,8 @@
     "pages/rules/index",
     "pages/exam/index",
     "pages/login/index",
-    "pages/connection/cardDetail"
+    "pages/connection/cardDetail",
+    "pages/msg/chatSingle"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -37,7 +38,7 @@
         "selectedIconPath": "images/tabbar/homeSel.png"
       },
       {
-        "pagePath": "pages/msg/msg",
+        "pagePath": "pages/msg/index",
         "text": "消息",
         "iconPath": "images/tabbar/message.png",
         "selectedIconPath": "images/tabbar/messageSel.png"

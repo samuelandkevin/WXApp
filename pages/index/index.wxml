@@ -13,25 +13,25 @@
   <view class="linkbtns">
     <a href="javascript:;" data-url="/v2/books" data-type="0" data-fun="onCallBook" bindtap="onBook">
         <view class="iconpic">
-          <image src="../../images/index/v3-7-h-g-01.png" />
+          <image src="{{baseUrl}}/taxtao/static/images/v3-7-h-g-01.png" />
         </view>
         <p>工作指引</p>
     </a>
     <a href="javascript:;" data-url="web/case" data-type="0" data-fun="onCallCase" bindtap="onCaseIndex">
         <view class="iconpic">
-          <image src="../../images/index/v3-7-h-g-02.png" />
+          <image src="{{baseUrl}}/taxtao/static/images/v3-7-h-g-02.png" />
         </view>
         <p>案例</p>
     </a>
     <a href="javascript:;" data-url="/v2/train/online" data-type="0" data-fun="onCallTrain" bindtap="onTrain">
         <view class="iconpic">
-          <image src="../../images/index/v3-7-h-g-03.png" />
+          <image src="{{baseUrl}}/taxtao/static/images/v3-7-h-g-03.png" />
         </view>
         <p>培训</p>
     </a>
     <a href="javascript:;" data-url="/onlineConsultation" data-type="0" data-fun="onlineConsultation">
         <view class="iconpic">
-          <image src="../../images/index/v3-7-h-g-04.png" />
+          <image src="{{baseUrl}}/taxtao/static/images/v3-7-h-g-04.png" />
         </view>
         <p>在线咨询</p>
     </a>
@@ -44,7 +44,7 @@
         <a href="javascript:;" class="ui_flex-hd" data-url="/v2/evaluation" data-type="0" data-fun="onCallEvaluation" bindtap="onEvaluation">
             <view class="ui_flex">
                 <view class="iconpic">
-                  <image src="../../images/index/v3-7-h-l-01.png" />
+                  <image src="{{baseUrl}}/taxtao/static/images/v3-7-h-l-01.png" />
                 </view>
                 <view class="ui_flex-hd">
                   <view class="h2">执业测评</view>
@@ -55,7 +55,7 @@
         <a href="javascript:;" class="ui_flex-hd" data-url="法规库" dat-type="0" data-fun="onCallLawLib" bindtap="onLawLib">
             <view class="ui_flex">
                 <view class="iconpic">
-                  <image src="../../images/index/v3-7-h-l-02.png" />
+                  <image src="{{baseUrl}}/taxtao/static/images/v3-7-h-l-02.png" />
                 </view>
                 <view class="ui_flex-hd">
                   <view class="h2">法规库</view>
@@ -68,7 +68,7 @@
         <a href="javascript:;" class="ui_flex-hd" data-url="/sd/ygz?type=analysis" data-type="1" data-fun="onCallNews" bindtap="onCallNews">
             <view class="ui_flex">
                 <view class="iconpic">
-                  <image src="../../images/index/v3-7-h-l-03.png" />
+                  <image src="{{baseUrl}}/taxtao/static/images/v3-7-h-l-03.png" />
                 </view>
                 <view class="ui_flex-hd">
                   <view class="h2">热点资讯</view>
@@ -79,7 +79,7 @@
         <a href="javascript:;" class="ui_flex-hd" data-url="/v2/rule" data-type="0" data-fun="onCallRules" bindtap="onRules">
             <view class="ui_flex">
                 <view class="iconpic">
-                  <image src="../../images/index/v3-7-h-l-04.png" />
+                  <image src="{{baseUrl}}/taxtao/static/images/v3-7-h-l-04.png" />
                 </view>
                 <view class="ui_flex-hd">
                   <view class="h2">办事指引</view>

@@ -35,6 +35,8 @@ Page({
               workMark = workMark.split(",");
             }
             account.workMark = workMark;
+
+            account.profileImageUrl = account.profileImageUrl == '' ? 'http://csapp.gtax.cn/taxtao/static/webim/images/default_avatar@2x.png' : account.profileImageUrl;
             console.log(account);
             that.setData({
               userInfo: account
