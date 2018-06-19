@@ -1,0 +1,139 @@
+.layim-chat-main ul .layim-chat-system {
+    min-height: 0;
+    margin: 20px 0 5px;
+    padding: 0;
+}
+.layim-chat-main ul li {
+    position: relative;
+    font-size: 0;
+}
+.layim-chat-system {
+    text-align: center;
+}
+li {
+    list-style: none;
+}
+.layim-chat-system span {
+    display: inline-block;
+    line-height: 30px;
+    padding: 0 15px;
+    border-radius: 3px;
+    background-color: #ddd;
+    color: #fff;
+    font-size: 14px;
+}
+.layim-chat-main ul .layim-chat-system {
+    min-height: 0;
+    margin: 20px 0 5px;
+    padding: 0;
+}
+.layim-chat-system {
+    text-align: center;
+}
+.layim-chat-retract span {
+    padding: 0 10px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+.layim-chat-system span {
+    display: inline-block;
+    line-height: 30px;
+    background-color: #ddd;
+    color: #fff;
+}
+.layim-chat-main ul li {
+    position: relative;
+    font-size: 0;
+    margin-bottom: 10px;
+    padding-left: 44px;
+    min-height: 68px;
+}
+.layim-chat-user {
+    position: absolute;
+    left: 0px;
+}
+.layim-chat-user {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 14px;
+}
+.layim-chat-user image {
+    width: 35px;
+    height: 35px;
+}
+image {
+    display: inline-block;
+    border: none;
+    vertical-align: middle;
+}
+.layim-chat-user cite {
+    position: absolute;
+    left: 44px;
+    top: -2px;
+    width: 500px;
+    line-height: 20px;
+    font-size: 12px;
+    white-space: nowrap;
+    color: #999;
+    text-align: left;
+    font-style: normal;
+}
+.layim-chat-text {
+    position: relative;
+    max-width: calc(100% - 34px);
+    min-height: 22px;
+    line-height: 22px;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    color: #333;
+    word-break: break-all;
+}
+.layim-chat-text {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 14px;
+}
+.layim-chat-text img {
+    max-width: 100%;
+    vertical-align: middle;
+}
+.layui-layim-photos {
+    cursor: pointer;
+}
+.layim-chat-text:after {
+    content: '';
+    position: absolute;
+    left: -10px;
+    top: 10px;
+    width: 0;
+    height: 0;
+    z-index: -1;
+    border-style: dashed;
+    border-color: transparent;
+    overflow: hidden;
+    border-width: 10px;
+    border-top-style: solid;
+    border-top-color: #fff;
+}
+.layim-chat-main ul .layim-chat-mine {
+    text-align: right;
+    padding-left: 0;
+    padding-right: 44px;
+}
+.layim-chat-main ul li {
+    position: relative;
+    font-size: 0;
+    margin-bottom: 10px;
+    min-height: 68px;
+}
+.layim-chat-mine .layim-chat-user {
+    left: auto;
+    right: 0px;
+}
+.layim-chat-mine .layim-chat-user cite {
+    left: auto;
+    right: 44px;
+    text-align: right;
+}
