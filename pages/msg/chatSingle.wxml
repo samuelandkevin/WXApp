@@ -28,21 +28,18 @@
 					</view>
           <view class="layim-chat-text">
               <block wx:if="{{item.status == -1}}">
-	<view class="layim-chat-text">
-		<view class="status-embody-failed" data-id="{{item.id||0}}">
-			<i class="webim-iconfont">
-				&#xe620;
-			</i>
-		</view>
-		{{item.imContent}}
-	</view>
-</block>
-<block wx:else>
-	<view class="status-embody-normal" data-id="{{item.id||0}}">
-	</view>
-	{{item.imContent}}
-</block>
-          </view>
+	              	<view class="status-embody-failed" data-id="{{item.id||0}}">
+			              <i class="webim-iconfont">&#xe620;</i>
+		              </view>
+		            {{item.imContent}}
+              </block>
+              <block wx:else>
+	                <view class="status-embody-normal" data-id="{{item.id||0}}">
+	                </view>
+                  <rich-text nodes="{{item.imContent}}"></rich-text>
+              </block>
+	      </view>
+       
 				</li>
 				<block wx:if="{{item.imgSource == 1}}">
 					<li class="layim-chat-system layim-chat-retract" data-longitude="{{item.longitude}}"
@@ -51,7 +48,7 @@
 							该图片来自现场拍摄{{item.address == "" || item.address == undefined || item.address
 							== "undefined" || item.address == "null" ? '': '，拍摄地点：'}}
 							<a class="photoOnLocation">
-								item.address
+								{{item.address}}
 							</a>
 						</span>
 					</li>
