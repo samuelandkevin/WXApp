@@ -11,7 +11,11 @@ Page({
    */
   data: {
     baseUrl: netUtil.netUtil,
-    list:[]
+    list:[],
+    inputLen:0, //输入字数长度
+    showFaces:false,//显示表情键盘
+    showMore:true,//显示更多选项
+    footerBot:0  //输入框底部距离
   },
 
   /**
@@ -76,7 +80,7 @@ Page({
   faces:function () {
     var alt = ["[微笑]", "[嘻嘻]", "[哈哈]", "[可爱]", "[可怜]", "[挖鼻]", "[吃惊]", "[害羞]", "[挤眼]", "[闭嘴]", "[鄙视]", "[爱你]", "[泪]", "[偷笑]", "[亲亲]", "[生病]", "[太开心]", "[白眼]", "[右哼哼]", "[左哼哼]", "[嘘]", "[衰]", "[委屈]", "[吐]", "[哈欠]", "[抱抱]", "[怒]", "[疑问]", "[馋嘴]", "[拜拜]", "[思考]", "[汗]", "[困]", "[睡]", "[钱]", "[失望]", "[酷]", "[色]", "[哼]", "[鼓掌]", "[晕]", "[悲伤]", "[抓狂]", "[黑线]", "[阴险]", "[怒骂]", "[互粉]", "[心]", "[伤心]", "[猪头]", "[熊猫]", "[兔子]", "[ok]", "[耶]", "[good]", "[NO]", "[赞]", "[来]", "[弱]", "[草泥马]", "[神马]", "[囧]", "[浮云]", "[给力]", "[围观]", "[威武]", "[奥特曼]", "[礼物]", "[钟]", "[话筒]", "[蜡烛]", "[蛋糕]", "[二哈]"], arr = {};
     for(var i = 0; i<alt.length; i++) {
-  arr[alt[i]] = CTX + 'static/webim/images/face/' + i + '.gif';
+      arr[alt[i]] = netUtil.baseUrl + '/taxtao/static/webim/images/face/' + i + '.gif';
 }
 return arr;
   },
@@ -84,7 +88,7 @@ return arr;
 
   /**
 	 * 转换内容 
-	 * @param {Object} content
+	 * @param {Object} item
 	 */
   imContent:function (item) {
     var that = this;
@@ -144,10 +148,22 @@ return arr;
         }
 
         return checkinHtml += '</div><div class="checkin-tips"><i class="mui-icon mui-icon-location-filled"></i>签到</div>';
+      })
+      .replace(/location\([\s\S]+\)\[[\s\S]+\]/g, function (location) {	//转义定位
+
+        ///location\([\s\S]+\)\[[\d\\.]+,[\d\\.]+\]/g
+        //var latitude = (location.match(/\[([\d\\.]+)/)||[])[1];
+        //var longitude = (location.match(/,([\d\\.]+)/)||[])[1];
+        var address = (location.match(/location\(([\s\S]+)\)/) || [])[1];
+        var snapshotImgUrl = (location.match(/\[([\s\S]+)\]/) || [])[1];
+
+        var addressHtml = '';
+        item.snapshotImgUrl = snapshotImgUrl;
+        return address;
       }).replace(/face\[([^\s\[\]]+?)\]/g,
       function (face) { //转义表情
         var alt = face.replace(/^face/g, '');
-        return '<img alt="' + alt + '" title="' + alt + '" src="' + that.faces[alt] + '">';
+        return '<img alt="' + alt + '" title="' + alt + '" src="' + that.faces()[alt] + '">';
       }).replace(/a\([\s\S]+?\)\[[\s\S]*?\]/g,
       function (str) { //转义链接
         var href = (str.match(/a\(([\s\S]+?)\)\[/) || [])[1];
@@ -382,9 +398,23 @@ return arr;
     });
   },
 
-  handleData:function(){
-    //时间抽
-    
+  onInput:function(e){
+    // 获取输入框的内容
+    var value = e.detail.value;
+    // 获取输入框内容的长度
+    var len = parseInt(value.length);
+    this.setData({
+      inputLen:len
+    });
+  },
+  onFaces:function(){
+    console.log("onFaces");
+    var footerBot = !this.data.showFaces ? '150px' : '0';
+    this.setData({
+      showFaces:!this.data.showFaces,
+      footerBot: footerBot
+    });
   }
+
 
 })
