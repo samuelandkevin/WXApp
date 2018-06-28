@@ -1,4 +1,5 @@
-<scroll-view scroll-y="true" class="layim-chat">
+<view>
+<scroll-view  style="height:100%" scroll-y="true" class="layim-chat" bindscroll="scrolling" scroll-top="{{scrollTop}}">
 	<view class="layim-chat-main">
 		<ul id="msg_list">
 			<block wx:for="{{list}}" wx:key="">
@@ -73,15 +74,15 @@
 		</ul>
 	</view>
 </scroll-view>
-
+</view>
 <!-- 底部 -->
-<footer class="mui-row mui-text-center" style="bottom:{{footerBot}}">
+<footer class="mui-row mui-text-center" style="bottom:{{footerBot}}px;height:{{footerH}}px">
 	<view class="mui-col-xs-1 footer-left">
 		<i class="iconfont icon-soundlight">
 		</i>
 	</view>
 	<view class="mui-col-xs-8 footer-center">
-		<textarea id="msg_text" type="text" class="input-text" auto-height bindinput='onInput'>
+		<textarea id="msg_text" type="text" class="input-text"   bindinput='bindInput' bindlinechange='bindLineChange' maxlength='-1' style="height:{{inputH}}px">
 		</textarea>
 		<view class="mui-btn mui-btn-outlined voice-btn">
 			按住 说话
@@ -95,7 +96,7 @@
 			</view>
 			<view class="mui-col-xs-6 mui-text-center">
         <block wx:if="{{inputLen == 0}}">
-          <i class="iconfont icon-iconfontroundadd">
+          <i class="iconfont icon-iconfontroundadd" bindtap="onMore">
           </i>
         </block>
         <block wx:else>

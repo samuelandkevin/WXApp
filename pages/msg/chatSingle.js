@@ -12,10 +12,12 @@ Page({
   data: {
     baseUrl: netUtil.netUtil,
     list:[],
-    inputLen:0, //输入字数长度
+    inputLen:0,     //输入字数长度
     showFaces:false,//显示表情键盘
-    showMore:true,//显示更多选项
-    footerBot:0  //输入框底部距离
+    showMore:false, //显示更多选项
+    footerBot:0,    //输入框底部距离 
+    inputH:45,      //输入框高度 
+    footerH:0       //底部条高度
   },
 
   /**
@@ -398,7 +400,8 @@ return arr;
     });
   },
 
-  onInput:function(e){
+  //监听输入框变化
+  bindInput:function(e){
     // 获取输入框的内容
     var value = e.detail.value;
     // 获取输入框内容的长度
@@ -407,14 +410,47 @@ return arr;
       inputLen:len
     });
   },
+  //点击表情按钮
   onFaces:function(){
     console.log("onFaces");
-    var footerBot = !this.data.showFaces ? '150px' : '0';
+    var footerBot = !this.data.showFaces ? 150 : 0;
     this.setData({
       showFaces:!this.data.showFaces,
-      footerBot: footerBot
+      footerBot: footerBot,
+      showMore: false
     });
+  },
+  //点击更多按钮
+  onMore: function () {
+    console.log("onMore");
+    var footerBot = !this.data.showMore ? 100 : 0;
+    this.setData({
+      showMore: !this.data.showMore,
+      footerBot: footerBot,
+      showFaces:false
+    });
+  },
+  //监听输入框行数变化
+  bindLineChange:function(e){
+    // 获取输入框的内容
+    var lineCount = e.detail.lineCount;
+    var height    = e.detail.height ;
+    // height: 0, heightRpx: 0, lineCount: 0
+    if (lineCount < 5){
+      var footerH = height + 10;
+      this.setData({
+        inputH: height,
+        footerH: footerH
+      })
+    } 
+  },
+  //监听滚动
+  scrolling:function(e){
+    if (this.data.footerBot != 0){
+        console.log("!000000");
+    }
+  },
+  scrollTop:function(e){
+    console.top("top");
   }
-
-
 })
