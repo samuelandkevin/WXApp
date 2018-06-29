@@ -1,6 +1,7 @@
-<view>
-<scroll-view  style="height:100%" scroll-y="true" class="layim-chat" bindscroll="scrolling" scroll-top="{{scrollTop}}">
-	<view class="layim-chat-main">
+
+<view class="layim-chat">
+	<scroll-view class="layim-chat-main" style="height:100%" scroll-y="true"
+	bindscroll="bindScroll">
 		<ul id="msg_list">
 			<block wx:for="{{list}}" wx:key="">
 				<li class="layim-chat-system" wx:if="{{item.showCreateTime != undefined}}">
@@ -72,181 +73,104 @@
 				</block>
 			</block>
 		</ul>
-	</view>
-</scroll-view>
+	</scroll-view>
 </view>
 <!-- 底部 -->
 <footer class="mui-row mui-text-center" style="bottom:{{footerBot}}px;height:{{footerH}}px">
 	<view class="mui-col-xs-1 footer-left">
-		<i class="iconfont icon-soundlight">
+		<i class="iconfont icon-soundlight" bindtap="onSpeaker">
 		</i>
 	</view>
 	<view class="mui-col-xs-8 footer-center">
-		<textarea id="msg_text" type="text" class="input-text"   bindinput='bindInput' bindlinechange='bindLineChange' maxlength='-1' style="height:{{inputH}}px">
-		</textarea>
-		<view class="mui-btn mui-btn-outlined voice-btn">
-			按住 说话
-		</view>
+    <block wx:if="{{showSpeaker}}">
+      <view class="mui-btn mui-btn-outlined voice-btn">
+        按住 说话
+      </view>
+    </block>
+    <block wx:else>
+        <textarea id="msg_text" type="text" class="input-text" bindinput='bindInput'
+      bindlinechange='bindLineChange' maxlength='-1' style="height:{{inputH}}px" bindfocus="bindfocus" bindblur="bindblur" >
+      </textarea>
+    </block>
 	</view>
 	<view class="mui-col-xs-3 footer-right">
 		<view class="mui-row mui-text-right">
-			<view class="mui-col-xs-6 mui-text-center" >
+			<view class="mui-col-xs-6 mui-text-center">
 				<i class="iconfont icon-icon_face" bindtap="onFaces">
 				</i>
 			</view>
 			<view class="mui-col-xs-6 mui-text-center">
-        <block wx:if="{{inputLen == 0}}">
-          <i class="iconfont icon-iconfontroundadd" bindtap="onMore">
-          </i>
-        </block>
-        <block wx:else>
-          <view class="mui-btn mui-btn-success" id="sendMessage">
-            发送
-          </view>
-        </block>
+				<block wx:if="{{inputLen == 0}}">
+					<i class="iconfont icon-iconfontroundadd" bindtap="onMore">
+					</i>
+				</block>
+				<block wx:else>
+					<view class="mui-btn mui-btn-success" id="sendMessage">
+						发送
+					</view>
+				</block>
 			</view>
 		</view>
 	</view>
 </footer>
-
 <!--表情内容-->
 <block wx:if="{{showFaces == true}}">
-  <view id="face-content" class="mui-content face-content">
-          <view id="Gallery" class="mui-slider">
-              <view class="mui-slider-group">
-                                  <view class="mui-slider-item">
-                      <ul class="clear face-list">
-                          <li title="[微笑]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/0.gif" /></li>
-                          <li title="[嘻嘻]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/1.gif" /></li>
-                          <li title="[哈哈]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/2.gif" /></li>
-                          <li title="[可爱]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/3.gif" /></li>
-                          <li title="[可怜]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/4.gif" /></li>
-                          <li title="[挖鼻]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/5.gif" /></li>
-                          <li title="[吃惊]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/6.gif" /></li>
-                          <li title="[害羞]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/7.gif" /></li>
-                          <li title="[挤眼]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/8.gif" /></li>
-                          <li title="[闭嘴]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/9.gif" /></li>
-                          <li title="[鄙视]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/10.gif" /></li>
-                          <li title="[爱你]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/11.gif" /></li>
-                          <li title="[泪]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/12.gif" /></li>
-                          <li title="[偷笑]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/13.gif" /></li>
-                          <li title="[亲亲]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/14.gif" /></li>
-                          <li title="[生病]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/15.gif" /></li>
-                          <li title="[太开心]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/16.gif" /></li>
-                          <li title="[白眼]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/17.gif" /></li>
-                          <li title="[右哼哼]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/18.gif" /></li>
-                          <li title="[左哼哼]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/19.gif" /></li>
-                          <li title="[嘘]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/20.gif" /></li>
-                      </ul>
-                  </view>
-                  <view class="mui-slider-item">
-                      <ul class="clear face-list">
-                          <li title="[衰]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/21.gif" /></li>
-                          <li title="[委屈]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/22.gif" /></li>
-                          <li title="[吐]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/23.gif" /></li>
-                          <li title="[哈欠]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/24.gif" /></li>
-                          <li title="[抱抱]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/25.gif" /></li>
-                          <li title="[怒]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/26.gif" /></li>
-                          <li title="[疑问]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/27.gif" /></li>
-                          <li title="[馋嘴]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/28.gif" /></li>
-                          <li title="[拜拜]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/29.gif" /></li>
-                          <li title="[思考]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/30.gif" /></li>
-                          <li title="[汗]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/31.gif" /></li>
-                          <li title="[困]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/32.gif" /></li>
-                          <li title="[睡]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/33.gif" /></li>
-                          <li title="[钱]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/34.gif" /></li>
-                          <li title="[失望]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/35.gif" /></li>
-                          <li title="[酷]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/36.gif" /></li>
-                          <li title="[色]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/37.gif" /></li>
-                          <li title="[哼]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/38.gif" /></li>
-                          <li title="[鼓掌]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/39.gif" /></li>
-                          <li title="[晕]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/40.gif" /></li>
-                      </ul>
-                  </view>
-                  <view class="mui-slider-item">
-                      <ul class="clear face-list">
-                          <li title="[悲伤]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/41.gif" /></li>
-                          <li title="[抓狂]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/42.gif" /></li>
-                          <li title="[黑线]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/43.gif" /></li>
-                          <li title="[阴险]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/44.gif" /></li>
-                          <li title="[怒骂]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/45.gif" /></li>
-                          <li title="[互粉]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/46.gif" /></li>
-                          <li title="[心]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/47.gif" /></li>
-                          <li title="[伤心]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/48.gif" /></li>
-                          <li title="[猪头]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/49.gif" /></li>
-                          <li title="[熊猫]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/50.gif" /></li>
-                          <li title="[兔子]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/51.gif" /></li>
-                          <li title="[ok]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/52.gif" /></li>
-                          <li title="[耶]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/53.gif" /></li>
-                          <li title="[good]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/54.gif" /></li>
-                          <li title="[NO]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/55.gif" /></li>
-                          <li title="[赞]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/56.gif" /></li>
-                          <li title="[来]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/57.gif" /></li>
-                          <li title="[弱]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/58.gif" /></li>
-                          <li title="[草泥马]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/59.gif" /></li>
-                          <li title="[神马]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/60.gif" /></li>
-                      </ul>
-                  </view>
-                  <view class="mui-slider-item">
-                      <ul class="clear face-list">
-                          <li title="[囧]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/61.gif" /></li>
-                          <li title="[浮云]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/62.gif" /></li>
-                          <li title="[给力]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/63.gif" /></li>
-                          <li title="[围观]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/64.gif" /></li>
-                          <li title="[威武]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/65.gif" /></li>
-                          <li title="[奥特曼]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/66.gif" /></li>
-                          <li title="[礼物]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/67.gif" /></li>
-                          <li title="[钟]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/68.gif" /></li>
-                          <li title="[话筒]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/69.gif" /></li>
-                          <li title="[蜡烛]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/70.gif" /></li>
-                          <li title="[蛋糕]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/71.gif" /></li>
-                          <li title="[二哈]"><image src="http://csapp.gtax.cn/taxtao/static/webim/images/face/72.gif" /></li>
-                      </ul>
-                  </view>
-              </view>
-              <view class="mui-slider-indicator">
-                  <view class="mui-indicator mui-active"></view>
-                  <view class="mui-indicator"></view>
-                  <view class="mui-indicator"></view>
-                  <view class="mui-indicator"></view>
-              </view>
-      </view>
-  </view>
+	<view id="face-content" class="mui-content face-content">
+		<view id="Gallery" class="mui-slider">
+      <view class="mui-slider-group">
+          <view class="mui-slider-item" wx:for="{{faceList}}" wx:for-item="aList" wx:key="*this">
+               <ul class="clear face-list" >
+                  <li  wx:for="{{aList}}" wx:for-item="face" wx:key="name" data-title="{{face.name}}" bindtap="onOneFace" >
+                    <image src="{{face.url}}" />
+                  </li>
+              </ul> 
+          </view>
+			</view>
+			<view class="mui-slider-indicator">
+				<view class="mui-indicator mui-active">
+				</view>
+				<view class="mui-indicator">
+				</view>
+				<view class="mui-indicator">
+				</view>
+				<view class="mui-indicator">
+				</view>
+			</view>
+		</view>
+	</view>
 </block>
-
-
- <!-- 更多弹出内容 -->
- <block wx:if="{{showMore}}">
-    <view class="mui-content more-content">
-        <ul class="mui-table-view mui-grid-view mui-grid-9">
-          <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3" data-type="images">
-            <span class="mui-icon iconfont icon-ico-presetphoto-n">
-            </span>
-            <view class="mui-media-body">
-              图片
-            </view>
-          </li>
-          <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3" data-type="files">
-            <span class="mui-icon iconfont icon-folder">
-            </span>
-            <view class="mui-media-body">
-              文件
-            </view>
-          </li>
-          <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3" data-type="collects">
-            <span class="mui-icon iconfont icon-shoucang">
-            </span>
-            <view class="mui-media-body">
-              收藏
-            </view>
-          </li>
-          <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3 mui-hidden">
-            <span class="mui-icon iconfont icon-dingwei">
-            </span>
-            <view class="mui-media-body">
-              定位
-            </view>
-          </li>
-        </ul>
-      </view>
- </block>
+<!-- 更多弹出内容 -->
+<block wx:if="{{showMore}}">
+	<view class="mui-content more-content">
+		<ul class="mui-table-view mui-grid-view mui-grid-9">
+			<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3" data-type="images">
+				<span class="mui-icon iconfont icon-ico-presetphoto-n">
+				</span>
+				<view class="mui-media-body">
+					图片
+				</view>
+			</li>
+			<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3" data-type="files">
+				<span class="mui-icon iconfont icon-folder">
+				</span>
+				<view class="mui-media-body">
+					文件
+				</view>
+			</li>
+			<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3" data-type="collects">
+				<span class="mui-icon iconfont icon-shoucang">
+				</span>
+				<view class="mui-media-body">
+					收藏
+				</view>
+			</li>
+			<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3 mui-hidden">
+				<span class="mui-icon iconfont icon-dingwei">
+				</span>
+				<view class="mui-media-body">
+					定位
+				</view>
+			</li>
+		</ul>
+	</view>
+</block>

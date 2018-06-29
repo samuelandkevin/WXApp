@@ -60,7 +60,8 @@ Page({
   },
 
   onLogin:function(){
-    this._login('13539467126','123456',{
+    //kun调试
+    this._login('13501535588','123456',{
       success:function(res){
       },
       fail: function (ret){

@@ -308,7 +308,6 @@ footer {
     width: -webkit-calc(100% - 120px);
 }
 .footer-center .input-text {
-    height: 32px;
     padding: 5px 6px;
     line-height: 16px !important;
     overflow-y: visible;
@@ -320,16 +319,9 @@ footer {
     font-size: 16px !important;
     font-family: verdana !important;
     width: 95%;
+    height: 32px;
 }
 
-.footer-center .voice-btn {
-    display: none;
-    margin-left: 0.25rem;
-    bottom: 3px;
-    border: 1px solid #CFCFCF;
-    font-weight: 400;
-    color: #727272;
-}
 .mui-btn-outlined {
     background-color: transparent;
 }
@@ -384,10 +376,12 @@ footer .iconfont {
     background-color: #0e92dd;
     color: #fff;
 }
-.mui-btn{
+.footer-center .voice-btn{
+    border: 1px solid #CFCFCF;
+    color: #727272;
     font-size: 14px;
     font-weight: 400;
-    line-height: 1.42;
+    line-height: 2.42;
     position: relative;
     display: inline-block;
     margin-bottom: 0;
@@ -404,6 +398,8 @@ footer .iconfont {
     border-bottom-right-radius: 3px;
     border-bottom-left-radius: 3px;
     background-clip: padding-box;
+    height: 32px;
+    width: 97%;
 }
 .face-content {
     position: fixed;
@@ -584,4 +580,25 @@ footer .iconfont {
     width:25%;
     float:left;
     box-sizing: border-box; 
+}
+.mui-btn{
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 0;
+    cursor: pointer;
+    transition: all;
+    transition-timing-function: linear;
+    transition-duration: .2s;
+    text-align: center;
+    vertical-align: top;
+    white-space: nowrap;
+    border-radius: 3px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    background-clip: padding-box;
 }

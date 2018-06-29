@@ -4,7 +4,10 @@ var WxParse = require('../../utils/wxParse/wxParse.js');
 var callback = netUtil.callback;
 var that;
 var app = getApp();
+
 Page({
+
+  
 
   /**
    * 页面的初始数据
@@ -12,14 +15,240 @@ Page({
   data: {
     baseUrl: netUtil.netUtil,
     list:[],
-    inputLen:0,     //输入字数长度
-    showFaces:false,//显示表情键盘
-    showMore:false, //显示更多选项
-    footerBot:0,    //输入框底部距离 
-    inputH:45,      //输入框高度 
-    footerH:0       //底部条高度
+    inputLen:0,       //输入字数长度
+    showFaces:false,  //显示表情键盘
+    showMore:false,   //显示更多选项
+    showSpeaker:false,//显示按住说话
+    footerBot:0,      //输入框底部距离 
+    inputH:45,        //输入框高度 
+    footerH:0,        //底部条高度
+    faceList: [
+      //第一组表情
+    [{
+      "name":"face[微笑]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/0.gif"
+    },
+    {
+      "name":"face[嘻嘻]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/1.gif"
+    },
+    {
+      "name":"face[哈哈]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/2.gif"
+    },
+    {
+      "name":"face[可爱]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/3.gif"
+    },
+    {
+      "name":"face[可怜]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/4.gif"
+    },
+    {
+      "name":"face[挖鼻]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/5.gif"
+    },
+    {
+      "name":"face[吃惊]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/6.gif"
+    },
+    {
+      "name":"face[害羞]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/7.gif"
+    },
+    {
+      "name":"face[挤眼]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/8.gif"
+    },
+    {
+      "name":"face[闭嘴]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/9.gif"
+    },
+    {
+      "name":"face[鄙视]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/10.gif"
+    },
+    {
+      "name":"face[爱你]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/11.gif"
+    },
+    {
+      "name":"face[泪]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/12.gif"
+    },
+    {
+      "name":"face[偷笑]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/13.gif"
+    },
+    {
+      "name":"face[亲亲]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/14.gif"
+    },
+    {
+      "name":"face[生病]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/15.gif"
+    },
+    {
+      "name":"face[太开心]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/16.gif"
+    },
+    {
+      "name":"face[白眼]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/17.gif"
+    },
+    {
+      "name":"face[右哼哼]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/18.gif"
+    },
+    {
+      "name":"face[左哼哼]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/19.gif"
+    },
+    {
+      "name":"face[嘘]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/20.gif"
+    }],
+    //第二组表情
+    [{
+      "name":"face[衰]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/21.gif"
+    },
+    {
+      "name":"face[委屈]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/22.gif"
+    },
+    {
+      "name":"face[吐]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/23.gif"
+    },
+    {
+      "name":"face[哈欠]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/24.gif"
+    },
+    {
+      "name":"face[抱抱]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/25.gif"
+    },
+    {
+      "name":"face[怒]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/26.gif"
+    },
+    {
+      "name":"face[疑问]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/27.gif"
+    },
+    {
+      "name":"face[馋嘴]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/28.gif"
+    },
+    {
+      "name":"face[拜拜]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/29.gif"
+    },
+    {
+      "name":"face[思考]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/30.gif"
+    },
+    {
+      "name":"face[汗]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/31.gif"
+    },
+    {
+      "name":"face[困]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/32.gif"
+    },
+    {
+      "name":"face[睡]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/33.gif"
+    },
+    {
+      "name":"face[钱]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/34.gif"
+    },
+    {
+      "name":"face[失望]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/35.gif"
+    },
+    {
+      "name":"face[酷]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/36.gif"
+    },
+    {
+      "name":"face[色]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/37.gif"
+    },
+    {
+      "name":"face[哼]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/38.gif"
+    },
+    {
+      "name":"face[鼓掌]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/39.gif"
+    },
+    {
+      "name":"face[晕]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/40.gif"
+    }],
+    //第三组表情
+    [{
+      "name":"face[悲伤]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/41.gif"
+    },
+    {
+      "name":"face[抓狂]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/42.gif"
+    },
+    {
+      "name":"face[黑线]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/43.gif"
+    },
+    {
+      "name":"face[阴险]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/44.gif"
+    },
+    {
+      "name":"face[怒骂]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/45.gif"
+    },
+    {
+      "name":"face[互粉]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/46.gif"
+    },
+    {
+      "name":"face[心]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/47.gif"
+    },
+    {
+      "name":"face[伤心]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/48.gif"
+    },
+    {
+      "name":"face[猪头]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/49.gif"
+    },
+    {
+      "name":"face[熊猫]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/50.gif"
+    },
+    {
+      "name":"face[兔子]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/51.gif"
+    },
+    {
+      "name":"face[ok]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/52.gif"
+    },
+    {
+      "name":"face[耶]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/53.gif"
+    },
+    {
+      "name":"face[good]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/54.gif"
+    },
+    {
+      "name":"face[NO]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/55.gif"
+    },
+    {
+      "name":"face[赞]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/56.gif"
+    },
+    {
+      "name":"face[来]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/57.gif"
+    },
+    {
+      "name":"face[弱]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/58.gif"
+    },
+    {
+      "name":"face[草泥马]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/59.gif"
+    },
+    {
+      "name":"face[神马]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/60.gif"
+    }],
+    //第四组表情
+    [{
+      "name":"face[囧]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/61.gif"
+    },
+    {
+      "name":"face[浮云]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/62.gif"
+    },
+    {
+      "name":"face[给力]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/63.gif"
+    },
+    {
+      "name":"face[围观]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/64.gif"
+    },
+    {
+      "name":"face[威武]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/65.gif"
+    },
+    {
+      "name":"face[奥特曼]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/66.gif"
+    },
+    {
+      "name":"face[礼物]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/67.gif"
+    },
+    {
+      "name":"face[钟]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/68.gif"
+    },
+    {
+      "name":"face[话筒]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/69.gif"
+    },
+    {
+      "name":"face[蜡烛]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/70.gif"
+    },
+    {
+      "name":"face[蛋糕]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/71.gif"
+    },
+    {
+      "name":"face[二哈]","url":"http://csapp.gtax.cn/taxtao/static/webim/images/face/72.gif"
+    }]
+    ],
   },
-
+  
   /**
    * 生命周期函数--监听页面加载
    */
@@ -86,7 +315,7 @@ Page({
 }
 return arr;
   },
-
+ 
 
   /**
 	 * 转换内容 
@@ -410,6 +639,17 @@ return arr;
       inputLen:len
     });
   },
+  //点击语音
+  onSpeaker: function () {
+    var showSpeaker = !this.data.showSpeaker;
+    this.setData({
+      showSpeaker: showSpeaker,
+      showFaces:false,
+      showMore:false,
+      footerH:0,
+      footerBot:0,
+    })
+  },
   //点击表情按钮
   onFaces:function(){
     console.log("onFaces");
@@ -417,7 +657,8 @@ return arr;
     this.setData({
       showFaces:!this.data.showFaces,
       footerBot: footerBot,
-      showMore: false
+      showMore: false,
+      showSpeaker:false
     });
   },
   //点击更多按钮
@@ -429,6 +670,24 @@ return arr;
       footerBot: footerBot,
       showFaces:false
     });
+  },
+  //点击某个表情
+  onOneFace:function(e){
+    var title = e.currentTarget.dataset['title'];
+    console.log(title);
+  },
+  
+  //输入框聚焦
+  bindfocus: function (e) {
+    if (e.detail.height != undefined) {
+      // this.setData({
+      //   footerBot: e.detail.height
+      // })
+    }
+  },
+  //输入框失去焦点
+  bindblur: function (e) {
+    console.log(e);
   },
   //监听输入框行数变化
   bindLineChange:function(e){
@@ -445,12 +704,14 @@ return arr;
     } 
   },
   //监听滚动
-  scrolling:function(e){
+  bindScroll: function (e) {
     if (this.data.footerBot != 0){
-        console.log("!000000");
+      this.setData({
+        footerBot: 0,
+        showMore:false,
+        showFaces:false
+      })
     }
   },
-  scrollTop:function(e){
-    console.top("top");
-  }
+
 })
