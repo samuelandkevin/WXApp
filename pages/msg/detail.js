@@ -7,21 +7,22 @@ var app = getApp();
 
 Page({
 
-  
-
   /**
    * 页面的初始数据
    */
   data: {
     baseUrl: netUtil.netUtil,
+    isGroupChat:0,    //是否群聊
+    toUid:'',         //会话人id
     list:[],
-    inputLen:0,       //输入字数长度
     showFaces:false,  //显示表情键盘
     showMore:false,   //显示更多选项
     showSpeaker:false,//显示按住说话
+    text:'',          //输入框文本
     footerBot:0,      //输入框底部距离 
     inputH:45,        //输入框高度 
     footerH:0,        //底部条高度
+    faceCurPage:0,    //表情轮播图当前页
     faceList: [
       //第一组表情
     [{
@@ -256,6 +257,10 @@ Page({
     that = this;
     var toUid = options.toUid;
     var isGroupChat = options.isGroupChat;
+    this.setData({
+      toUid:toUid,
+      isGroupChat: isGroupChat
+    });
     this._initWS(toUid, isGroupChat,{
         success:function(res){
 
@@ -272,24 +277,12 @@ Page({
             console.log(ret.data);
 
             for(var i=0;i<ret.data.length;i++ ){
-              var item = ret.data[i];
-              //时间轴
-              if (new Date().getTime() > that.getUnixTime(item.createTime) && that.getUnixTime(item.createTime)  > 60 * 1000){
-                item.showCreateTime = that.chatDate(that.getUnixTime(item.createTime));
-              }
-              //消息撤回处理
-              if(item.status == 1){
-                item.speakerName = (item.speakerId == app.data.userInfo.userCard.id) ? "你" : '“' + item.speakerName + '”';
-              }
-
+              var item  = ret.data[i];
+              var nItem = ret.data[i+1];
               
-              item.imContent = that.imContent(item) 
-              
-
-
+              item.imContent = that.imContent(item,nItem,false); 
             }
             
-
             that.setData({
               list:ret.data
             });
@@ -319,10 +312,30 @@ return arr;
 
   /**
 	 * 转换内容 
-	 * @param {Object} item
+	 * @param {Object} item：当前处理的消息对象 nextItem：下一条消息对象 is_SendMsg:是否发送消息
 	 */
-  imContent:function (item) {
+  imContent:function (item,nextItem,is_SendMsg) {
     var that = this;
+
+    //当前时间轴
+    var cdate = new Date().getTime();
+    var cTime = that.getUnixTime(item.createTime);
+    
+    //下一条消息时间轴
+    var nTime = 0;
+    if (nextItem != undefined || nextItem != null) {
+      nTime = that.getUnixTime(nextItem.createTime);
+    }
+
+    if ((cdate > cTime && nTime - cTime > 60 * 1000 && !is_SendMsg) || ( cTime - nTime > 60 * 1000 && is_SendMsg)) {
+      item.showCreateTime = that.chatDate(that.getUnixTime(item.createTime));
+    } 
+
+    //消息撤回处理
+    if (item.status == 1) {
+      item.speakerName = (item.speakerId == app.data.userInfo.userCard.id) ? "你" : '“' + item.speakerName + '”';
+    }
+
     var type    = item.msgType;
     var content = item.msgContent || "&nbsp;";
     //支持的html标签
@@ -390,6 +403,7 @@ return arr;
 
         var addressHtml = '';
         item.snapshotImgUrl = snapshotImgUrl;
+
         return address;
       }).replace(/face\[([^\s\[\]]+?)\]/g,
       function (face) { //转义表情
@@ -405,7 +419,6 @@ return arr;
       .replace(/\n/g, '<br>') //转义换行 
     return content;
   },
-
 
 
   getUnixTime: function (dateStr) {
@@ -460,32 +473,6 @@ return arr;
         }
       }
       return format;
-  },
-
-
-  handlePhotoData:function (item, ul) {
-    if (item.imgSource == 1 || item.imgSource == 2) {//拍照||相册
-      var liStr = '';
-      var source = '该图片来自本地上传';
-      if (item.imgSource == 1) {
-        source = '该图片来自现场拍摄' + (item.address == "" || item.address == undefined || item.address == "undefined" || item.address == "null" ? "" : ("，拍摄地点：" + '<a class="photoOnLocation">' + item.address + '</a>'));
-      }
-      if (item.imgSource == 1) {
-        if (item.address == "") {
-          item.address = undefined;
-        }
-        if (item.longitude == "") {
-          item.longitude = undefined;
-        }
-        if (item.latitude == "") {
-          item.latitude = undefined;
-        }
-        liStr = '<li class="layim-chat-system layim-chat-retract" data-longitude= ' + item.longitude + ' data-latitude= ' + item.latitude + ' data-address= ' + item.address + '><span>' + source + '</span></li>'
-      } else {
-        liStr = '<li class="layim-chat-system layim-chat-retract"><span>' + source + '</span></li>'
-      }
-      ul.append(liStr);
-    }
   },
 
   /**
@@ -635,9 +622,13 @@ return arr;
     var value = e.detail.value;
     // 获取输入框内容的长度
     var len = parseInt(value.length);
-    this.setData({
-      inputLen:len
-    });
+    var text = this.data.text;
+    if(value != undefined){
+      text =  value;
+      this.setData({
+        text:text
+      });
+    }
   },
   //点击语音
   onSpeaker: function () {
@@ -674,15 +665,64 @@ return arr;
   //点击某个表情
   onOneFace:function(e){
     var title = e.currentTarget.dataset['title'];
-    console.log(title);
+    var text = this.data.text;
+    if(title != undefined){
+      text = text + title;
+      this.setData({
+        text:text
+      });
+    }
   },
-  
+  //点击"发送"按钮
+  onSend:function(){
+    that = this;
+    console.log("点击发送");
+    var text = this.data.text;
+    if(text != undefined){
+      console.log(text);
+      var audienceId = this.data.toUid;
+      var content    = text;
+      var msgType    = 0;
+      var is_group   = this.data.isGroupChat;
+      var imgSource  = '';
+      var latitude   = '';
+      var longitude  = '';
+      var address    = '';
+      this._requestSendMsg(audienceId, content, msgType, is_group, imgSource, latitude, longitude, address,{
+        success:function(ret){
+          var msg = ret.data;
+          if (msg != null || msg != undefined){
+              var preItem = that.data.list[that.data.list.length - 1];
+              msg.imContent = that.imContent(msg, preItem,true);
+              that.data.list.push(msg);
+              that.setData({
+                list: that.data.list
+              });
+          }
+        },
+        fail:function(){
+
+        },
+        complete:function(){
+          that.setData({
+            text:''
+          });
+        }
+      });
+    }
+  },
+  //点击头像
+  onAvatar:function(e){
+    var id = e.currentTarget.dataset['id'];
+    console.log(id);
+    wx.navigateTo({
+      url: '../../pages/connection/cardDetail?userId=' + id,
+    })
+  },
   //输入框聚焦
   bindfocus: function (e) {
     if (e.detail.height != undefined) {
-      // this.setData({
-      //   footerBot: e.detail.height
-      // })
+
     }
   },
   //输入框失去焦点
@@ -713,5 +753,81 @@ return arr;
       })
     }
   },
+  //监听表情轮播图滚边
+  faceCurPageChange:function(e){
+    console.log(e.detail.current);
+    this.setData({
+      faceCurPage: e.detail.current
+    })
+  },
+  //点击内容
+  onContent:function(e){
+    var msgType = e.currentTarget.dataset["type"];
+    var msgId = e.currentTarget.dataset["id"];
+    console.log(msgType, msgId);
+    if (msgType == 2){
+      var voiceUrl = '';
+      //播放录音
+      for(var index in this.data.list){
+        var item = this.data.list[index];
+        if (item.id == msgId){
+          item.content.replace(/voice\[([^\s]+?)\]/g,
+            function (voice) { //转义语音
+              voiceUrl= voice;
+              console.log(voiceUrl);
+          });
+          break;
+        }
+      }
+      this.playAudio();
+    }
+      
+  },
+  //长按"按住说话"
+  onLongTapSpeaker:function(){
+    
+  },
+  //播放录音
+  playAudio:function(url){
+    const innerAudioContext    = wx.createInnerAudioContext();
+    innerAudioContext.autoplay = true;
+    innerAudioContext.src      = url;
+    innerAudioContext.onPlay(() => {
+      console.log('开始播放');
+    });
+    innerAudioContext.onError((res) => {
+      console.log(res.errMsg);
+      console.log(res.errCode);
+    })
+  },
+
+  //网络请求
+  //发送文本消息
+  _requestSendMsg: function (audienceId, content, msgType, is_group, imgSource, latitude, longitude, address, callback){
+    var params = new Object();
+    var url = "/taxtao/api/im/send_msg";
+    params.accessToken = app.data.userInfo.accessToken;
+    params.audienceId  = audienceId;
+    params.content     = content;
+    params.msgType     = msgType;
+    params.isGroupChat = is_group;
+    params.imgSource   = imgSource;
+    params.latitude    = latitude;
+    params.longitude   = longitude;
+    params.address     = address;
+    netUtil.POST({
+      url: url,
+      params: params,
+      success: function (res) {
+        callback.success(res);
+      },
+      fail: function () {
+        callback.fail();
+      },
+      complete: function () {
+        callback.complete();
+      },
+    })
+  }
 
 })

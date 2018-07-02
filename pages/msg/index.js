@@ -177,7 +177,7 @@ Page({
     var toUid       = e.currentTarget.dataset.sessionuid;
     var isGroupChat = e.currentTarget.dataset.isgroupchat;
     wx.navigateTo({
-      url: '../../pages/msg/chatSingle?toUid=' + toUid + '&isGroupChat=' + isGroupChat,
+      url: '../../pages/msg/detail?toUid=' + toUid + '&isGroupChat=' + isGroupChat,
     })
   }
 })

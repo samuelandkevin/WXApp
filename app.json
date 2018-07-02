@@ -16,7 +16,7 @@
     "pages/exam/index",
     "pages/login/index",
     "pages/connection/cardDetail",
-    "pages/msg/chatSingle"
+    "pages/msg/detail"
   ],
   "window": {
     "backgroundTextStyle": "light",

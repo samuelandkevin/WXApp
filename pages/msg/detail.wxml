@@ -1,6 +1,6 @@
 
 <view class="layim-chat">
-	<scroll-view class="layim-chat-main" style="height:100%" scroll-y="true"
+	<scroll-view class="layim-chat-main" style="height:cal(100%-40px)" scroll-y="true"
 	bindscroll="bindScroll">
 		<ul id="msg_list">
 			<block wx:for="{{list}}" wx:key="">
@@ -17,7 +17,7 @@
 				<li class="layim-chat-li {{ item.direction == 0 ? 'layim-chat-mine' : '' }}"
 				id="msgItem{{item.id}}" data-id="{{item.id}}" data-msgtype="{{item.msgType}}"
 				data-content="{{item.msgContent||''}}" data-userId="{{item.speakerId}}">
-					<view class="layim-chat-user">
+					<view class="layim-chat-user" bindtap="onAvatar" data-id="{{item.speakerId}}">
 						<image src="{{ item.speakerHead ? item.speakerHead : 'http://csapp.gtax.cn/taxtao/static/webim/images/default_avatar@2x.png' }}"
 						/>
 						<cite wx:if="{{item.speakerDept}}">
@@ -34,7 +34,7 @@
 						</view>
 					</block>
 					<block wx:else>
-						<view class="layim-chat-text">
+						<view class="layim-chat-text" bindtap="onContent" data-id="{{item.id}}" data-type="{{item.msgType}}">
 							<block wx:if="{{item.status == -1}}">
 								<view class="status-embody-failed" data-id="{{item.id||0}}">
 									<i class="webim-iconfont">
@@ -56,9 +56,10 @@
 					<li class="layim-chat-system layim-chat-retract" data-longitude="{{item.longitude}}"
 					data-latitude="{{item.latitude}}" data-address="{{item.address}}">
 						<span>
-							该图片来自现场拍摄{{item.address == "" || item.address == undefined || item.address
-							== "undefined" || item.address == "null" ? '': '，拍摄地点：'}}
-							<a class="photoOnLocation">
+							该图片来自现场拍摄{{
+        item.address == "" || item.address == undefined || item.address
+          == "undefined" || item.address == "null" ? '' : '，拍摄地点：'}}
+							<a class="photoOnLocation" wx:if="{{item.address != '' && item.address != undefined && item.address != 'undefined' && item.address != 'null' }}">
 								{{item.address}}
 							</a>
 						</span>
@@ -83,13 +84,13 @@
 	</view>
 	<view class="mui-col-xs-8 footer-center">
     <block wx:if="{{showSpeaker}}">
-      <view class="mui-btn mui-btn-outlined voice-btn">
+      <view class="mui-btn mui-btn-outlined voice-btn" bindlongtap='onLongTapSpeaker'>
         按住 说话
       </view>
     </block>
     <block wx:else>
         <textarea id="msg_text" type="text" class="input-text" bindinput='bindInput'
-      bindlinechange='bindLineChange' maxlength='-1' style="height:{{inputH}}px" bindfocus="bindfocus" bindblur="bindblur" >
+      bindlinechange='bindLineChange' maxlength='-1' style="height:{{inputH}}px" bindfocus="bindfocus" bindblur="bindblur" value="{{text}}">
       </textarea>
     </block>
 	</view>
@@ -100,12 +101,12 @@
 				</i>
 			</view>
 			<view class="mui-col-xs-6 mui-text-center">
-				<block wx:if="{{inputLen == 0}}">
+				<block wx:if="{{text.length == 0}}">
 					<i class="iconfont icon-iconfontroundadd" bindtap="onMore">
 					</i>
 				</block>
 				<block wx:else>
-					<view class="mui-btn mui-btn-success" id="sendMessage">
+					<view class="mui-btn mui-btn-success" id="sendMessage" bindtap="onSend">
 						发送
 					</view>
 				</block>
@@ -117,23 +118,17 @@
 <block wx:if="{{showFaces == true}}">
 	<view id="face-content" class="mui-content face-content">
 		<view id="Gallery" class="mui-slider">
-      <view class="mui-slider-group">
-          <view class="mui-slider-item" wx:for="{{faceList}}" wx:for-item="aList" wx:key="*this">
-               <ul class="clear face-list" >
-                  <li  wx:for="{{aList}}" wx:for-item="face" wx:key="name" data-title="{{face.name}}" bindtap="onOneFace" >
-                    <image src="{{face.url}}" />
-                  </li>
-              </ul> 
-          </view>
-			</view>
+      <swiper class="mui-slider-group" bindchange="faceCurPageChange">
+          <swiper-item class="mui-slider-item" wx:for="{{faceList}}" wx:for-item="aList" wx:key="*this">
+                <ul class="clear face-list" >
+                    <li  wx:for="{{aList}}" wx:for-item="face" wx:key="name" data-title="{{face.name}}" bindtap="onOneFace" >
+                      <image src="{{face.url}}" />
+                    </li>
+                </ul> 
+          </swiper-item> 
+			</swiper>
 			<view class="mui-slider-indicator">
-				<view class="mui-indicator mui-active">
-				</view>
-				<view class="mui-indicator">
-				</view>
-				<view class="mui-indicator">
-				</view>
-				<view class="mui-indicator">
+				<view class="{{faceCurPage == index ? 'mui-indicator mui-active':'mui-indicator'}}"  wx:for="{{faceList}}" wx:key="*this">
 				</view>
 			</view>
 		</view>
