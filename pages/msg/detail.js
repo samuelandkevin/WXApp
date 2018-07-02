@@ -4,6 +4,8 @@ var WxParse = require('../../utils/wxParse/wxParse.js');
 var callback = netUtil.callback;
 var that;
 var app = getApp();
+const recorderManager   = wx.getRecorderManager();
+const innerAudioContext = wx.createInnerAudioContext();
 
 Page({
 
@@ -762,6 +764,7 @@ return arr;
   },
   //点击内容
   onContent:function(e){
+    that = this;
     var msgType = e.currentTarget.dataset["type"];
     var msgId = e.currentTarget.dataset["id"];
     console.log(msgType, msgId);
@@ -771,33 +774,61 @@ return arr;
       for(var index in this.data.list){
         var item = this.data.list[index];
         if (item.id == msgId){
-          item.content.replace(/voice\[([^\s]+?)\]/g,
-            function (voice) { //转义语音
-              voiceUrl= voice;
-              console.log(voiceUrl);
+          item.msgContent.replace(/voice\[([^\s]+?)\]/g,function(voice){
+            voiceUrl = voice.replace(/(^voice\[)|(\]$)/g, '');
+            console.log(voiceUrl);
+            that.play(voiceUrl);
           });
+          
           break;
         }
       }
-      this.playAudio();
     }
       
   },
   //长按"按住说话"
   onLongTapSpeaker:function(){
-    
+    this.start();
   },
-  //播放录音
-  playAudio:function(url){
-    const innerAudioContext    = wx.createInnerAudioContext();
-    innerAudioContext.autoplay = true;
-    innerAudioContext.src      = url;
-    innerAudioContext.onPlay(() => {
-      console.log('开始播放');
+  //开始录音的时候
+  start: function () {
+    const options = {
+      duration: 10000,//指定录音的时长，单位 ms
+      sampleRate: 16000,//采样率
+      numberOfChannels: 1,//录音通道数
+      encodeBitRate: 96000,//编码码率
+      format: 'mp3',//音频格式，有效值 aac/mp3
+      frameSize: 50,//指定帧大小，单位 KB
+    }
+    //开始录音
+    recorderManager.start(options);
+    recorderManager.onStart(() => {
+      console.log('recorder start')
     });
+    //错误回调
+    recorderManager.onError((res) => {
+      console.log(res);
+    })
+  },
+  //停止录音
+  stop: function () {
+    recorderManager.stop();
+    recorderManager.onStop((res) => {
+      this.tempFilePath = res.tempFilePath;
+      console.log('停止录音', res.tempFilePath)
+      const { tempFilePath } = res
+    })
+  },
+  //播放声音
+  play: function (url) {
+    innerAudioContext.autoplay = true
+    innerAudioContext.src = url,
+      innerAudioContext.onPlay(() => {
+        console.log('开始播放')
+      })
     innerAudioContext.onError((res) => {
-      console.log(res.errMsg);
-      console.log(res.errCode);
+      console.log(res.errMsg)
+      console.log(res.errCode)
     })
   },
 
@@ -831,3 +862,6 @@ return arr;
   }
 
 })
+
+
+// [正则表达式 "^+$"等符号意义](https://blog.csdn.net/github_36362235/article/details/53302787)
