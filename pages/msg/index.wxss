@@ -164,3 +164,7 @@ p {
     transform: scaleY(.5);
     background-color: #c8c7cc;
 }
+.mui-content margin-b-15{
+  position: fixed;
+  height: 100%;
+}

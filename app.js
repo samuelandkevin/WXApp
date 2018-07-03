@@ -1,5 +1,8 @@
+// import { ToastPannel } from '../../utils/toast/toast.js'
+import { ToastPannel} from './utils/toast/toast.js'
 var that;
 App({
+  ToastPannel,
   data: {
     userInfo: {
       accessToken: null,

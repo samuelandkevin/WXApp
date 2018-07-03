@@ -1,4 +1,4 @@
-<view class="mui-content margin-b-15">
+<scroll-view  class="mui-content margin-b-15" style="height:100%" scroll-y="true">
 	<ul class="list media-list" id="chat_histoty_list">
 		<li class="list-item list-item-middle" data-user-id="{{item.userId}}"
 		data-sessionuid="{{item.sessionUserId}}" data-isgroupchat="{{item.isGroupChat}}"  data-isgroupchat="{{item.isGroupChat}}" wx:for="{{list}}" wx:key="" bindtap="onChat">
@@ -61,4 +61,4 @@
 			</view> 
 		</li>
 	</ul>
-</view>
+</scroll-view >

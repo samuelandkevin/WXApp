@@ -53,6 +53,37 @@ function getTax(code) {
   return taxs[code];
 }
 
+function getCurTime(){
+  var date = new Date();
+  var year = date.getFullYear(); //获取当前年份   
+  var mon = date.getMonth() + 1; //获取当前月份   
+  var day = date.getDate(); //获取当前日   
+  var h = date.getHours(); //获取小时   
+  var m = date.getMinutes(); //获取分钟   
+  var s = date.getSeconds(); //获取秒   
+
+  year += "";
+  //月，日，时，分，秒 小于10时，补0
+  if (mon < 10) {
+    mon = "0" + mon;
+  }
+  if (day < 10) {
+    day = "0" + day;
+  }
+  if (h < 10) {
+    h = "0" + h;
+  }
+  if (m < 10) {
+    m = "0" + m;
+  }
+  if (s < 10) {
+    s = "0" + s;
+  }
+
+  var curTime = year + mon + day + h + m + s;
+  return curTime;
+}
+
 
 
 /**
@@ -463,6 +494,7 @@ module.exports = {
   getTax:getTax,
   dateFormat: dateFormat,
   get_unix_time: get_unix_time,
-  friendly_time: friendly_time
+  friendly_time: friendly_time,
+  getCurTime: getCurTime
 }
 

@@ -1,3 +1,5 @@
+<import src='../../utils/toast/toast.wxml' />
+<template is="toast" data="{{ ..._toast_ }}"/>
 
 <view class="layim-chat">
 	<scroll-view class="layim-chat-main" style="height:cal(100%-40px)" scroll-y="true"
@@ -84,7 +86,7 @@
 	</view>
 	<view class="mui-col-xs-8 footer-center">
     <block wx:if="{{showSpeaker}}">
-      <view class="mui-btn mui-btn-outlined voice-btn" bindlongtap='onLongTapSpeaker'>
+      <view class="mui-btn mui-btn-outlined voice-btn" bindlongpress='onLongTapSpeaker' bindtouchend='onLongTapEndSpeaker'>
         按住 说话
       </view>
     </block>

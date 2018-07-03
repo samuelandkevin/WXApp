@@ -1,11 +1,15 @@
 var netUtil  = require("../../utils/netUtil.js");
 var dataUtil = require("../../data/dataUtil.js");
+var toast    = require("../../utils/toast/toast.js");
 var WxParse = require('../../utils/wxParse/wxParse.js');
 var callback = netUtil.callback;
 var that;
 var app = getApp();
 const recorderManager   = wx.getRecorderManager();
 const innerAudioContext = wx.createInnerAudioContext();
+var totalTime     =  10; //总共可以录音的时长
+var remainingTime; //剩余时间
+var interval;  
 
 Page({
 
@@ -17,6 +21,9 @@ Page({
     isGroupChat:0,    //是否群聊
     toUid:'',         //会话人id
     list:[],
+    showToast:{},
+    // toastText:'',
+    // toastIcon:'',
     showFaces:false,  //显示表情键盘
     showMore:false,   //显示更多选项
     showSpeaker:false,//显示按住说话
@@ -788,7 +795,50 @@ return arr;
   },
   //长按"按住说话"
   onLongTapSpeaker:function(){
+    // this.start();
+    console.log("长按开始录音");
     this.start();
+    this.countDown();
+   
+  },
+  //长按"按住说话"结束
+  onLongTapEndSpeaker:function(){
+    console.log("录音结束");
+    that = this;
+    app.ToastPannel();
+    clearInterval(interval);
+    //录音时间太短
+    if (totalTime - remainingTime < 3){
+      this.showToast('录音时间太短',1500);
+    }else{
+      this.hideToast();
+      that.stop(function (res) {
+        //时间到，自动发送录音
+        that._uploadRecord(res.tempFilePath);
+      });
+    }
+  },
+  //倒计时
+  countDown:function(){
+    that = this;
+    remainingTime = totalTime; 
+     app.ToastPannel();
+     interval = setInterval(function () {
+      remainingTime -= 1;
+      var title = '剩余' + remainingTime + '秒';
+      that.showToast(title);
+      console.log(remainingTime);
+      if (remainingTime <= 0){
+        that.hideToast();
+        clearInterval(interval);
+        that.stop(function(res){
+          //时间到，自动发送录音
+           that._uploadRecord(res.tempFilePath);
+        });
+       
+       
+      }
+    }, 1000);
   },
   //开始录音的时候
   start: function () {
@@ -811,13 +861,12 @@ return arr;
     })
   },
   //停止录音
-  stop: function () {
+  stop: function (callback) {
     recorderManager.stop();
     recorderManager.onStop((res) => {
-      this.tempFilePath = res.tempFilePath;
-      console.log('停止录音', res.tempFilePath)
-      const { tempFilePath } = res
-    })
+      console.log('停止录音', res.tempFilePath);
+      callback(res);
+    });
   },
   //播放声音
   play: function (url) {
@@ -859,9 +908,37 @@ return arr;
         callback.complete();
       },
     })
+  },
+  //上传录音
+  _uploadRecord:function(fileUrl){
+    var url = netUtil.baseUrl + "/taxtao/api/im/upload_audio?accessToken=" + app.data.userInfo.accessToken;
+    //自定义录音文件名字
+    var fileName = dataUtil.getCurTime();
+    const uploadTask = wx.uploadFile({
+      url: url, 
+      filePath: fileUrl,
+      name: 'file',
+      formData: {
+        'name': 'files',
+        'filename': fileName
+      },
+      header: {
+        "Content-Type": "multipart/form-data"
+      },
+      success: function (res) {
+        var data = res.data
+        //do something
+        console.log("上传语音成功");
+        console.log(res);
+      }
+    });
+    uploadTask.onProgressUpdate((res) => {
+      console.log('上传进度', res.progress)
+      console.log('已经上传的数据长度', res.totalBytesSent)
+      console.log('预期需要上传的数据总长度', res.totalBytesExpectedToSend)
+    });
+
+
   }
 
 })
-
-
-// [正则表达式 "^+$"等符号意义](https://blog.csdn.net/github_36362235/article/details/53302787)
