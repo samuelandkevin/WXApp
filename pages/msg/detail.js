@@ -5,11 +5,11 @@ var WxParse = require('../../utils/wxParse/wxParse.js');
 var callback = netUtil.callback;
 var that;
 var app = getApp();
-const recorderManager   = wx.getRecorderManager();
-const innerAudioContext = wx.createInnerAudioContext();
 var totalTime     =  10; //总共可以录音的时长
 var remainingTime; //剩余时间
 var interval;  
+const recorderManager = wx.getRecorderManager();
+const innerAudioContext  = wx.createInnerAudioContext();
 
 Page({
 
@@ -689,35 +689,7 @@ return arr;
     var text = this.data.text;
     if(text != undefined){
       console.log(text);
-      var audienceId = this.data.toUid;
-      var content    = text;
-      var msgType    = 0;
-      var is_group   = this.data.isGroupChat;
-      var imgSource  = '';
-      var latitude   = '';
-      var longitude  = '';
-      var address    = '';
-      this._requestSendMsg(audienceId, content, msgType, is_group, imgSource, latitude, longitude, address,{
-        success:function(ret){
-          var msg = ret.data;
-          if (msg != null || msg != undefined){
-              var preItem = that.data.list[that.data.list.length - 1];
-              msg.imContent = that.imContent(msg, preItem,true);
-              that.data.list.push(msg);
-              that.setData({
-                list: that.data.list
-              });
-          }
-        },
-        fail:function(){
-
-        },
-        complete:function(){
-          that.setData({
-            text:''
-          });
-        }
-      });
+      that._requestSendTextMsg(text);
     }
   },
   //点击头像
@@ -803,12 +775,12 @@ return arr;
   },
   //长按"按住说话"结束
   onLongTapEndSpeaker:function(){
-    console.log("录音结束");
+    console.log("松手，录音即将结束");
     that = this;
     app.ToastPannel();
     clearInterval(interval);
     //录音时间太短
-    if (totalTime - remainingTime < 3){
+    if (totalTime - remainingTime < 1){
       this.showToast('录音时间太短',1500);
     }else{
       this.hideToast();
@@ -882,7 +854,7 @@ return arr;
   },
 
   //网络请求
-  //发送文本消息
+  //发送消息
   _requestSendMsg: function (audienceId, content, msgType, is_group, imgSource, latitude, longitude, address, callback){
     var params = new Object();
     var url = "/taxtao/api/im/send_msg";
@@ -928,8 +900,12 @@ return arr;
       success: function (res) {
         var data = res.data
         //do something
-        console.log("上传语音成功");
+        console.log("上传语音成功，准备发送语音消息");
         console.log(res);
+        if(res.statusCode == 200 && res.data != undefined){
+          var voiceUrl = JSON.parse(res.data).data.url;
+          that._requestSendVoiceMsg(voiceUrl);
+        }
       }
     });
     uploadTask.onProgressUpdate((res) => {
@@ -939,6 +915,75 @@ return arr;
     });
 
 
-  }
+  },
+  //发送文本消息
+  _requestSendTextMsg:function(text){
+    that = this;
+    var audienceId = this.data.toUid;
+    var content = text;
+    var msgType = 0;
+    var is_group = this.data.isGroupChat;
+    var imgSource = '';
+    var latitude = '';
+    var longitude = '';
+    var address = '';
+    this._requestSendMsg(audienceId, content, msgType, is_group, imgSource, latitude, longitude, address, {
+      success: function (ret) {
+        console.log("发送文本消息成功");
+        var msg = ret.data;
+        if (msg != null || msg != undefined) {
+          var preItem = that.data.list[that.data.list.length - 1];
+          msg.imContent = that.imContent(msg, preItem, true);
+          that.data.list.push(msg);
+          that.setData({
+            list: that.data.list
+          });
+        }
+      },
+      fail: function () {
+        console.log("发送文本消息失败");
+      },
+      complete: function () {
+        that.setData({
+          text: ''
+        });
+      }
+    });
+  },
+
+  //发送录音信息
+  _requestSendVoiceMsg:function(voiceUrl){
+    that = this;
+    var audienceId = this.data.toUid;
+    var content   = 'voice[' + voiceUrl + ']';
+    var msgType   = 2;
+    var is_group  = this.data.isGroupChat;
+    var imgSource = '';
+    var latitude  = '';
+    var longitude = '';
+    var address   = '';
+    this._requestSendMsg(audienceId, content, msgType, is_group, imgSource, latitude, longitude, address, {
+      success: function (ret) {
+        console.log("发送语音成功");
+        var msg = ret.data;
+        if (msg != null || msg != undefined) {
+          var preItem = that.data.list[that.data.list.length - 1];
+          msg.imContent = that.imContent(msg, preItem, true);
+          that.data.list.push(msg);
+          that.setData({
+            list: that.data.list
+          });
+        }
+      },
+      fail: function () {
+        console.log("发送语音失败");
+      },
+      complete: function () {
+        that.setData({
+          text: ''
+        });
+      }
+    });
+  },
 
 })

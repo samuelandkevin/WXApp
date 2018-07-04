@@ -45,6 +45,11 @@ Page({
             })
           } 
         }
+      },
+      fail:function(){
+
+      },complete:function(){
+
       }
     });
     this._getHotCases({
@@ -58,6 +63,11 @@ Page({
             })
           }
         }
+      },
+      fail: function () {
+
+      }, complete: function () {
+
       }
     });
     
