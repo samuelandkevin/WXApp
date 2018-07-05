@@ -16,7 +16,8 @@
     "pages/exam/index",
     "pages/login/index",
     "pages/connection/cardDetail",
-    "pages/msg/detail"
+    "pages/msg/detail",
+    "pages/map/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
