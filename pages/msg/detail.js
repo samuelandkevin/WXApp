@@ -9,7 +9,6 @@ var totalTime     =  10; //总共可以录音的时长
 var remainingTime; //剩余时间
 var interval;  
 const recorderManager = wx.getRecorderManager();
-const innerAudioContext  = wx.createInnerAudioContext();
 
 Page({
 
@@ -842,14 +841,8 @@ return arr;
   },
   //播放声音
   play: function (url) {
-    innerAudioContext.autoplay = true
-    innerAudioContext.src = url,
-      innerAudioContext.onPlay(() => {
-        console.log('开始播放')
-      })
-    innerAudioContext.onError((res) => {
-      console.log(res.errMsg)
-      console.log(res.errCode)
+    wx.playBackgroundAudio({
+      dataUrl: url
     })
   },
 
