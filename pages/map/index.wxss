@@ -1,8 +1,31 @@
+@import "/iconfont.wxss";
+
+.page-body{
+  position:fixed;
+  margin:0;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  background-color:#eee;
+}
 .page-section-gap{
   box-sizing: border-box;
-  padding: 0 30rpx;
+  height: 100%;
 }
-
 .page-body-button {
   margin-bottom: 30rpx;
+}
+#myMap{
+  height: 55%;
+  width:100%;
+}
+#location{
+  width:30px;
+  height:30px;
+  position: absolute;
+  bottom:45%;
+  right: 10px;
+  font-size: 24px;
+  color:green;
 }

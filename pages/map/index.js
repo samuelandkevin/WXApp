@@ -1,25 +1,37 @@
+var QQMapWX = require('../../utils/qqmap-wx-jssdk/qqmap-wx-jssdk.js');
+var qqmapsdk;
+var that;
 Page({
   data: {
-    latitude: 23.099994,
-    longitude: 113.324520,
-    markers: [{
-      id: 1,
-      latitude: 23.099994,
-      longitude: 113.324520,
-      name: 'T.I.T 创意园'
-    }],
-    covers: [{
-      latitude: 23.099994,
-      longitude: 113.344520,
-      iconPath: '/image/location.png'
-    }, {
-      latitude: 23.099994,
-      longitude: 113.304520,
-      iconPath: '/image/location.png'
-    }]
+    isUpdated:false,
+    latitude: null,
+    longitude: null,
+    markers: null,
   },
   onReady: function (e) {
-    this.mapCtx = wx.createMapContext('myMap')
+    that = this;
+    that.mapCtx = wx.createMapContext('myMap');
+    //获取用户位置
+    wx.getLocation({
+      success: function(res) {
+        console.log(res);
+        that.setData({
+          latitude:res.latitude,
+          longitude:res.longitude,
+          markers:[{
+            id: 1,
+            latitude: res.latitude ,
+            longitude:res.longitude
+          }]
+        });
+      },
+    })
+  },
+  onLoad:function(){
+    // 实例化API核心类
+    qqmapsdk = new QQMapWX({
+      key: 'TZIBZ-VGYCP-6N3DM-VL3O2-CW32V-K4BUY'
+    });
   },
   getCenterLocation: function () {
     this.mapCtx.getCenterLocation({
@@ -32,30 +44,52 @@ Page({
   moveToLocation: function () {
     this.mapCtx.moveToLocation()
   },
-  translateMarker: function () {
-    this.mapCtx.translateMarker({
-      markerId: 1,
-      autoRotate: true,
-      duration: 1000,
-      destination: {
-        latitude: 23.10229,
-        longitude: 113.3345211,
+  //点击回到焦点
+  onLocation:function(){
+    this.mapCtx.moveToLocation();
+    //kun调试
+    this.onSearch('酒店');
+    // this.rerverseGeo(this.data.latitude,this.data.longitude);
+  },
+  //地图渲染更新完成时触发
+  bindupdated:function(){
+    that = this;
+    console.log("地图渲染更新完成");
+    that.setData({
+      isUpdated : true
+    });
+  },
+  //点击搜索
+  onSearch: function (keyword){
+    //“酒店” “餐饮” “娱乐” “学校”
+    qqmapsdk.search({
+      keyword: keyword,
+      location: location,
+      fail: function (res) {
+        console.log(res);
       },
-      animationEnd() {
-        console.log('animation end')
+      complete: function (res) {
+        console.log(res);
       }
     })
   },
-  includePoints: function () {
-    this.mapCtx.includePoints({
-      padding: [10],
-      points: [{
-        latitude: 23.10229,
-        longitude: 113.3345211,
-      }, {
-        latitude: 23.00229,
-        longitude: 113.3345211,
-      }]
-    })
-  }
+  //反地理位置
+  rerverseGeo: function (latitude, longitude){
+    qqmapsdk.reverseGeocoder({
+      location: {
+        latitude: latitude,
+        longitude: longitude
+      },
+      success: function (res) {
+        console.log(res);
+      },
+      fail: function (res) {
+        console.log(res);
+      },
+      complete: function (res) {
+        console.log(res);
+      }
+    });
+  },
+
 })

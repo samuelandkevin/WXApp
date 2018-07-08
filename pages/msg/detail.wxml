@@ -161,7 +161,7 @@
 					收藏
 				</view>
 			</li>
-			<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3 mui-hidden">
+			<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3 mui-hidden" bindtap="onLocIcon">
 				<span class="mui-icon iconfont icon-dingwei">
 				</span>
 				<view class="mui-media-body">

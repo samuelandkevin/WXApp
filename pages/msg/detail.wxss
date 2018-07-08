@@ -1,4 +1,4 @@
-@import "../../iconfont.wxss";
+@import "/iconfont.wxss";
 
 .layim-chat {
     position: fixed;

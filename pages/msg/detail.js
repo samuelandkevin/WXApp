@@ -845,6 +845,12 @@ return arr;
       dataUrl: url
     })
   },
+  //地那就定位图标
+  onLocIcon:function(url){
+    wx.navigateTo({
+      url: '../../pages/map/index',
+    })
+  },
 
   //网络请求
   //发送消息
