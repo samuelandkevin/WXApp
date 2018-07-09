@@ -61,7 +61,7 @@ Page({
 
   onLogin:function(){
     //kun调试
-    this._login('13539467126','123456',{
+    this._login('13501535588','123456',{
       success:function(res){
       },
       fail: function (ret){

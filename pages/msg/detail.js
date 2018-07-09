@@ -2,6 +2,8 @@ var netUtil  = require("../../utils/netUtil.js");
 var dataUtil = require("../../data/dataUtil.js");
 var toast    = require("../../utils/toast/toast.js");
 var WxParse = require('../../utils/wxParse/wxParse.js');
+var QQMapWX = require('../../utils/qqmap-wx-jssdk/qqmap-wx-jssdk.js');
+var qqmapsdk;
 var callback = netUtil.callback;
 var that;
 var app = getApp();
@@ -847,8 +849,16 @@ return arr;
   },
   //地那就定位图标
   onLocIcon:function(url){
-    wx.navigateTo({
-      url: '../../pages/map/index',
+    that = this;
+    // 实例化API核心类
+    qqmapsdk = new QQMapWX({
+      key: 'TZIBZ-VGYCP-6N3DM-VL3O2-CW32V-K4BUY'
+    });
+    wx.chooseLocation({
+      success: function (res) {
+        console.log(res);
+       that._requestSendLocMsg(res.latitude,res.longitude, res.address);
+      },
     })
   },
 
@@ -984,5 +994,40 @@ return arr;
       }
     });
   },
+
+  //发送位置信息
+  _requestSendLocMsg:function(lat,long,address){
+    that = this;
+    var audienceId = this.data.toUid;
+    var content = 'location(' + address + ')[http://csapp.gtax.cn/images/2018/07/09/location.jpg]' ;
+    var msgType = 5;
+    var is_group = this.data.isGroupChat;
+    var imgSource = '';
+    var latitude  = lat;
+    var longitude = long;
+    var address  = address;
+    this._requestSendMsg(audienceId, content, msgType, is_group, imgSource, latitude, longitude, address, {
+      success: function (ret) {
+        console.log("发送语音成功");
+        var msg = ret.data;
+        if (msg != null || msg != undefined) {
+          var preItem = that.data.list[that.data.list.length - 1];
+          msg.imContent = that.imContent(msg, preItem, true);
+          that.data.list.push(msg);
+          that.setData({
+            list: that.data.list
+          });
+        }
+      },
+      fail: function () {
+        console.log("发送语音失败");
+      },
+      complete: function () {
+        that.setData({
+          text: ''
+        });
+      }
+    });
+  }
 
 })

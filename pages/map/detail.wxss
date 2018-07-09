@@ -1,8 +1,233 @@
-.page-section-gap{
-  box-sizing: border-box;
-  padding: 0 30rpx;
+.mui-content {
+    background-color: #efeff4;
+    -webkit-overflow-scrolling: touch;
+}
+ .mui-content{
+    box-sizing: border-box;
+    outline: 0;
+    -webkit-tap-highlight-color: transparent;
+    color: #1A1A1A;
+    letter-spacing: 1.3px;
+
+}
+.evaluationbox .panel_list {
+    margin-top: 10px;
+}
+.evaluationbox .type_title {
+    background: #fff;
+    padding: 0px 15px;
+    color: #000;
+    height: 40px;
+    line-height: 40px;
+    font-size: 20px;
+    border-bottom: 1px solid #dedede;
+}
+.ev_type_item {
+    padding: 0px 0;
+    margin: 0;
+    background: #fff;
+    overflow: hidden;
+    position: relative;
+}
+ .ev_type_item .ev_type_list:nth-child(1),  {
+    border-top: none;
+   
+}
+.ev_type_item .ev_type_list {
+    width: 49%;
+    overflow: hidden;
+    position: relative;
+    float: left;
+    border-right: 1px solid #dedede;
+    border-top: 1px solid #dedede;
+    outline: 0
+}
+.ev_type_item .ev_type_list a {
+    padding: 5px 5px;
+    display: block;
+}
+a {
+    background: 0 0;
+}
+a {
+    text-decoration: none;
+}
+a:-webkit-any-link {
+    cursor: pointer;
+}
+.ev_type_item .ev_type_list image {
+    width: 34px;
+    height: 34px;
+    display: block;
+    margin: 0 auto;
+}
+.ev_type_item .ev_type_list .name {
+    text-align: center;
+    font-size: 18px;
+    color: #484848;
+    margin-bottom: 0;
+    margin-top: 0px;
+    line-height: 1.2;
+    height: 38px;
+    overflow: hidden;
+    display: table;
+    width: 100%;
+}
+.ev_type_item .ev_type_list .name span {
+    vertical-align: middle;
+    display: table-cell;
 }
 
+
+
+.ev_type_item .ev_type_list:nth-child(even){
+	border-right: none;
+}
+.ev_type_item .ev_type_list:nth-child(1),.ev_type_item .ev_type_list:nth-child(2){
+	border-top: none;
+}
+
+@import "/iconfont.wxss";
+
+.page-body{
+  position:fixed;
+  margin:0;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  background-color:#eee;
+}
+.page-section-gap{
+  box-sizing: border-box;
+  height: 100%;
+}
 .page-body-button {
   margin-bottom: 30rpx;
+}
+#myMap{
+  height: 55%;
+  width:100%;
+}
+#location{
+  width:30px;
+  height:30px;
+  position: absolute;
+  top:55%;
+  right: 0;
+  font-size: 24px;
+  color:green;
+  z-index: 999;
+}
+
+.margin-b-15 {
+    margin-bottom: 0.75rem !important;
+}
+.mui-content {
+    background-color: #efeff4;
+    height: 45%;
+    margin-right: 40px;
+}
+
+.list {
+    padding: 0;
+    margin: 0;
+    position: relative;
+    font-size: 0.8rem;
+}
+.list .list-item {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    color: #212121;
+    background-color: #ffffff;
+    position: relative;
+    min-height: 2.2rem;
+    box-sizing: border-box;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+.media-list-item-inner {
+    box-sizing: border-box;
+    display: flex;
+    padding-left: 10px;
+}
+.media-list .list-item-inner {
+    display: block;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+.list .list-item-right{
+    max-width: 50%;
+    position: absolute;
+    font-size: 14px;
+    color:green;
+    margin-left: 0.25rem;
+    right:0;
+    bottom: 35%;
+}
+.list .list-item-inner {
+    position: relative;
+    min-height: 2.2rem;
+    padding-right: 0.25rem;
+    width: 100%;
+    box-sizing: border-box;
+    -webkit-box-flex: 1;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+}
+.list .list-item-text {
+    font-size: 0.7rem;
+    color: #757575;
+    position: relative;
+    box-sizing: border-box;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    align-items: center;
+}
+.list .list-item-title {
+    font-size: 0.8rem;
+    position: relative;
+    max-width: 100%;
+    color: #212121;
+}
+.list .list-item-text {
+    font-size: 0.7rem;
+    color: #757575;
+    position: relative;
+    box-sizing: border-box;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    align-items: center;
+}
+.list .list-item-inner p {
+    overflow: hidden;
+}
+.font-size-12 {
+    font-size: 0.6rem !important;
+}
+.ellipsis-1 {
+    display: -webkit-box;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    white-space: normal !important;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+.list .list-item:after {
+    width: 100%;
+    height: 1px;
+    background-color: #dddddd;
+    display: block;
+    content: '';
+    position: relative;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 999;
+    -webkit-transform-origin: 50% 100%;
+    transform-origin: 50% 100%;
+    pointer-events: none;
 }
