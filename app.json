@@ -17,7 +17,8 @@
     "pages/login/index",
     "pages/connection/cardDetail",
     "pages/msg/detail",
-    "pages/map/index"
+    "pages/map/index",
+    "pages/map/detail"
   ],
   "window": {
     "backgroundTextStyle": "light",

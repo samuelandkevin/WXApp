@@ -10,6 +10,11 @@ var app = getApp();
 var totalTime     =  10; //总共可以录音的时长
 var remainingTime; //剩余时间
 var interval;  
+var userLoc ={
+  latitude:'',
+  longitude:'',
+  address:''
+};       //用户位置
 const recorderManager = wx.getRecorderManager();
 
 Page({
@@ -304,6 +309,10 @@ Page({
         complete:function(){
 
         }
+    });
+    // 实例化API核心类
+    qqmapsdk = new QQMapWX({
+      key: 'TZIBZ-VGYCP-6N3DM-VL3O2-CW32V-K4BUY'
     });
 
   },
@@ -766,6 +775,16 @@ return arr;
     }
       
   },
+  //点击位置
+  onLocImg:function(e){
+    var latitude  = e.currentTarget.dataset["lat"];
+    var longitude = e.currentTarget.dataset["long"];
+    var address   = e.currentTarget.dataset["address"];
+    console.log(latitude,longitude,address);
+    wx.navigateTo({
+      url:"../../pages/map/detail?lat="+latitude+"&long="+longitude+"&address="+address
+    });
+  },
   //长按"按住说话"
   onLongTapSpeaker:function(){
     // this.start();
@@ -850,16 +869,100 @@ return arr;
   //地那就定位图标
   onLocIcon:function(url){
     that = this;
-    // 实例化API核心类
-    qqmapsdk = new QQMapWX({
-      key: 'TZIBZ-VGYCP-6N3DM-VL3O2-CW32V-K4BUY'
-    });
     wx.chooseLocation({
       success: function (res) {
         console.log(res);
        that._requestSendLocMsg(res.latitude,res.longitude, res.address);
       },
     })
+  },
+  //反地理位置
+  rerverseGeo: function (latitude, longitude, callback) {
+    qqmapsdk.reverseGeocoder({
+      location: {
+        latitude: latitude,
+        longitude: longitude
+      },
+      success: function (res) {
+        console.log(res);
+        callback.success(res);
+      },
+      fail: function (res) {
+        console.log(res);
+        callback.fail(res);
+      },
+      complete: function (res) {
+        console.log(res);
+        callback.complete();
+      }
+    });
+  },
+
+  //点击“图片”
+  onChooseImg:function(){
+    that = this;
+    //获取用户位置
+    wx.getLocation({
+      type: 'gcj02',
+      success: function (res) {
+        console.log(res);
+        var latitude  = res.latitude;
+        var longitude = res.longitude;
+        that.rerverseGeo(res.latitude, res.longitude, {
+          success: function (ret) {
+            console.log("反地理编码成功");
+            console.log(ret.result.address);
+            var item = {};
+            item.latitude  = latitude;
+            item.longitude = longitude;
+            item.address   = ret.result.address;
+            userLoc = item;
+          },
+          fail: function () {
+          },
+          complete: function () {
+          }
+        });
+      },
+    })
+
+
+
+    wx.showActionSheet({
+      itemList: ['拍照', '从手机相册选取'],
+      success: function (res) {
+        that.chooseimage(res.tapIndex, {
+          success: function (ret) {
+            var tempFilePath = ret[0];
+            console.log(tempFilePath);
+            var imgSrc = res.tapIndex == 0 ? 1 : 2;
+            that._uploadImg(imgSrc, tempFilePath);
+          }
+        });
+      },
+      fail: function (res) {
+        console.log(res.errMsg)
+      }
+    });
+    
+  },
+  chooseimage: function (type,callback) {
+    that = this;
+    var sourceType = type == 0 ? ['camera']:['album'];
+   
+    wx.chooseImage({
+      count: 1, // 默认9  
+      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有  
+      sourceType: sourceType, // 可以指定来源是相册还是相机，默认二者都有  
+      success: function (res) {
+        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片  
+        callback.success(res.tempFilePaths);
+      },
+      fail:function(res){
+        console.log(res);
+      }
+    })
+
   },
 
   //网络请求
@@ -889,6 +992,47 @@ return arr;
         callback.complete();
       },
     })
+  },
+
+  //上传图片   (imgSrc 图片来源：1拍照 2相册) imgFilePath:本地图片路径
+  _uploadImg:function(imgSrc,imgFilePath){
+    if (imgSrc != 1 && imgSrc != 2){
+      console.log("上传图片来源不正确！");
+      return
+    }
+    var url = netUtil.baseUrl + "/taxtao/api/images/uploads/param?accessToken=" + app.data.userInfo.accessToken + "&imgSource=" + imgSrc;
+
+    //自定义图片文件名字
+    var fileName = dataUtil.getCurTime();
+    const uploadTask = wx.uploadFile({
+      url: url,
+      filePath: imgFilePath,
+      name:"files",
+      formData: {
+        'name': 'files',
+        'filename': fileName,
+      },
+      header: {
+        "Content-Type": "multipart/form-data",
+      },
+      success: function (res) {
+        var data = res.data
+        //do something
+        console.log("上传图片成功，准备发送图片消息");
+        console.log(res);
+        if (res.statusCode == 200 && res.data != undefined) {
+          var picUrl = JSON.parse(res.data).data.pics[0].picUrl;
+          console.log(picUrl);
+          that._requestSendImgMsg(imgSrc, picUrl);
+        }
+      }
+    });
+    uploadTask.onProgressUpdate((res) => {
+      console.log('上传进度', res.progress)
+      console.log('已经上传的数据长度', res.totalBytesSent)
+      console.log('预期需要上传的数据总长度', res.totalBytesExpectedToSend)
+    });
+
   },
   //上传录音
   _uploadRecord:function(fileUrl){
@@ -1028,6 +1172,40 @@ return arr;
         });
       }
     });
-  }
+  },
+  //发送图片消息 imgSource 图片来源：1拍照 2相册
+  _requestSendImgMsg: function (imgSource,imgUrl){
+    that = this;
+    var audienceId = this.data.toUid;
+    var content   = 'img[' + imgUrl + ']';
+    var msgType   = 1;
+    var is_group  = this.data.isGroupChat;
+    var imgSource = imgSource;
+    var latitude  = userLoc.latitude || '';
+    var longitude = userLoc.longitude || '';
+    var address   = userLoc.address || '';
+    this._requestSendMsg(audienceId, content, msgType, is_group, imgSource, latitude, longitude, address, {
+      success: function (ret) {
+        console.log("发送图片消息成功");
+        var msg = ret.data;
+        if (msg != null || msg != undefined) {
+          var preItem = that.data.list[that.data.list.length - 1];
+          msg.imContent = that.imContent(msg, preItem, true);
+          that.data.list.push(msg);
+          that.setData({
+            list: that.data.list
+          });
+        }
+      },
+      fail: function () {
+        console.log("发送图片消息失败");
+      },
+      complete: function () {
+        that.setData({
+          text: ''
+        });
+      }
+    });
+  },
 
 })

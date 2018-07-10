@@ -30,7 +30,7 @@
 						</cite>
 					</view>
 					<block wx:if="{{item.msgType == 5}}">
-						<image class="layim-chat-location-map" src="{{item.snapshotImgUrl}}" />
+						<image class="layim-chat-location-map" src="{{item.snapshotImgUrl}}" bindtap="onLocImg" data-lat="{{item.latitude}}" data-long="{{item.longitude}}" data-address="{{item.imContent}}"/>
 						<view class="checkin-location-address">
 							{{item.imContent}}
 						</view>
@@ -140,7 +140,7 @@
 <block wx:if="{{showMore}}">
 	<view class="mui-content more-content">
 		<ul class="mui-table-view mui-grid-view mui-grid-9">
-			<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3" data-type="images">
+			<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3" data-type="images" bindtap="onChooseImg">
 				<span class="mui-icon iconfont icon-ico-presetphoto-n">
 				</span>
 				<view class="mui-media-body">
