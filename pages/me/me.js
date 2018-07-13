@@ -8,17 +8,7 @@ Page({
   data: {
     userCard: null
   },
-  onUserAvatar: function () {
-    // if (app.data.userInfo == null){
-    //   wx.navigateTo({
-    //     url: '../../pages/login/index',
-    //   })
-    // }
-    wx.navigateTo({
-      url: '../../pages/login/index',
-    })
-  },
-
+  
   /**
    * 生命周期函数--监听页面加载
    */
@@ -37,8 +27,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    var userCard = null;
+    if (app.data.userInfo){
+      userCard = app.data.userInfo.userCard;
+    }
     this.setData({
-      userCard: app.data.userInfo.userCard
+      userCard: userCard
     });
   },
 
@@ -75,5 +69,20 @@ Page({
    */
   onShareAppMessage: function () {
     
+  },
+
+  //点击事件
+  onDetail:function(e){
+    var id = e.currentTarget.dataset["id"];
+    if(id == 0){
+      //kun调试
+      wx.navigateTo({
+        url: '../../pages/login/index',
+      })
+    }else if(id == 4){
+      wx.navigateTo({
+        url: '../../pages/me/setting',
+      })
+    }
   }
 })

@@ -2,6 +2,7 @@ import md5 from "../../utils/md5.js";
 var netUtil  = require("../../utils/netUtil.js");
 var dataUtil = require("../../data/dataUtil.js");
 var userUtil = require("../../data/userUtil.js");
+var toast    = require("../../utils/toast/toast.js");
 var app      = getApp();
 var callback = netUtil.callback;
 var that;
@@ -11,7 +12,9 @@ Page({
     focus: false,
     inputValue: '',
     phoneModel:"",
-    phoneVer:""
+    phoneVer:"",
+    phone: '',
+    password: ''
   },
   onReady: function () {
 
@@ -25,7 +28,18 @@ Page({
               phoneVer:res.version
         })
       }
-    })
+    });
+
+    if (app.data.userInfo != undefined){
+      if (app.data.userInfo.account != undefined){
+        if (app.data.userInfo.account.mobilePhone != undefined){
+          that.setData({
+            phone: phone
+          });
+        }
+      }
+    }
+      
   },
   bindKeyInput: function (e) {
     this.setData({
@@ -59,23 +73,64 @@ Page({
     }
   },
 
-  onLogin:function(){
-    //kun调试
-    this._login('13501535588','123456',{
-      success:function(res){
-      },
-      fail: function (ret){
-      },
-      complete:function(){
-      }
-    });
+  // 获取输入账号
+  phoneInput: function (e) {
+    this.setData({
+      phone: e.detail.value
+    })
   },
 
+  // 获取输入密码
+  passwordInput: function (e) {
+    this.setData({
+      password: e.detail.value
+    })
+  },
+
+  // 登录
+  login: function () {
+    var that = this;
+    var phone  = this.data.phone;
+    var passwd = this.data.password;
+    if (phone.length == 0 || passwd.length == 0) {
+     
+      app.ToastPannel();
+      this.showToast('用户名和密码不能为空', 1500);
+    } else {
+      
+      this._login(phone, passwd,{
+        
+        success:function(){   
+          wx.navigateBack({
+            
+          });
+        },
+        fail:function(){
+          app.ToastPannel();
+        
+          that.showToast('登录失败', 1500);
+        },
+        complete:function(){
+
+        }
+      });
+    }
+  },
+
+  /**刷新代理 */
+  onPullDownRefresh: function () {
+    wx.stopPullDownRefresh();
+  },
 
 /**
  * 网络请求
  */
   _login: function (phoneNum, passwdMD5,callback){
+
+    wx.showLoading({
+      title: '登录中...',
+    })
+
     var encrypted    = md5(passwdMD5);
     var params       = new Object();
     params.loginUser = phoneNum;
@@ -109,19 +164,26 @@ Page({
                 wx.setStorage({
                   key: 'userInfo',
                   data: app.data.userInfo,
-                })
+                });
+                callback.success();
               }
             },
             fail: function () {
+              callback.fail();
             },
             complete: function () {
+              callback.complete();
             }
           });
+        }else{
+          callback.fail(ret);
         }
       },
       fail:function(){
+        callback.fail();
       },
       complete:function(){
+        wx.hideLoading();
       }
     })
   }     

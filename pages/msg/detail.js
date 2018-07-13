@@ -772,6 +772,24 @@ return arr;
           break;
         }
       }
+    }else if(msgType == 1){
+      //图片
+      var imgUrl = '';
+      for (var index in this.data.list) {
+        var item = this.data.list[index];
+        if (item.id == msgId) {
+          item.msgContent.replace(/img\[([^\s]+?)\]/g, function (img) {
+            imgUrl = img.replace(/(^img\[)|(\]$)/g, '');
+            console.log(imgUrl);
+            wx.previewImage({
+              current: imgUrl, // 当前显示图片的http链接
+              urls:[imgUrl]
+            })
+          });
+
+          break;
+        }
+      }
     }
       
   },
@@ -964,6 +982,7 @@ return arr;
     })
 
   },
+
 
   //网络请求
   //发送消息

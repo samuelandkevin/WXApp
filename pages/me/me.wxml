@@ -1,7 +1,7 @@
 <scroll-view scroll-y="true" id="pullrefresh" class="mui-content mui-scroll-wrapper" data-pullrefresh="1">
     <view class="mui-scroll" style="transform: translate3d(0px, 0px, 0px) translateZ(0px);">
 
-    <view class="mui-table-view mui-table-view-chevron" bindtap='onUserAvatar'>
+    <view class="mui-table-view mui-table-view-chevron" bindtap="onDetail" data-id="0">
         <view class="mui-table-view-cell mui-media">
             <view class="header"  >
                 <image class="headerImg" src="{{userCard.profileImageUrl ? userCard.profileImageUrl : '../../images/me/defaultAvatar.png'}}" mode="aspectFit"/>
@@ -20,10 +20,10 @@
         <image class="arrow"src="../../images/me/rightArrow.png"></image>
   </view>
   <section class="margin-t-15">
-  <view class="mui-table-view mui-table-view-chevron" >
+  <view class="mui-table-view mui-table-view-chevron" bindtap="onDetail" data-id="1">
         
         <view class="mui-table-view-cell mui-media">
-            <view class="clickA"  bindtap='onDetail'>
+            <view class="clickA">
                 <image class="mui-media-object mui-pull-left" src="../../images/me/mycase.png" mode="aspectFit"/>
                 <view id="mylisttext" class="mui-media-body mui-ellipsis">{{item.title}}
                     <p>我的案例</p>
@@ -32,9 +32,9 @@
         </view>
         <image class="arrow"src="../../images/me/rightArrow.png"></image>
   </view>
-  <view class="mui-table-view mui-table-view-chevron" >
+  <view class="mui-table-view mui-table-view-chevron" bindtap="onDetail" data-id="2">
         <view class="mui-table-view-cell mui-media">
-            <view class="clickA"  bindtap='onDetail'>
+            <view class="clickA">
                 <image class="mui-media-object mui-pull-left" src="../../images/me/mycollect.png" mode="aspectFill"/>
                 <view id="mylisttext" class="mui-media-body mui-ellipsis">{{item.title}}
                     <p>我的收藏</p>
@@ -43,9 +43,9 @@
         </view>
         <image class="arrow"src="../../images/me/rightArrow.png"></image>
   </view>
-  <view class="mui-table-view mui-table-view-chevron" >
+  <view class="mui-table-view mui-table-view-chevron" bindtap="onDetail" data-id="3">
         <view class="mui-table-view-cell mui-media">
-            <view class="clickA"  bindtap='onDetail'>
+            <view class="clickA">
                 <image class="mui-media-object mui-pull-left" src="../../images/me/myvisitor.png" mode="aspectFill"/>
                 <view id="mylisttext" class="mui-media-body mui-ellipsis">{{item.title}}
                     <p>我的访客</p>
@@ -56,9 +56,9 @@
   </view>
  </section>
   <section class="margin-t-15">
-  <view class="mui-table-view mui-table-view-chevron" >
+  <view class="mui-table-view mui-table-view-chevron" bindtap="onDetail" data-id="4">
         <view class="mui-table-view-cell mui-media">
-            <view class="clickA"  bindtap='onDetail'>
+            <view class="clickA">
                 <image class="mui-media-object mui-pull-left" src="../../images/me/mysetting.png" mode="aspectFill"/>
                 <view id="mylisttext" class="mui-media-body mui-ellipsis">{{item.title}}
                     <p>设置</p>
@@ -67,9 +67,9 @@
         </view>
         <image class="arrow"src="../../images/me/rightArrow.png"></image>
   </view>
-  <view class="mui-table-view mui-table-view-chevron" >
+  <view class="mui-table-view mui-table-view-chevron" bindtap="onDetail" data-id="5">
         <view class="mui-table-view-cell mui-media">
-            <view class="clickA"  bindtap='onDetail'>
+            <view class="clickA">
                 <image class="mui-media-object mui-pull-left" src="../../images/me/myaboutus.png" mode="aspectFill"/>
                 <view id="mylisttext" class="mui-media-body mui-ellipsis">{{item.title}}
                     <p>关于我们</p>

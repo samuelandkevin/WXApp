@@ -18,7 +18,8 @@
     "pages/connection/cardDetail",
     "pages/msg/detail",
     "pages/map/index",
-    "pages/map/detail"
+    "pages/map/detail",
+    "pages/me/setting"
   ],
   "window": {
     "backgroundTextStyle": "light",

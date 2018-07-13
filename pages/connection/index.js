@@ -89,7 +89,7 @@ Page({
         if (ret.data != null && ret.data.code == 999) {
           var data = ret.data.data;
           var fris = data.friends;
-          // console.log(fris);
+          console.log(fris);
           wxSortPickerView.init(fris, that);
           that.setData({
               fris:fris

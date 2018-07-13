@@ -1,5 +1,11 @@
 @import "../../utils/wxSortPickerView/wxSortPickerView.wxss";
 
+
+::-webkit-scrollbar{
+  width: 0;
+  height: 0;
+  color: transparent;
+}
 .a-z{
   width: 35rpx;
   position: fixed;
