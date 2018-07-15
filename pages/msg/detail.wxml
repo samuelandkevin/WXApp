@@ -1,9 +1,8 @@
 <import src='../../utils/toast/toast.wxml' />
-<template is="toast" data="{{ ..._toast_ }}"/>
-
+<template is="toast" data="{{ ..._toast_ }}" />
 <view class="layim-chat">
 	<scroll-view class="layim-chat-main" style="height:cal(100%-40px)" scroll-y="true"
-	bindscroll="bindScroll">
+	bindscroll="bindScroll" scroll-into-view="{{toView}}">
 		<ul id="msg_list">
 			<block wx:for="{{list}}" wx:key="">
 				<li class="layim-chat-system" wx:if="{{item.showCreateTime != undefined}}">
@@ -17,7 +16,7 @@
 					</span>
 				</li>
 				<li class="layim-chat-li {{ item.direction == 0 ? 'layim-chat-mine' : '' }}"
-				id="msgItem{{item.id}}" data-id="{{item.id}}" data-msgtype="{{item.msgType}}"
+				id="msg{{item.id}}" data-id="{{item.id}}" data-msgtype="{{item.msgType}}"
 				data-content="{{item.msgContent||''}}" data-userId="{{item.speakerId}}">
 					<view class="layim-chat-user" bindtap="onAvatar" data-id="{{item.speakerId}}">
 						<image src="{{ item.speakerHead ? item.speakerHead : 'http://csapp.gtax.cn/taxtao/static/webim/images/default_avatar@2x.png' }}"
@@ -30,13 +29,16 @@
 						</cite>
 					</view>
 					<block wx:if="{{item.msgType == 5}}">
-						<image class="layim-chat-location-map" src="{{item.snapshotImgUrl}}" bindtap="onLocImg" data-lat="{{item.latitude}}" data-long="{{item.longitude}}" data-address="{{item.imContent}}"/>
+						<image class="layim-chat-location-map" src="{{item.snapshotImgUrl}}" bindtap="onLocImg"
+						data-lat="{{item.latitude}}" data-long="{{item.longitude}}" data-address="{{item.imContent}}"
+						/>
 						<view class="checkin-location-address">
 							{{item.imContent}}
 						</view>
 					</block>
 					<block wx:else>
-						<view class="layim-chat-text" bindtap="onContent" data-id="{{item.id}}" data-type="{{item.msgType}}">
+						<view class="layim-chat-text" bindtap="onContent" data-id="{{item.id}}"
+						data-type="{{item.msgType}}">
 							<block wx:if="{{item.status == -1}}">
 								<view class="status-embody-failed" data-id="{{item.id||0}}">
 									<i class="webim-iconfont">
@@ -58,9 +60,8 @@
 					<li class="layim-chat-system layim-chat-retract" data-longitude="{{item.longitude}}"
 					data-latitude="{{item.latitude}}" data-address="{{item.address}}">
 						<span>
-							该图片来自现场拍摄{{
-        item.address == "" || item.address == undefined || item.address
-          == "undefined" || item.address == "null" ? '' : '，拍摄地点：'}}
+							该图片来自现场拍摄{{ item.address == "" || item.address == undefined || item.address
+							== "undefined" || item.address == "null" ? '' : '，拍摄地点：'}}
 							<a class="photoOnLocation" wx:if="{{item.address != '' && item.address != undefined && item.address != 'undefined' && item.address != 'null' }}">
 								{{item.address}}
 							</a>
@@ -77,97 +78,101 @@
 			</block>
 		</ul>
 	</scroll-view>
-</view>
-<!-- 底部 -->
-<footer class="mui-row mui-text-center" style="bottom:{{footerBot}}px;height:{{footerH}}px">
-	<view class="mui-col-xs-1 footer-left">
-		<i class="iconfont icon-soundlight" bindtap="onSpeaker">
-		</i>
-	</view>
-	<view class="mui-col-xs-8 footer-center">
-    <block wx:if="{{showSpeaker}}">
-      <view class="mui-btn mui-btn-outlined voice-btn" bindlongpress='onLongTapSpeaker' bindtouchend='onLongTapEndSpeaker'>
-        按住 说话
-      </view>
-    </block>
-    <block wx:else>
-        <textarea id="msg_text" type="text" class="input-text" bindinput='bindInput'
-      bindlinechange='bindLineChange' maxlength='-1' style="height:{{inputH}}px" bindfocus="bindfocus" bindblur="bindblur" value="{{text}}">
-      </textarea>
-    </block>
-	</view>
-	<view class="mui-col-xs-3 footer-right">
-		<view class="mui-row mui-text-right">
-			<view class="mui-col-xs-6 mui-text-center">
-				<i class="iconfont icon-icon_face" bindtap="onFaces">
-				</i>
-			</view>
-			<view class="mui-col-xs-6 mui-text-center">
-				<block wx:if="{{text.length == 0}}">
-					<i class="iconfont icon-iconfontroundadd" bindtap="onMore">
+	<!-- 底部 -->
+	<footer class="mui-row mui-text-center" style="bottom:{{footerBot}}px;height:{{footerH}}px" >
+		<view class="mui-col-xs-1 footer-left">
+			<i class="iconfont icon-soundlight" bindtap="onSpeaker">
+			</i>
+		</view>
+		<view class="mui-col-xs-8 footer-center">
+			<block wx:if="{{showSpeaker}}">
+				<view class="mui-btn mui-btn-outlined voice-btn" bindlongpress='onLongTapSpeaker'
+				bindtouchend='onLongTapEndSpeaker' hidden='{{!showSpeaker}}'>
+					按住 说话
+				</view>
+			</block>
+			<block wx:else>
+				<textarea id="msg_text" type="text" class="input-text" bindinput='bindInput'
+				bindlinechange='bindLineChange' maxlength='-1' style="height:{{inputH}}px"
+				bindfocus="bindfocus" bindblur="bindblur" show-confirm-bar="{{showConfirmBar}}"
+				value="{{text}}" adjust-position="{{autoAdjKeyB}}" cursor-spacing="10" catchtouchmove='false' bindtap='onInput'>
+				</textarea>
+			</block>
+		</view>
+		<view class="mui-col-xs-3 footer-right">
+			<view class="mui-row mui-text-right">
+				<view class="mui-col-xs-6 mui-text-center">
+					<i class="iconfont icon-icon_face" bindtap="onFaces">
 					</i>
-				</block>
-				<block wx:else>
-					<view class="mui-btn mui-btn-success" id="sendMessage" bindtap="onSend">
-						发送
+				</view>
+				<view class="mui-col-xs-6 mui-text-center">
+					<block wx:if="{{text.length == 0}}">
+						<i class="iconfont icon-iconfontroundadd" bindtap="onMore">
+						</i>
+					</block>
+					<block wx:else>
+						<view class="mui-btn mui-btn-success" id="sendMessage" bindtap="onSend">
+							发送
+						</view>
+					</block>
+				</view>
+			</view>
+		</view>
+	</footer>
+	<!--表情内容-->
+		<view id="face-content" class="mui-content face-content" hidden='{{!showFaces}}'>
+			<view id="Gallery" class="mui-slider">
+				<swiper class="mui-slider-group" bindchange="faceCurPageChange">
+					<swiper-item class="mui-slider-item" wx:for="{{faceList}}" wx:for-item="aList"
+					wx:key="*this">
+						<ul class="clear face-list">
+							<li wx:for="{{aList}}" wx:for-item="face" wx:key="name" data-title="{{face.name}}"
+							bindtap="onOneFace">
+								<image src="{{face.url}}" />
+							</li>
+						</ul>
+					</swiper-item>
+				</swiper>
+				<view class="mui-slider-indicator">
+					<view class="{{faceCurPage == index ? 'mui-indicator mui-active':'mui-indicator'}}"
+					wx:for="{{faceList}}" wx:key="*this">
 					</view>
-				</block>
-			</view>
-		</view>
-	</view>
-</footer>
-<!--表情内容-->
-<block wx:if="{{showFaces == true}}">
-	<view id="face-content" class="mui-content face-content">
-		<view id="Gallery" class="mui-slider">
-      <swiper class="mui-slider-group" bindchange="faceCurPageChange">
-          <swiper-item class="mui-slider-item" wx:for="{{faceList}}" wx:for-item="aList" wx:key="*this">
-                <ul class="clear face-list" >
-                    <li  wx:for="{{aList}}" wx:for-item="face" wx:key="name" data-title="{{face.name}}" bindtap="onOneFace" >
-                      <image src="{{face.url}}" />
-                    </li>
-                </ul> 
-          </swiper-item> 
-			</swiper>
-			<view class="mui-slider-indicator">
-				<view class="{{faceCurPage == index ? 'mui-indicator mui-active':'mui-indicator'}}"  wx:for="{{faceList}}" wx:key="*this">
 				</view>
 			</view>
 		</view>
-	</view>
-</block>
-<!-- 更多弹出内容 -->
-<block wx:if="{{showMore}}">
-	<view class="mui-content more-content">
-		<ul class="mui-table-view mui-grid-view mui-grid-9">
-			<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3" data-type="images" bindtap="onChooseImg">
-				<span class="mui-icon iconfont icon-ico-presetphoto-n">
-				</span>
-				<view class="mui-media-body">
-					图片
-				</view>
-			</li>
-			<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3" data-type="files">
-				<span class="mui-icon iconfont icon-folder">
-				</span>
-				<view class="mui-media-body">
-					文件
-				</view>
-			</li>
-			<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3" data-type="collects">
-				<span class="mui-icon iconfont icon-shoucang">
-				</span>
-				<view class="mui-media-body">
-					收藏
-				</view>
-			</li>
-			<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3 mui-hidden" bindtap="onLocIcon">
-				<span class="mui-icon iconfont icon-dingwei">
-				</span>
-				<view class="mui-media-body">
-					定位
-				</view>
-			</li>
-		</ul>
-	</view>
-</block>
+	<!-- 更多弹出内容 -->
+		<view class="mui-content more-content" hidden='{{!showMore}}'>
+			<ul class="mui-table-view mui-grid-view mui-grid-9">
+				<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3" data-type="images"
+				bindtap="onChooseImg">
+					<span class="mui-icon iconfont icon-ico-presetphoto-n">
+					</span>
+					<view class="mui-media-body">
+						图片
+					</view>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3" data-type="files">
+					<span class="mui-icon iconfont icon-folder">
+					</span>
+					<view class="mui-media-body">
+						文件
+					</view>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3" data-type="collects">
+					<span class="mui-icon iconfont icon-shoucang">
+					</span>
+					<view class="mui-media-body">
+						收藏
+					</view>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3 mui-hidden"
+				bindtap="onLocIcon">
+					<span class="mui-icon iconfont icon-dingwei">
+					</span>
+					<view class="mui-media-body">
+						定位
+					</view>
+				</li>
+			</ul>
+		</view>
+</view>

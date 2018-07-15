@@ -74,11 +74,27 @@ Page({
   //点击事件
   onDetail:function(e){
     var id = e.currentTarget.dataset["id"];
+    if(id == 0 || id == 1 || id == 2 || id == 3 ){
+      if (app.data.userInfo.accessToken == undefined) {
+        wx.showModal({
+          title: '',
+          content: '请登录再使用',
+          success: function (res) {
+            if (res.confirm) {
+              wx.navigateTo({
+                url: '../../pages/login/index',
+              })
+            }
+          }
+        })
+        return;
+      }
+    }
+
     if(id == 0){
-      //kun调试
-      wx.navigateTo({
-        url: '../../pages/login/index',
-      })
+      // wx.navigateTo({
+      //   url: '',
+      // })
     }else if(id == 4){
       wx.navigateTo({
         url: '../../pages/me/setting',

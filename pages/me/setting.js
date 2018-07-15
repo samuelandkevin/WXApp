@@ -82,10 +82,15 @@ Page({
       success:function(){
         app.ToastPannel();
         that.showToast('退出登录成功', 1500);
-        app.data.userInfo = null;
+        var userInfo =  {
+          accessToken: null,
+          account: null, //登录账户信息
+          userCard: null,//用户名片
+        };
+        app.data.userInfo = userInfo;
         wx.setStorage({
           key: 'userInfo',
-          data: null,
+          data: userInfo,
         });
         wx.navigateBack({
 

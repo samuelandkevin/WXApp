@@ -32,7 +32,8 @@ Page({
 
     if (app.data.userInfo != undefined){
       if (app.data.userInfo.account != undefined){
-        if (app.data.userInfo.account.mobilePhone != undefined){
+        var phone = app.data.userInfo.account.mobilePhone;
+        if (phone != undefined){
           that.setData({
             phone: phone
           });
@@ -100,10 +101,18 @@ Page({
       
       this._login(phone, passwd,{
         
-        success:function(){   
-          wx.navigateBack({
-            
+        success:function(){
+          wx.showToast({
+            icon: 'success',
+            title: '登录成功',
+            duration:1000,
           });
+          setTimeout(function(){
+            wx.navigateBack({
+
+            });
+          },1000);  
+          
         },
         fail:function(){
           app.ToastPannel();
@@ -148,6 +157,7 @@ Page({
           //获取uid，token
           var data = ret.data.data;
           var account = data.account;
+          app.data.userInfo = {};
           app.data.userInfo.accessToken = data.accessToken;
           app.data.userInfo.account = account;
           console.log("登录成功：");

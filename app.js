@@ -24,9 +24,9 @@ App({
         console.log("缓存的用户信息：");
         console.log(ret.data);
         if (ret.data != null ){
-          getApp().data.userInfo.accessToken = ret.data.accessToken,
-            getApp().data.userInfo.account = ret.data.account,
-            getApp().data.userInfo.userCard = ret.data.userCard
+          that.data.userInfo.accessToken = ret.data.accessToken,
+            that.data.userInfo.account = ret.data.account,
+            that.data.userInfo.userCard = ret.data.userCard
         }
       },
     })

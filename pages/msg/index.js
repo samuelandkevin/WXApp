@@ -32,9 +32,40 @@ Page({
    */
   onShow: function () {
     that = this;
+    if(app.data.userInfo.accessToken == undefined){
+      wx.showModal({
+        title: '',
+        content: '请登录再使用',
+        success: function (res) {
+          if (res.confirm) {
+            wx.navigateTo({
+              url: '../../pages/login/index',
+            })
+          }else{
+            wx.switchTab({
+              url: '../../pages/index/index',
+            })
+          }
+        }
+      })
+      return;
+    }
     this._requestChatList(this.data.cursor, {
       success: function (ret) {
-        if (ret.data != null && ret.statusCode == 200) {
+        if (ret.statusCode == 401){
+          wx.showModal({
+            title: '',
+            content: '账号异常登录,请重新登录',
+            success: function (res) {
+              if (res.confirm) {
+                wx.navigateTo({
+                  url: '../../pages/login/index',
+                })
+              }
+            }
+          })
+        }
+        else if (ret.data != null && ret.statusCode == 200) {
           console.log(ret.data);
           //数据处理
           var list = ret.data;

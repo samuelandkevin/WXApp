@@ -11,8 +11,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
- 
+   
   },
 
 
@@ -27,8 +26,27 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    //kun调试
-    this._requestMyFris();
+    if (app.data.userInfo.accessToken == undefined) {
+      wx.showModal({
+        title: '',
+        content: '请登录再使用',
+        success: function (res) {
+          if (res.confirm) {
+            wx.navigateTo({
+              url: '../../pages/login/index',
+            })
+          } else {
+            wx.switchTab({
+              url: '../../pages/index/index',
+            })
+          }
+        }
+      })
+      return;
+    }
+    if(this.data.fris.length == 0){
+      this._requestMyFris();
+    }
   },
 
   /**
@@ -86,6 +104,19 @@ Page({
       success:function(ret){
         console.log("获取好友列表成功：");
         console.log(ret.data);
+        if (ret.statusCode == 401) {
+          wx.showModal({
+            title: '',
+            content: '账号异常登录,请重新登录',
+            success: function (res) {
+              if (res.confirm) {
+                wx.navigateTo({
+                  url: '../../pages/login/index',
+                })
+              }
+            }
+          })
+        }
         if (ret.data != null && ret.data.code == 999) {
           var data = ret.data.data;
           var fris = data.friends;

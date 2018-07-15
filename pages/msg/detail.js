@@ -27,17 +27,18 @@ Page({
     isGroupChat:0,    //是否群聊
     toUid:'',         //会话人id
     list:[],
+    autoAdjKeyB: false,//自动上推页面
+    showConfirmBar: false,//是否显示键盘上方带有”完成“按钮那一栏
     showToast:{},
-    // toastText:'',
-    // toastIcon:'',
     showFaces:false,  //显示表情键盘
     showMore:false,   //显示更多选项
     showSpeaker:false,//显示按住说话
     text:'',          //输入框文本
     footerBot:0,      //输入框底部距离 
-    inputH:45,        //输入框高度 
+    inputH:40,        //输入框高度 
     footerH:0,        //底部条高度
     faceCurPage:0,    //表情轮播图当前页
+    toView:null,
     faceList: [
       //第一组表情
     [{
@@ -298,8 +299,13 @@ Page({
               item.imContent = that.imContent(item,nItem,false); 
             }
             
+            var scrolltoMsg = "";//滑动到最底部的消息
+            if(ret.data.length > 1){
+              scrolltoMsg = "msg" + ret.data[ret.data.length - 1].id;
+            }
             that.setData({
-              list:ret.data
+              list:ret.data,
+              toView: scrolltoMsg
             });
           }
         },
@@ -663,7 +669,7 @@ return arr;
   //点击表情按钮
   onFaces:function(){
     console.log("onFaces");
-    var footerBot = !this.data.showFaces ? 150 : 0;
+    var footerBot = !this.data.showFaces ? 170 : 0;
     this.setData({
       showFaces:!this.data.showFaces,
       footerBot: footerBot,
@@ -710,15 +716,46 @@ return arr;
       url: '../../pages/connection/cardDetail?userId=' + id,
     })
   },
+  //点击输入框
+  onInput:function(){
+    
+  },
+  //监听滚动
+  bindScroll: function (e) {
+    if (this.data.footerBot != 0) {
+      this.setData({
+        footerBot: 0,
+        showMore: false,
+        showFaces: false
+      })
+    }
+  },
   //输入框聚焦
   bindfocus: function (e) {
+    that = this;
     if (e.detail.height != undefined) {
-
+        that.setData({
+          footerBot: e.detail.height
+        });
     }
+    //内容滚动到最底部
+    // var scrolltoMsg = "";//滑动到最底部的消息
+    // if (that.data.list.length > 1) {
+    //   scrolltoMsg = "msg" + that.data.list[that.data.list.length - 1].id;
+    // }
+    // that.setData({
+    //   toView: scrolltoMsg
+    // });
   },
   //输入框失去焦点
   bindblur: function (e) {
     console.log(e);
+    that = this;
+    if (that.data.footerBot != 0  && that.data.showMore == false && that.data.showFaces == false){
+      that.setData({
+        footerBot: 0
+      });
+    }
   },
   //监听输入框行数变化
   bindLineChange:function(e){
@@ -726,23 +763,19 @@ return arr;
     var lineCount = e.detail.lineCount;
     var height    = e.detail.height ;
     // height: 0, heightRpx: 0, lineCount: 0
-    if (lineCount < 5){
-      var footerH = height + 10;
+    if (lineCount < 5 ){
+      var footerH = 55;
+      var inputH  = 30;
+      if(lineCount != 1){
+        inputH = height;
+        footerH = height + 25;
+      }
+      // var footerH = height + 25;
       this.setData({
-        inputH: height,
+        inputH: inputH,
         footerH: footerH
       })
     } 
-  },
-  //监听滚动
-  bindScroll: function (e) {
-    if (this.data.footerBot != 0){
-      this.setData({
-        footerBot: 0,
-        showMore:false,
-        showFaces:false
-      })
-    }
   },
   //监听表情轮播图滚边
   faceCurPageChange:function(e){
@@ -982,7 +1015,6 @@ return arr;
     })
 
   },
-
 
   //网络请求
   //发送消息

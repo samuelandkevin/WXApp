@@ -6,12 +6,12 @@
     top: 0;
     left: 0;
     right: 0;
-    background-color: #eee;
+    background-color: #eee; 
 }
 .layim-chat-main {
     position: fixed;
     width: 100%;
-    bottom: 45px;
+    bottom: 60px;
     top: 0;
     left: 0;
     right: 0;
@@ -234,10 +234,8 @@ li {
     color: #338BCB;
 }
 .layim-chat-location-map {
-    width: 60%;
+    width: calc(60% + 4px);
     height: 200px;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
     box-shadow: none;
     display: inline-block;
     vertical-align: top;
@@ -250,7 +248,7 @@ li {
     line-height: 22px;
     margin-top: 20px;
     background-color: #fff;
-    border-radius: 5px;
+    border-radius: 5px 5px 0 0;
     color: #333;
     word-break: break-all;
 }
@@ -299,30 +297,28 @@ footer {
     display: table;
     content: ' ';
 }
-/* .mui-row>[class*=mui-col-] {
-    float: left;
-} */
+
 .footer-left {
     position: absolute;
-    bottom: 0.15rem;
-    left: 0.25rem;
+    bottom: 10px; 
+    left:10px;
     width: 30px;
 }
 .footer-center {
     position: absolute;
-    left: 36px;
-    bottom: 2px;
-    width: -webkit-calc(100% - 120px);
+    left: 42px;
+    bottom: 10px; 
+    width: -webkit-calc(100% - 140px);
 }
 .footer-center .input-text {
-    padding: 5px 6px;
+    padding: 5px 5px;
     line-height: 16px !important;
     overflow-y: visible;
     text-align: left;
-    background-color: #F5F5F5;
+    background-color: #ffffff;
     color: #000000;
-    border: none;
-    border-bottom: 0.5px solid #ddd;
+    border: 0.5px solid #ddd;
+    border-radius: 5px;
     font-size: 16px !important;
     font-family: verdana !important;
     width: 95%;
@@ -362,8 +358,8 @@ footer .iconfont {
     width: 85px;
     min-width: 85px;
     text-align: right;
-    bottom: 0.15rem;
-    right: 0.25rem;
+    bottom:10px;
+    right: 3px;
 }
 .mui-text-right {
     text-align: right!important;
@@ -377,6 +373,7 @@ footer .iconfont {
     position: relative;
     min-height: 1px;
     float:left;
+    text-align: center;
 }
 .footer-right .mui-btn-success {
     border: 1px solid #0e92dd;
@@ -415,7 +412,7 @@ footer .iconfont {
     border-top: 1.5px solid #ddd;
     background-color: #F5F5F5;
     box-sizing: content-box;
-    height:150px;
+    height:170px;
 }
 .mui-slider .mui-slider-group {
     font-size: 0;
@@ -431,6 +428,8 @@ footer .iconfont {
     height: 100%;
     vertical-align: top;
     white-space: normal;
+    left:20px;
+    padding-top: 15px;
 }
 .face-list {
     width: 100%;
@@ -446,14 +445,14 @@ footer .iconfont {
     cursor: pointer;
     float: left;
     overflow: hidden;
-    margin: 0px 10px 0 0px;
-    padding: 4px 2px;
+    margin: 0px 6px 0 0px;
+    padding: 4px 1px;
     text-align: center;
 }
 .mui-slider .mui-slider-group .mui-slider-item image {
-    width: 20px;
-    height: 20px;
-    padding: 5px;
+    width: 25px;
+    height: 25px;
+    padding: 5px 5px 0 5px;
     vertical-align: bottom;
     display: inline-block;
     border: none;
