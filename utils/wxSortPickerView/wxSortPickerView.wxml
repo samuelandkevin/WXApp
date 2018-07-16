@@ -16,7 +16,7 @@
  <template name="wxSortPickerViewItem">
     <block wx:for="{{item.list}}" wx:for-item="item" wx:key="">
         <view class="wxSortPickerViewItem"  bindtap = "wxSortPickerViewItemTap" data-id="{{item.id}}">
-            <image src='{{item.profileImageUrl}}'></image>
+            <image src="{{item.profileImageUrl == '' ? 'http://csapp.gtax.cn/taxtao/static/webim/images/default_avatar@2x.png' : item.profileImageUrl}}"></image>
             <text>{{item.name}}</text>            
         </view>
     </block>

@@ -19,7 +19,9 @@
     "pages/msg/detail",
     "pages/map/index",
     "pages/map/detail",
-    "pages/me/setting"
+    "pages/me/setting",
+    "pages/me/mycase" ,
+    "pages/me/mycollect"
   ],
   "window": {
     "backgroundTextStyle": "light",

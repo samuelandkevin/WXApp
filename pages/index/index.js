@@ -172,7 +172,6 @@ Page({
     wx.navigateTo({
       url: '../../pages/case/caseDetail?caseId=' + caseId,
     })
-    
   },
   //点击资讯
   onCallNews:function(event){

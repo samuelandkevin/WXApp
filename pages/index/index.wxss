@@ -1,3 +1,8 @@
+@import "/iconfont.wxss";
+
+.iconfont {
+  font-size:12px;
+}
 .bgf5{
     background: #f5f5f5;
 }

@@ -95,6 +95,14 @@ Page({
       // wx.navigateTo({
       //   url: '',
       // })
+    }else if(id == 1){
+      wx.navigateTo({
+        url: '../../pages/me/mycase',
+      })
+    }else if(id == 2){
+      wx.navigateTo({
+        url: '../../pages/me/mycollect',
+      })
     }else if(id == 4){
       wx.navigateTo({
         url: '../../pages/me/setting',

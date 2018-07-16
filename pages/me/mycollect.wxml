@@ -1,0 +1,32 @@
+<scroll-view scroll-y="true" style="height:100%" class="mui-content" id="contnet-list">
+  <block wx:for="{{list}}" wx:key="{{item.id}}">
+         <view class="mui-card" id="item_{{item.id}}" data-id="{{item.id}}" data-type="{{item.type}}" data-content="{{item.content}}">
+            <view class="mui-card-header mui-card-media">
+                <image src="{{ item.sourceHead ? item.sourceHead : 'http://csapp.gtax.cn/taxtao/static/webim/images/default_avatar@2x.png' }}" />
+                <view class="mui-media-body">{{item.sourceName}}
+                    <p class="mui-pull-right">{{item.createdDate}}</p>
+                </view>
+            </view>
+            <view class="mui-card-content-inner">
+              <block wx:if="{{item.type == 1}}">
+                <image src="{{item.imContent}}" class="layui-layim-photos" />
+              </block>
+              <block wx:else>
+                <rich-text nodes="{{item.imContent}}">
+								</rich-text>
+              </block>
+               
+            </view>
+        </view> 
+  </block>
+</scroll-view>
+
+<!-- 长按收藏弹出层 -->
+<!-- <view id="collect_option" class="mui-popover">
+  <ul class="mui-table-view">
+      <li class="mui-table-view-cell" data-type="copy">复制</li>
+      <li class="mui-table-view-cell" data-type="forward">转发</li>
+      <li class="mui-table-view-cell" data-type="email">邮件发送</li>
+      <li class="mui-table-view-cell" data-type="delete">删除</li>
+  </ul>
+</view> -->

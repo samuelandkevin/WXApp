@@ -1,0 +1,25 @@
+<view class="mui-content" id="case_list">
+  <block wx:for="{{list}}" wx:key="{{item.id}}">
+    <a data-id="{{item.id}}" href="javascript:;" class="tuijian_list" data-id="648" bindtap="onCase">
+      <view class="ui_flex">
+        <view class="ui_flex-hd">
+          <view class="title">
+            {{item.title}}
+          </view>
+          <view class="info">
+            {{item.summary}}
+          </view>
+          <view class="ui_flex v3-7-info">
+            <view class="ui_flex-hd">
+              <view class="tags">
+              </view>
+            </view>
+            <view class="time">
+              {{item.createTime}}
+            </view>
+          </view>
+        </view>
+      </view>
+    </a>
+  </block>
+</view>

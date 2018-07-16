@@ -71,11 +71,12 @@ ul, li {
     height:100%;
 }
 .wechat-avatar .row-padded [class*=col-xs-] {
-    padding: 0.05rem;
+  padding:0.9px;
 }
+
 .col-xs-6 {
-    width: 45%;
-    height:45%;
+    width: 47%;
+    height:47%;
 }
 .col-xs-4 {
     width: 30%;

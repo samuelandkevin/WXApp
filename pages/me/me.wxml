@@ -8,11 +8,11 @@
                 <view id="mylisttext" class="mui-media-body mui-ellipsis">{{item.title}}
                     <block wx:if="{{userCard}}">
                       <p>{{userCard.name}}</p>
-                      <p>{{userCard.company}} | {{userCard.job}}</p>
+                      <p class="desc">{{userCard.company}} | {{userCard.job}}</p>
                     </block>
                     <block wx:else>
                       <p>未登录</p>
-                      <p>请输入账号密码登录</p>
+                      <p class="desc">请输入账号密码登录</p>
                     </block>
                 </view>
             </view>

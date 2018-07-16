@@ -18,7 +18,9 @@
               <block wx:else>
                    <block wx:for="{{item.sessionUserHead}}" wx:for-item="head" wx:key="">
                     <view class="col-xs-4">
-                     <image src="{{head == '' ? 'http://csapp.gtax.cn/taxtao/static/webim/images/default_avatar@2x.png' : head}}"/> 
+                      <block wx:if="{{index < 9}}">
+                        <image src="{{head == '' ? 'http://csapp.gtax.cn/taxtao/static/webim/images/default_avatar@2x.png' : head}}"/> 
+                      </block>
                   </view>   
                   </block>  
               </block>
