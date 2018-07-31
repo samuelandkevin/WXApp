@@ -10,8 +10,9 @@ Page({
    */
   data: {
     imgUrls: [
-      netUtil.baseUrl+'/taxtao/v2/image?id=6ec19e4f331b4d299f7fd8a92b3868f2',
-      netUtil.baseUrl+'/taxtao/v2/image?id=4a03e0b2c2234f369431e67921382e32'
+      netUtil.baseUrl +'/taxtao/v2/image?id=c469a529a9d2409095c582aa37db9229',
+      netUtil.baseUrl +'/taxtao/v2/image?id=4a03e0b2c2234f369431e67921382e32',
+      netUtil.baseUrl +'/taxtao/v2/image?id=bfbb8b1087f84558b65d518648bea5a1'
     ],
     indicatorDots: true,
     autoplay: true,

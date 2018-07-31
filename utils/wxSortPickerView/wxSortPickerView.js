@@ -84,7 +84,13 @@ function query(text) {
     var str = text.trim();
     if (str == "") return;
     var arrRslt = makePy(str);
-    return arrRslt;
+    if (arrRslt[0].match(/[a-zA-Z]/)){
+      return arrRslt;
+    }else{
+      return "#";
+    }
+    
+    
 }
 
 function init(array, that, callback) {
@@ -140,14 +146,10 @@ function buildListData(that,arr){
         var model = arr[i];
         //获取姓名
         var name  = model.name;
-        var firstChar = name.substr(0, 1).toUpperCase();
+        var firstChar = name.trim().substr(0, 1).toUpperCase();
         //获取大写的首字母
         var reg   = query(firstChar)[0];
         var temIndex = temABC.indexOf(reg);
-        //加入索引
-        if(indexList.indexOf(reg) == -1 ){
-          indexList.push(reg);
-        }
         list[temIndex].list.push(model);
     }
 
@@ -163,12 +165,16 @@ function buildListData(that,arr){
     if(typeof temData == 'undefined'){
             temData = {};
     }
+    for (var i = 0; i < temList.length; i++) {
+      indexList.push(temList[i].tag);
+    }
     temData.indexList = indexList;
     temData.list      = temList;
    
     that.setData({
         wxSortPickerData: temData
     })
+  
 }
 
 function wxSortPickerViewUpper(e) {
@@ -180,7 +186,7 @@ function wxSortPickerViewLower(e) {
 }
 
 function wxSortPickerViewScroll(e) {
-    console.log(e.detail.scrollTop);
+    // console.log(e.detail.scrollTop);
 }
 
 function setViewWH(that) {
@@ -212,7 +218,6 @@ function wxSortPickerViewTemTagTap(e) {
     that.setData({
         wxSortPickerData: temData,
     })
-
 }
 
 module.exports = {

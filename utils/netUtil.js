@@ -1,4 +1,4 @@
-var baseUrl = 'https://csapp.gtax.cn'
+var baseUrl = 'https://apps.gtax.cn'
 
 var requestHandler = {
   url: '',
