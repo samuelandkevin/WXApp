@@ -9,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    loadFinish: false,
     cursor:null,
     list:[]
   },
@@ -182,6 +183,7 @@ Page({
 
   /**网络请求 */
   _requestChatList:function(cursor,callback){
+    that = this;
     var params = new Object();
     var url = "/taxtao/api/im/chat_history_list";
     params.accessToken = app.data.userInfo.accessToken;
@@ -199,6 +201,9 @@ Page({
       },
       complete: function () {
         callback.complete();
+        that.setData({
+          loadFinish: true
+        });
       },
     });
   },

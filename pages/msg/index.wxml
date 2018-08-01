@@ -1,3 +1,4 @@
+ <loading hidden="{{loadFinish}}" bindchange="loadingChange" />
 <scroll-view  class="mui-content margin-b-15" style="height:100%" scroll-y="true">
 	<ul class="list media-list" id="chat_histoty_list">
 		<li class="list-item list-item-middle" data-user-id="{{item.userId}}"

@@ -1,6 +1,6 @@
 .wxSortPickerViewTemTags{
   position: fixed;
-  top: 20%;
+  top: 10px;
   right: 0;
   color: gray;
 }

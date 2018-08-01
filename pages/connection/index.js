@@ -86,6 +86,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    loadFinish: false,
     fris:[],
   },
 
@@ -131,7 +132,9 @@ Page({
 
       },
       complete:function(){
-
+        that.setData({
+          loadFinish: true
+        });
       }
     })
   },
